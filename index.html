@@ -1746,96 +1746,116 @@
     </script>
 
     <script>
-    // Robust VAPI Integration
-    const VAPI = {
-        instance: null,
-        apiKey: "YOUR_VAPI_PUBLIC_KEY", // Replace with actual key
-        assistants: {
-            en: "547cdb15-f39f-4f8b-a718-8a1297507f24",
-            ms: "f17f0a3e-e523-4fd9-8559-b58f238a1359",
-            zh: "4e26b749-6fb8-42fa-a35e-b0c4b77b2712",
-            id: "06dd4b42-54f3-4b46-8741-5f1719aae82a"
-        },
-        
-        init: function() {
-            const script = document.createElement('script');
-            script.src = 'https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js';
-            script.defer = true;
-            script.onload = () => this.setupVapi();
-            document.body.appendChild(script);
-        },
+    // SAFE vp IMPLEMENTATION
+    const VAPI = (() => {
+        const config = {
+            apiKey: "ca84ef5b-a805-44ab-8796-d2e8468c195c", // REPLACE THIS
+            assistants: {
+                en: "547cdb15-f39f-4f8b-a718-8a1297507f24",
+                ms: "f17f0a3e-e523-4fd9-8559-b58f238a1359",
+                zh: "4e26b749-6fb8-42fa-a35e-b0c4b77b2712",
+                id: "06dd4b42-54f3-4b46-8741-5f1719aae82a"
+            },
+            debug: true
+        };
     
-        setupVapi: function() {
-            const language = this.detectLanguage();
-            const assistantId = this.assistants[language] || this.assistants.en;
-            
+        let instance = null;
+    
+        // 1. SAFE LANGUAGE DETECTION
+        const detectLanguage = () => {
             try {
-                this.instance = window.vapiSDK.run({
-                    apiKey: this.apiKey,
-                    assistant: assistantId,
+                const lang = (navigator.language || 'en').split('-')[0].toLowerCase();
+                return Object.keys(config.assistants).includes(lang) ? lang : 'en';
+            } catch (error) {
+                console.error('Language detection failed:', error);
+                return 'en';
+            }
+        };
+    
+        // 2. ERROR-PROOF INITIALIZATION
+        const initialize = async () => {
+            try {
+                // Load vp script dynamically
+                await new Promise((resolve, reject) => {
+                    const script = document.createElement('script');
+                    script.src = 'https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js';
+                    script.defer = true;
+                    script.onload = resolve;
+                    script.onerror = reject;
+                    document.head.appendChild(script);
+                });
+    
+                // Create VAPI instance
+                instance = window.vapiSDK.run({
+                    apiKey: config.apiKey,
+                    assistant: config.assistants[detectLanguage()],
                     config: {
                         hideButton: true,
-                        mode: 'start',
+                        mode: 'start-silent',
                         audio: {
                             inputDevice: 'default',
                             outputDevice: 'default'
+                        }
                     }
                 });
+    
+                if(config.debug) console.log('VAPI initialized successfully');
                 
-                console.log('VAPI initialized with:', language, assistantId);
-                this.addButtonListeners();
+                // Enable buttons
+                document.querySelectorAll('[data-vapi]').forEach(btn => {
+                    btn.disabled = false;
+                    btn.classList.remove('opacity-50');
+                });
+    
             } catch (error) {
                 console.error('VAPI initialization failed:', error);
-                this.showFallback();
+                showFallback();
             }
-        },
+        };
     
-        detectLanguage: function() {
-            const lang = navigator.language.toLowerCase().split('-')[0];
-            return this.assistants[lang] ? lang : 'en';
-        },
-    
-        addButtonListeners: function() {
-            const buttons = document.querySelectorAll('[data-vapi-button]');
-            buttons.forEach(btn => {
-                btn.removeEventListener('click', this.handleCall);
-                btn.addEventListener('click', this.handleCall.bind(this));
-                btn.disabled = false;
-            });
-        },
-    
-        handleCall: function() {
-            if (!this.instance) {
-                console.error('VAPI not initialized');
-                this.showFallback();
+        // 3. CALL HANDLING WITH FALLBACK
+        const handleCall = () => {
+            if (!instance) {
+                console.error('VAPI instance not available');
+                showFallback();
                 return;
             }
     
             try {
-                this.instance.start();
-                console.log('Call initiated successfully');
-                this.toggleLoading(true);
+                if(config.debug) console.log('Starting call...');
+                instance.start();
+                showLoading(true);
             } catch (error) {
-                console.error('Call failed:', error);
-                this.showFallback();
+                console.error('Call start failed:', error);
+                showFallback();
             }
-        },
+        };
     
-        toggleLoading: function(show) {
-            document.querySelectorAll('[data-vapi-button]').forEach(btn => {
-                btn.innerHTML = show ? 
+        // 4. UI FEEDBACK
+        const showLoading = (isLoading) => {
+            document.querySelectorAll('[data-vapi]').forEach(btn => {
+                btn.innerHTML = isLoading ? 
                     '<div class="spinner"></div>' : 
                     'Talk to Somebody';
             });
-        },
+        };
     
-        showFallback: function() {
+        const showFallback = () => {
             window.location.href = 'tel:+1-555-123-4567';
-        }
-    };
+        };
     
-    // Initialize after DOM loads
-    document.addEventListener('DOMContentLoaded', () => VAPI.init());
+        // PUBLIC API
+        return {
+            init: initialize,
+            handleCall
+        };
+    })();
+    
+    // INITIALIZE WHEN SAFE
+    document.addEventListener('DOMContentLoaded', () => {
+        VAPI.init();
+        document.querySelector('[data-vapi]').addEventListener('click', VAPI.handleCall);
+    });
     </script>
     
     <script>
