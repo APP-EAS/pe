@@ -41,7 +41,21 @@
         body {
             font-family: 'Inter', sans-serif;
         }
-    
+
+        .spinner {
+            width: 24px;
+            height: 24px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
         .gradient-hero {
             background: linear-gradient(135deg, #0a2540 0%, #1e3a8a 100%);
             padding-top: 7rem; /* Default padding */
@@ -870,7 +884,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-4xl mx-auto">
                 <h1 class="hero-text text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 leading-tight">
-                    We Feature Your Brand in Top Tier Press 100% Guaranteed
+                    We Feature Your Brand in Top Tier Press——100% Guaranteed
                 </h1>
                 <p class="text-xl text-gray-100 mb-10 leading-relaxed">
                     Gain guaranteed features on renowned platforms like MarketWatch, Yahoo Finance, and Business Insider, plus hundreds more respected news sources worldwide. Establish trust, enhance visibility, and reach new audiences with professional media coverage.
@@ -881,7 +895,9 @@
                     <a href="#pricing" class="bg-white text-blue-800 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-50 transition duration-300 shadow-lg">
                         See Plans & Pricing
                     </a>
-                    <button onclick="startVapiCall()" class="bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-600 transition duration-300 shadow-lg">
+                    <button data-vapi-button 
+                            class="bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-600 transition duration-300 shadow-lg"
+                            disabled>
                         Talk to Somebody
                     </button>
                 </div>
@@ -1730,83 +1746,96 @@
     </script>
 
     <script>
-    var vapiInstance = null;
-    const apiKey = "ca84ef5b-a805-44ab-8796-d2e8468c195c"; // Public key
-
-    // 1. ADD MISSING LANGUAGE DETECTION FUNCTION
-    function detectLanguage() {
-        const primaryLanguage = navigator.language || navigator.userLanguage;
-        const preferredLanguages = navigator.languages || [];
+    // Robust VAPI Integration
+    const VAPI = {
+        instance: null,
+        apiKey: "YOUR_VAPI_PUBLIC_KEY", // Replace with actual key
+        assistants: {
+            en: "547cdb15-f39f-4f8b-a718-8a1297507f24",
+            ms: "f17f0a3e-e523-4fd9-8559-b58f238a1359",
+            zh: "4e26b749-6fb8-42fa-a35e-b0c4b77b2712",
+            id: "06dd4b42-54f3-4b46-8741-5f1719aae82a"
+        },
+        
+        init: function() {
+            const script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js';
+            script.defer = true;
+            script.onload = () => this.setupVapi();
+            document.body.appendChild(script);
+        },
     
-        const matchLanguage = (langCode, prefixes) =>
-            prefixes.some((prefix) => langCode.startsWith(prefix));
+        setupVapi: function() {
+            const language = this.detectLanguage();
+            const assistantId = this.assistants[language] || this.assistants.en;
+            
+            try {
+                this.instance = window.vapiSDK.run({
+                    apiKey: this.apiKey,
+                    assistant: assistantId,
+                    config: {
+                        hideButton: true,
+                        mode: 'start',
+                        audio: {
+                            inputDevice: 'default',
+                            outputDevice: 'default'
+                    }
+                });
+                
+                console.log('VAPI initialized with:', language, assistantId);
+                this.addButtonListeners();
+            } catch (error) {
+                console.error('VAPI initialization failed:', error);
+                this.showFallback();
+            }
+        },
     
-        if (matchLanguage(primaryLanguage, ["id"])) return "Bahasa Indonesia";
-        if (matchLanguage(primaryLanguage, ["ms"])) return "Malay";
-        if (matchLanguage(primaryLanguage, ["zh", "zh-CN", "zh-HK", "zh-TW"])) return "Chinese";
-        if (matchLanguage(primaryLanguage, ["en"])) return "English";
+        detectLanguage: function() {
+            const lang = navigator.language.toLowerCase().split('-')[0];
+            return this.assistants[lang] ? lang : 'en';
+        },
     
-        for (const lang of preferredLanguages) {
-            if (matchLanguage(lang, ["id"])) return "Bahasa Indonesia";
-            if (matchLanguage(lang, ["ms"])) return "Malay";
-            if (matchLanguage(lang, ["zh", "zh-CN", "zh-HK", "zh-TW"])) return "Chinese";
-            if (matchLanguage(lang, ["en"])) return "English";
+        addButtonListeners: function() {
+            const buttons = document.querySelectorAll('[data-vapi-button]');
+            buttons.forEach(btn => {
+                btn.removeEventListener('click', this.handleCall);
+                btn.addEventListener('click', this.handleCall.bind(this));
+                btn.disabled = false;
+            });
+        },
+    
+        handleCall: function() {
+            if (!this.instance) {
+                console.error('VAPI not initialized');
+                this.showFallback();
+                return;
+            }
+    
+            try {
+                this.instance.start();
+                console.log('Call initiated successfully');
+                this.toggleLoading(true);
+            } catch (error) {
+                console.error('Call failed:', error);
+                this.showFallback();
+            }
+        },
+    
+        toggleLoading: function(show) {
+            document.querySelectorAll('[data-vapi-button]').forEach(btn => {
+                btn.innerHTML = show ? 
+                    '<div class="spinner"></div>' : 
+                    'Talk to Somebody';
+            });
+        },
+    
+        showFallback: function() {
+            window.location.href = 'tel:+1-555-123-4567';
         }
-    
-        return "English";
-    }
-    
-    // 2. KEEP ASSISTANT CONFIG
-    const assistantConfig = {
-        English: "547cdb15-f39f-4f8b-a718-8a1297507f24",
-        Malay: "f17f0a3e-e523-4fd9-8559-b58f238a1359", 
-        Chinese: "4e26b749-6fb8-42fa-a35e-b0c4b77b2712",
-        "Bahasa Indonesia": "06dd4b42-54f3-4b46-8741-5f1719aae82a"
     };
     
-    // 3. MODIFIED INITIALIZATION
-    (function (d, t) {
-        var g = document.createElement(t),
-            s = d.getElementsByTagName(t)[0];
-        g.src = "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
-        g.defer = true;
-        g.async = true;
-        s.parentNode.insertBefore(g, s);
-        g.onload = function () {
-            const lang = detectLanguage();
-            vapiInstance = window.vapiSDK.run({
-                apiKey: apiKey,
-                assistant: assistantConfig[lang],
-                config: {
-                    position: "custom",
-                    hideButton: true,
-                    mode: 'start'  // ENABLE ACTIVE LISTENING
-                }
-            });
-            
-            // ERROR HANDLING
-            vapiInstance.on('error', (error) => {
-                console.error('VAPI Error:', error);
-            });
-        };
-    })(document, "script");
-    
-    // 4. ROBUST START FUNCTION
-    function startVapiCall() {
-        if (!vapiInstance) {
-            console.error('VAPI not initialized');
-            return;
-        }
-        
-        try {
-            vapiInstance.start();
-            console.log('Call initiated');
-        } catch (error) {
-            console.error('Call failed:', error);
-            // FALLBACK ACTION
-            window.location.href = 'tel:+1-555-123-4567'; 
-        }
-    }
+    // Initialize after DOM loads
+    document.addEventListener('DOMContentLoaded', () => VAPI.init());
     </script>
     
     <script>
