@@ -43,8 +43,12 @@
         }
     
         .gradient-hero {
-            background: linear-gradient(135deg, #0a2540 0%, #1e3a8a 100%);
-            padding-top: 7rem; /* Default padding */
+            background: linear-gradient(135deg, 
+                rgba(10, 37, 64, 0.98) 0%, 
+                rgba(30, 58, 138, 0.96) 100%
+            );
+            backdrop-filter: blur(4px);
+            padding-top: 7rem;
             padding-bottom: 5rem;
         }
     
@@ -67,7 +71,7 @@
             filter: grayscale(0%);
             opacity: 1;
         }
-
+    
         .network-tab-button.active {
             color: #1e40af;
             border-color: #1e40af;
@@ -97,7 +101,7 @@
         .network-tab-content {
             transition: all 0.3s ease;
         }
-
+    
         /* Google Translate adjustments */
         .goog-te-banner-frame {
             display: none !important;
@@ -117,7 +121,6 @@
             padding: 0 !important;
         }
         
-        /* Add these new rules */
         .goog-te-spinner-pos {
             display: none !important;
         }
@@ -133,17 +136,13 @@
         .goog-te-gadget span {
             display: none !important;
         }
-
+    
         #google_translate_element {
             position: absolute;
             top: -9999px;
             left: -9999px;
             height: 0;
             overflow: hidden;
-        }
-        
-        .goog-te-banner-frame {
-            display: none !important;
         }
         
         .goog-te-menu-frame {
@@ -153,12 +152,11 @@
         .goog-te-menu2 {
             display: none !important;
         }
-
+    
         #google_translate_element select {
             display: none;
         }
         
-        .goog-te-banner-frame,
         .goog-te-balloon-frame {
             display: none !important;
         }
@@ -182,12 +180,12 @@
         .voice-debug {
             display: none !important;
         }
-
+    
         .mobile-menu {
             position: relative;
             z-index: 40;
         }
-
+    
         .skiptranslate,
         .goog-te-spinner-pos {
             display: none !important;
@@ -196,10 +194,6 @@
         .goog-te-gadget {
             height: 0;
             overflow: hidden;
-        }
-        
-        body {
-            top: 0 !important;
         }
         
         .VIpgJd-ZVi9od-ORHb-OEVmcd,
@@ -215,7 +209,7 @@
             margin-top: -13px;
             float: left;
         }
-
+    
         .goog-te-combo {
             margin: 0 !important;
             padding: 0 !important;
@@ -251,46 +245,54 @@
         .skiptranslate.goog-te-gadget {
             display: none;
         }
-        
-        /* Adjustments for Mobile View */
+    
+        /* Hero Card Enhancements */
+        .hero-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            background: rgba(30, 58, 138, 0.3);
+            backdrop-filter: blur(8px);
+        }
+    
+        /* Responsive Adjustments */
         @media (max-width: 768px) {
             .hero-text {
                 font-size: 2.25rem !important;
             }
-    
+        
             .pricing-card {
                 margin-bottom: 2rem;
             }
-    
+        
             .hero-card {
                 height: auto;
-                min-height: 140px; /* Ensures consistent height for all hero cards on mobile */
+                min-height: 140px;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
+                padding: 1.5rem;
             }
-    
+        
             .gradient-hero {
-                padding-top: 8rem; /* Increased top padding for mobile devices */
+                padding-top: 8rem;
                 padding-bottom: 5rem;
             }
         }
     
-        /* Adjustments for Tablet View */
         @media (min-width: 768px) and (max-width: 1024px) {
             .gradient-hero {
-                padding-top: 7rem; /* Increased top padding for tablet devices */
+                padding-top: 7rem;
                 padding-bottom: 5rem;
             }
-    
+        
             .hero-text {
                 font-size: 3rem;
             }
-    
+        
             .hero-card {
                 height: auto;
-                min-height: 150px; /* Slightly taller cards for better spacing */
+                min-height: 150px;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
@@ -298,16 +300,15 @@
             }
         }
     
-        /* Adjustments for Desktop View */
         @media (min-width: 1024px) {
             .gradient-hero {
-                padding-top: 10rem; /* Maintains ample spacing for desktop */
+                padding-top: 10rem;
                 padding-bottom: 5rem;
             }
-    
+        
             .hero-card {
                 height: auto;
-                min-height: 160px; /* Ensures consistent height for all hero cards on desktop */
+                min-height: 160px;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
@@ -876,31 +877,42 @@
                     Gain guaranteed features on renowned platforms like MarketWatch, Yahoo Finance, and Business Insider, plus hundreds more respected news sources worldwide. Establish trust, enhance visibility, and reach new audiences with professional media coverage.
                 </p>
     
-                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-16">
-                    <a href="#pricing" class="bg-white text-blue-800 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-50 transition duration-300 shadow-lg">
-                        See Plans & Pricing
+                <div class="flex flex-col sm:flex-row justify-center gap-4 mb-12">
+                    <!-- Primary CTA -->
+                    <a href="#pricing" class="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 shadow-lg transform hover:scale-105 flex items-center justify-center">
+                        Get Featured Now ➔
                     </a>
-                    <a href="#coverage" class="bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-600 transition duration-300 shadow-lg">
-                        View Media Network
+                    
+                    <!-- Trust Badge -->
+                    <div class="flex items-center text-sm text-white/90 px-4">
+                        <svg class="w-5 h-5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                        </svg>
+                        Trusted by 1,200+ Brands
+                    </div>
+                    
+                    <!-- Secondary CTA -->
+                    <a href="#coverage" class="bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-lg text-lg font-semibold transition duration-300 border-2 border-white/30 hover:border-white/50 flex items-center justify-center">
+                        See Guaranteed Outlets ✔️
                     </a>
                 </div>
     
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 items-center">
-                    <div class="text-center bg-blue-800 bg-opacity-30 rounded-lg p-4 hero-card">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 items-center">
+                    <div class="text-center bg-blue-800/30 backdrop-blur-sm rounded-xl p-6 hero-card hover:bg-blue-800/40 transition-all duration-300">
                         <div class="text-3xl sm:text-4xl font-bold text-white mb-2">600+</div>
-                        <div class="text-gray-200">Available Media Outlets</div>
+                        <div class="text-gray-200 text-sm">Media Outlets</div>
                     </div>
-                    <div class="text-center bg-blue-800 bg-opacity-30 rounded-lg p-4 hero-card">
+                    <div class="text-center bg-blue-800/30 backdrop-blur-sm rounded-xl p-6 hero-card hover:bg-blue-800/40 transition-all duration-300">
                         <div class="text-3xl sm:text-4xl font-bold text-white mb-2">100%</div>
-                        <div class="text-gray-200">Guaranteed Placements</div>
+                        <div class="text-gray-200 text-sm">Guaranteed Placement</div>
                     </div>
-                    <div class="text-center bg-blue-800 bg-opacity-30 rounded-lg p-4 hero-card">
-                        <div class="text-3xl sm:text-4xl font-bold text-white mb-2">5-7</div>
-                        <div class="text-gray-200">Business Days for Delivery</div>
+                    <div class="text-center bg-blue-800/30 backdrop-blur-sm rounded-xl p-6 hero-card hover:bg-blue-800/40 transition-all duration-300">
+                        <div class="text-3xl sm:text-4xl font-bold text-white mb-2">5-7 Days</div>
+                        <div class="text-gray-200 text-sm">Delivery</div>
                     </div>
-                    <div class="text-center bg-blue-800 bg-opacity-30 rounded-lg p-4 hero-card">
+                    <div class="text-center bg-blue-800/30 backdrop-blur-sm rounded-xl p-6 hero-card hover:bg-blue-800/40 transition-all duration-300">
                         <div class="text-3xl sm:text-4xl font-bold text-white mb-2">500M+</div>
-                        <div class="text-gray-200">Potential Audience Reach</div>
+                        <div class="text-gray-200 text-sm">Audience Reach</div>
                     </div>
                 </div>
             </div>
