@@ -1733,14 +1733,38 @@
     var vapiInstance = null;
     const apiKey = "ca84ef5b-a805-44ab-8796-d2e8468c195c"; // Public key
 
-    // Language detection and assistant configuration remains the same
+    // 1. ADD MISSING LANGUAGE DETECTION FUNCTION
+    function detectLanguage() {
+        const primaryLanguage = navigator.language || navigator.userLanguage;
+        const preferredLanguages = navigator.languages || [];
+    
+        const matchLanguage = (langCode, prefixes) =>
+            prefixes.some((prefix) => langCode.startsWith(prefix));
+    
+        if (matchLanguage(primaryLanguage, ["id"])) return "Bahasa Indonesia";
+        if (matchLanguage(primaryLanguage, ["ms"])) return "Malay";
+        if (matchLanguage(primaryLanguage, ["zh", "zh-CN", "zh-HK", "zh-TW"])) return "Chinese";
+        if (matchLanguage(primaryLanguage, ["en"])) return "English";
+    
+        for (const lang of preferredLanguages) {
+            if (matchLanguage(lang, ["id"])) return "Bahasa Indonesia";
+            if (matchLanguage(lang, ["ms"])) return "Malay";
+            if (matchLanguage(lang, ["zh", "zh-CN", "zh-HK", "zh-TW"])) return "Chinese";
+            if (matchLanguage(lang, ["en"])) return "English";
+        }
+    
+        return "English";
+    }
+    
+    // 2. KEEP ASSISTANT CONFIG
     const assistantConfig = {
         English: "547cdb15-f39f-4f8b-a718-8a1297507f24",
-        Malay: "f17f0a3e-e523-4fd9-8559-b58f238a1359",
+        Malay: "f17f0a3e-e523-4fd9-8559-b58f238a1359", 
         Chinese: "4e26b749-6fb8-42fa-a35e-b0c4b77b2712",
         "Bahasa Indonesia": "06dd4b42-54f3-4b46-8741-5f1719aae82a"
     };
-
+    
+    // 3. MODIFIED INITIALIZATION
     (function (d, t) {
         var g = document.createElement(t),
             s = d.getElementsByTagName(t)[0];
@@ -1749,23 +1773,38 @@
         g.async = true;
         s.parentNode.insertBefore(g, s);
         g.onload = function () {
-            const userLanguage = detectLanguage(); // Implement your detection logic
+            const lang = detectLanguage();
             vapiInstance = window.vapiSDK.run({
                 apiKey: apiKey,
-                assistant: assistantConfig[userLanguage],
+                assistant: assistantConfig[lang],
                 config: {
                     position: "custom",
-                    hideButton: true
-                },
+                    hideButton: true,
+                    mode: 'start'  // ENABLE ACTIVE LISTENING
+                }
+            });
+            
+            // ERROR HANDLING
+            vapiInstance.on('error', (error) => {
+                console.error('VAPI Error:', error);
             });
         };
     })(document, "script");
-
+    
+    // 4. ROBUST START FUNCTION
     function startVapiCall() {
-        if (vapiInstance) {
+        if (!vapiInstance) {
+            console.error('VAPI not initialized');
+            return;
+        }
+        
+        try {
             vapiInstance.start();
-        } else {
-            console.error("Voice assistant not initialized");
+            console.log('Call initiated');
+        } catch (error) {
+            console.error('Call failed:', error);
+            // FALLBACK ACTION
+            window.location.href = 'tel:+1-555-123-4567'; 
         }
     }
     </script>
