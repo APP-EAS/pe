@@ -870,19 +870,20 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-4xl mx-auto">
                 <h1 class="hero-text text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 leading-tight">
-                    Showcase Your Business on Prestigious Global Media Outlets
+                    We Feature Your Brand in Top Tier Press 100% Guaranteed
                 </h1>
                 <p class="text-xl text-gray-100 mb-10 leading-relaxed">
                     Gain guaranteed features on renowned platforms like MarketWatch, Yahoo Finance, and Business Insider, plus hundreds more respected news sources worldwide. Establish trust, enhance visibility, and reach new audiences with professional media coverage.
                 </p>
     
+                <!-- Modified buttons section -->
                 <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-16">
                     <a href="#pricing" class="bg-white text-blue-800 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-50 transition duration-300 shadow-lg">
                         See Plans & Pricing
                     </a>
-                    <a href="#coverage" class="bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-600 transition duration-300 shadow-lg">
-                        View Media Network
-                    </a>
+                    <button onclick="startVapiCall()" class="bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-600 transition duration-300 shadow-lg">
+                        Talk to Somebody
+                    </button>
                 </div>
     
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-6 items-center">
@@ -1728,6 +1729,47 @@
         });
     </script>
 
+    <script>
+    var vapiInstance = null;
+    const apiKey = "ca84ef5b-a805-44ab-8796-d2e8468c195c"; // Public key
+
+    // Language detection and assistant configuration remains the same
+    const assistantConfig = {
+        English: "547cdb15-f39f-4f8b-a718-8a1297507f24",
+        Malay: "f17f0a3e-e523-4fd9-8559-b58f238a1359",
+        Chinese: "4e26b749-6fb8-42fa-a35e-b0c4b77b2712",
+        "Bahasa Indonesia": "06dd4b42-54f3-4b46-8741-5f1719aae82a"
+    };
+
+    (function (d, t) {
+        var g = document.createElement(t),
+            s = d.getElementsByTagName(t)[0];
+        g.src = "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
+        g.defer = true;
+        g.async = true;
+        s.parentNode.insertBefore(g, s);
+        g.onload = function () {
+            const userLanguage = detectLanguage(); // Implement your detection logic
+            vapiInstance = window.vapiSDK.run({
+                apiKey: apiKey,
+                assistant: assistantConfig[userLanguage],
+                config: {
+                    position: "custom",
+                    hideButton: true
+                },
+            });
+        };
+    })(document, "script");
+
+    function startVapiCall() {
+        if (vapiInstance) {
+            vapiInstance.start();
+        } else {
+            console.error("Voice assistant not initialized");
+        }
+    }
+    </script>
+    
     <script>
         (function(f,n) { 
             n = document.createElement('script'); 
