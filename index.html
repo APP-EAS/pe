@@ -567,7 +567,7 @@
         <div class="relative min-h-screen flex items-center justify-center p-4">
             <div class="bg-white rounded-lg p-6 w-full max-w-5xl mx-auto flex flex-col relative">
                 <div class="flex justify-between items-center mb-4">
-                    <h3 class="text-xl font-bold">Core Network List</h3>
+                    <h3 class="text-xl font-bold">Core Outlets List</h3>
                     <button onclick="closeCsvModal('csvModalCore')" class="text-gray-600 hover:text-gray-800">
                         <i class="fas fa-times text-xl"></i>
                     </button>
@@ -603,7 +603,7 @@
         <div class="relative min-h-screen flex items-center justify-center p-4">
             <div class="bg-white rounded-lg p-6 w-full max-w-5xl mx-auto flex flex-col relative">
                 <div class="flex justify-between items-center mb-4">
-                    <h3 class="text-xl font-bold">Elite Network List</h3>
+                    <h3 class="text-xl font-bold">Elite Outlets List</h3>
                     <button onclick="closeCsvModal('csvModalElite')" class="text-gray-600 hover:text-gray-800">
                         <i class="fas fa-times text-xl"></i>
                     </button>
@@ -640,7 +640,7 @@
         <div class="relative min-h-screen flex items-center justify-center p-4">
             <div class="bg-white rounded-lg p-6 w-full max-w-6xl mx-auto flex flex-col relative">
                 <div class="flex justify-between items-center mb-6">
-                    <h3 class="text-2xl font-bold text-blue-900">Our Media Networks</h3>
+                    <h3 class="text-2xl font-bold text-blue-900">Our Media Outlets</h3>
                     <button onclick="closeModal('allNetworksModal')" class="text-gray-600 hover:text-gray-800">
                         <i class="fas fa-times text-xl"></i>
                     </button>
@@ -649,14 +649,14 @@
                 <!-- Network Package Selection -->
                 <div class="flex justify-center border-b border-gray-200 mb-6">
                     <div class="inline-flex">
-                        <button onclick="switchNetworkTab('core')" class="network-tab-button active px-8 py-3 font-semibold text-gray-600 hover:text-blue-800 border-b-2 border-transparent">Core Network</button>
-                        <button onclick="switchNetworkTab('elite')" class="network-tab-button px-8 py-3 font-semibold text-gray-600 hover:text-blue-800 border-b-2 border-transparent">Elite Network</button>
+                        <button onclick="switchNetworkTab('core')" class="network-tab-button active px-8 py-3 font-semibold text-gray-600 hover:text-blue-800 border-b-2 border-transparent">Core Outlets</button>
+                        <button onclick="switchNetworkTab('elite')" class="network-tab-button px-8 py-3 font-semibold text-gray-600 hover:text-blue-800 border-b-2 border-transparent">Elite Outlets</button>
                     </div>
                 </div>
     
-                <!-- Network Lists -->
+                <!-- Outlets Lists -->
                 <div class="flex-1 overflow-hidden max-h-[70vh]">
-                    <!-- Core Network Tab -->
+                    <!-- Core Outlets Tab -->
                     <div id="coreNetworkTab" class="network-tab-content">
                         <div class="flex justify-center">
                             <div class="w-4/5">
@@ -676,7 +676,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Elite Network Tab -->
+                    <!-- Elite Outlets Tab -->
                     <div id="eliteNetworkTab" class="network-tab-content hidden">
                         <div class="flex justify-center">
                             <div class="w-4/5">
@@ -996,7 +996,7 @@
                     <img src="./images/logos/ap.png" alt="Associated Press" class="media-logo mx-auto opacity-90">
                 </a>
     
-                <!-- Major Media Networks -->
+                <!-- Major Media Outlets -->
                 <a href="#" class="block hover:opacity-100 transition-opacity">
                     <img src="./images/logos/digital-journal.png" alt="Digital Journal" class="media-logo mx-auto opacity-90">
                 </a>
@@ -1041,7 +1041,7 @@
                 <p class="text-gray-600">And hundreds more respected platforms...</p>
                 <p class="text-gray-700 font-medium">Proudly display these media badges on your site to instantly amplify credibility.</p>
                 <button onclick="showAllNetworksModal()" class="inline-flex items-center text-blue-800 hover:text-blue-900 font-semibold border-none bg-transparent cursor-pointer">
-                    View Full Outlet Network 
+                    View All Media Outlets
                     <i class="fas fa-arrow-right ml-2"></i>
                 </button>
             </div>
@@ -1176,7 +1176,7 @@
 
             <div class="text-center">
                 <button onclick="showAllNetworksModal()" class="inline-flex items-center text-blue-800 hover:text-blue-900 font-semibold border-none bg-transparent cursor-pointer">
-                    Explore All Network Lists
+                    Explore All Media Outlets
                     <i class="fas fa-arrow-right ml-2"></i>
                 </button>
             </div>
@@ -1246,7 +1246,7 @@
                             <li class="flex items-center">
                                 <i class="fas fa-file-alt text-blue-800 mr-3"></i>
                                 <span class="text-gray-600">View coverage details</span>
-                                <a href="javascript:void(0)" onclick="showCsvModal('csvModalCore', 'core.csv')" class="text-blue-800 ml-2 text-sm hover:underline">(See Core Network List)</a>
+                                <a href="javascript:void(0)" onclick="showCsvModal('csvModalCore', 'core.csv')" class="text-blue-800 ml-2 text-sm hover:underline">(See Core Outlets List)</a>
                             </li>
                             <li class="flex items-center">
                                 <i class="fas fa-check text-green-500 mr-3"></i>
@@ -1335,7 +1335,7 @@
                             <li class="flex items-center">
                                 <i class="fas fa-file-alt text-blue-800 mr-3"></i>
                                 <span class="text-gray-600">View coverage details</span>
-                                <a href="javascript:void(0)" onclick="showCsvModal('csvModalElite', 'elite.csv')" class="text-blue-800 ml-2 text-sm hover:underline">(See Elite Network List)</a>
+                                <a href="javascript:void(0)" onclick="showCsvModal('csvModalElite', 'elite.csv')" class="text-blue-800 ml-2 text-sm hover:underline">(See Elite Outlets List)</a>
                             </li>
                             <li class="flex items-center">
                                 <i class="fas fa-check text-green-500 mr-3"></i>
