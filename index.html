@@ -2103,16 +2103,16 @@
                 const newHeight = scrollHeight + extraPadding;
                 
                 // Only update if the new height is greater than our minimum
-                if (newHeight > 1000) {
+                if (newHeight > 750) {
                     iframe.style.height = newHeight + 'px';
                 } else {
-                    iframe.style.height = '1000px'; // Maintain minimum height
+                    iframe.style.height = '750px'; // Maintain minimum height
                 }
             } catch(e) {
                 // If we can't access the iframe content due to cross-origin restrictions,
                 // fall back to a larger fixed height that should accommodate most forms
                 const isLargeScreen = window.innerWidth > 768;
-                iframe.style.height = isLargeScreen ? '1200px' : '1500px';
+                iframe.style.height = isLargeScreen ? '900px' : '1200px';
             }
         }
         
