@@ -379,26 +379,6 @@
                         <div class="text-xl font-bold text-blue-900">$399</div>
                     </div>
                 </div>
-                
-                <!-- Bundle Package -->
-                <div class="border rounded-lg p-6 cursor-pointer hover:border-blue-500 transition-all duration-300 bg-blue-50 hover:bg-blue-100" onclick="selectEssentialPackage('bundle')">
-                    <div class="flex justify-between items-start">
-                        <div class="flex-grow">
-                            <div class="flex flex-col sm:flex-row sm:items-center gap-2">
-                                <h4 class="font-bold text-lg text-gray-900">Core + Podcast Bundle</h4>
-                                <div class="inline-flex px-3 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full">
-                                    SAVE $100
-                                </div>
-                            </div>
-                            <p class="text-gray-600 mt-1">Enhanced coverage package</p>
-                        </div>
-                        <div class="text-right ml-4">
-                            <div class="text-xl font-bold text-blue-900">$798</div>
-                            <div class="text-sm text-gray-500 line-through">$898</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
     
             <!-- Terms and Security Info -->
             <div class="mt-8 space-y-4">
@@ -475,49 +455,9 @@
     <!-- Podcast Modal Content -->
     <div id="podcastModal" class="fixed inset-0 flex items-center justify-center hidden z-50">
         <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4">
-            <h3 class="text-2xl font-bold mb-6 text-blue-900">Choose Your Package</h3>
+            <h3 class="text-2xl font-bold mb-6 text-blue-900">Elite Coverage Enhancement</h3>
             <div class="space-y-6">
-                <!-- Standalone Package -->
-                <div class="border rounded-lg p-6 cursor-pointer hover:border-blue-500 transition-all duration-300 bg-white hover:bg-blue-50" onclick="selectPodcastPackage('standalone')">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h4 class="font-bold text-lg text-gray-900">Podcast Network Package</h4>
-                            <p class="text-gray-600 mt-1">Standalone coverage</p>
-                        </div>
-                        <div class="text-xl font-bold text-blue-900">$499</div>
-                    </div>
-                </div>
-                
-                <!-- Core Bundle -->
-                <div class="border rounded-lg p-6 cursor-pointer hover:border-blue-500 transition-all duration-300 bg-blue-50 hover:bg-blue-100" onclick="selectPodcastPackage('essential')">
-                    <div class="flex justify-between items-start">
-                        <div class="flex-grow">
-                            <div class="flex flex-col sm:flex-row sm:items-center gap-2">
-                                <h4 class="font-bold text-lg text-gray-900">Core + Podcast Bundle</h4>
-                                <div class="inline-flex px-3 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full">
-                                    SAVE $100
-                                </div>
-                            </div>
-                            <p class="text-gray-600 mt-1">Bundle with Core Coverage</p>
-                            <ul class="mt-3 space-y-2 text-sm text-gray-600">
-                                <li class="flex items-center">
-                                    <i class="fas fa-check text-green-500 mr-2"></i>
-                                    Core Coverage
-                                </li>
-                                <li class="flex items-center">
-                                    <i class="fas fa-check text-green-500 mr-2"></i>
-                                    Podcast Network Package
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="text-right ml-4">
-                            <div class="text-xl font-bold text-blue-900">$798</div>
-                            <div class="text-sm text-gray-500 line-through">$898</div>
-                        </div>
-                    </div>
-                </div>
-            
-                <!-- Elite Bundle -->
+                <!-- Elite Bundle Only -->
                 <div class="border rounded-lg p-6 cursor-pointer hover:border-blue-500 transition-all duration-300 bg-blue-50 hover:bg-blue-100" onclick="selectPodcastPackage('elite')">
                     <div class="flex justify-between items-start">
                         <div class="flex-grow">
@@ -527,7 +467,7 @@
                                     SAVE $100
                                 </div>
                             </div>
-                            <p class="text-gray-600 mt-1">Bundle with Elite Global Coverage</p>
+                            <p class="text-gray-600 mt-1">Complete coverage solution</p>
                             <ul class="mt-3 space-y-2 text-sm text-gray-600">
                                 <li class="flex items-center">
                                     <i class="fas fa-check text-green-500 mr-2"></i>
@@ -1384,10 +1324,14 @@
             <!-- Podcast Add-on -->
             <div class="mt-16 max-w-3xl mx-auto bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-8 border border-blue-100">
                 <div class="text-center">
-                    <span class="inline-block px-4 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold mb-4">ENHANCE YOUR COVERAGE</span>
+                    <span class="inline-block px-4 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold mb-4">ELITE PLAN ENHANCEMENT</span>
                     <h3 class="text-2xl font-bold mb-4">Podcast Network Package</h3>
                     <p class="text-gray-600 mb-6">Expand into the audio sphere with placements on top podcast platforms worldwide.</p>
                     <div class="text-3xl font-bold mb-8">$499</div>
+                    
+                    <div class="bg-white rounded-lg p-4 mb-6 border border-blue-200">
+                        <p class="text-blue-800 font-semibold">Available exclusively as an enhancement to the Elite Global Coverage Plan</p>
+                    </div>
                         
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left max-w-xl mx-auto mb-8">
                         <div>
@@ -1428,11 +1372,11 @@
                         </div>
                     </div>
                         
-                    <p class="text-sm text-gray-600 mb-8">Every listing guaranteed. Perfect alongside Core or Elite coverage to extend your presence.</p>
+                    <p class="text-sm text-gray-600 mb-8">Every listing guaranteed. Perfect alongside Elite Global coverage to extend your presence.</p>
                         
                     <button onclick="showModal('podcastModal')" 
                         class="block w-full bg-blue-800 text-white px-8 py-3 rounded-lg hover:bg-blue-900 transition duration-300 font-semibold text-center">
-                        Add to Your Coverage
+                        Add to Elite Coverage
                     </button>
                     <p class="text-xs text-gray-500 text-center mt-4 mb-6">
                         By proceeding, you agree to our <a href="coverage-terms.html" class="text-blue-800 hover:underline">Terms of Coverage</a>
@@ -1444,7 +1388,7 @@
                        </span>
                    </div>
                </div>
-           </div>
+            </div>
     
            <!-- Payment Security Footer -->
            <div class="max-w-3xl mx-auto mt-16 text-center">
@@ -1650,11 +1594,8 @@
         }
     
         function selectEssentialPackage(type) {
-            if (type === 'basic') {
-                window.location.href = 'https://buy.stripe.com/5kA6otcdT8sB1LabII';
-            } else {
-                window.location.href = 'https://buy.stripe.com/bIYbINcdTaAJ75ubIJ';
-            }
+            // Only the basic option is now available
+            window.location.href = 'https://buy.stripe.com/5kA6otcdT8sB1LabII';
         }
     
         function selectElitePackage(type) {
@@ -1666,17 +1607,8 @@
         }
 
         function selectPodcastPackage(type) {
-            switch(type) {
-                case 'standalone':
-                    window.location.href = 'https://buy.stripe.com/5kAfZ31zfeQZ3TieUY';
-                    break;
-                case 'essential':
-                    window.location.href = 'https://buy.stripe.com/bIYbINcdTaAJ75ubIJ';
-                    break;
-                case 'elite':
-                    window.location.href = 'https://buy.stripe.com/cN24glfq5aAJ1LacMP';
-                    break;
-            }
+            // Only the elite option is now available
+            window.location.href = 'https://buy.stripe.com/cN24glfq5aAJ1LacMP';
         }
     
         async function showCsvModal(modalId, csvFile) {
