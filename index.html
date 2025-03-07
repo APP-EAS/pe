@@ -1433,6 +1433,7 @@
                         <h3 class="font-bold text-2xl text-blue-800 mb-8">Contact Us</h3>
                         <div class="relative w-full overflow-hidden rounded-xl shadow-md border border-gray-200 bg-gray-50">
                             <iframe 
+                                id="contactForm"
                                 src="https://docs.google.com/forms/d/e/1FAIpQLScPA7kpXXww8w6ofefBrLzJhSfPgfPLUjJXCZqCrF5pWf2mOQ/viewform?embedded=true"
                                 class="w-full rounded-xl"
                                 frameborder="0"
@@ -1440,10 +1441,11 @@
                                 marginwidth="0"
                                 scrolling="no"
                                 loading="lazy"
-                                style="min-height: 1000px;">
+                                style="min-height: 1000px;"
+                                onload="setupFormResizing()">
                                 Loading...
                             </iframe>
-                            <div class="absolute bottom-0 left-0 w-full h-12" style="background-color: #F9FAFB;"></div>
+                            <div class="absolute bottom-0 left-0 w-full h-12" style="background-color: #bcc6e7;"></div>
                         </div>
                     </div>
         
@@ -2039,5 +2041,85 @@
     };
     </script>
 
+    <script>
+        // Dynamic Google Form resizing
+        function setupFormResizing() {
+            // Set initial height
+            adjustFormHeight();
+            
+            // Create a MutationObserver to watch for changes in the iframe
+            const targetNode = document.getElementById('contactForm');
+            if (!targetNode) return;
+            
+            // Set up periodic checks to ensure form is always fully visible
+            setInterval(adjustFormHeight, 2000);
+            
+            // Also listen for message input events by repeatedly checking form contents
+            const checkForInputInterval = setInterval(function() {
+                try {
+                    const iframe = document.getElementById('contactForm');
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                    
+                    // Look for message textarea or input elements
+                    const messageInputs = iframeDoc.querySelectorAll('textarea, input[type="text"]');
+                    
+                    messageInputs.forEach(input => {
+                        // Add input event listeners to all potential message fields
+                        input.addEventListener('input', adjustFormHeight);
+                    });
+                    
+                    // If we successfully added listeners, we can clear this interval
+                    if (messageInputs.length > 0) {
+                        clearInterval(checkForInputInterval);
+                    }
+                } catch(e) {
+                    // Silent fail for cross-origin restrictions
+                    // We'll rely on the interval check instead
+                }
+            }, 1000);
+            
+            // Listen for window resize events
+            window.addEventListener('resize', adjustFormHeight);
+        }
+    
+        function adjustFormHeight() {
+            const iframe = document.getElementById('contactForm');
+            if (!iframe) return;
+            
+            try {
+                // Try to get the document height from iframe
+                const innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+                if (!innerDoc || !innerDoc.body) return;
+                
+                const scrollHeight = Math.max(
+                    innerDoc.body.scrollHeight,
+                    innerDoc.documentElement.scrollHeight,
+                    innerDoc.body.offsetHeight,
+                    innerDoc.documentElement.offsetHeight
+                );
+                
+                // Add padding to ensure submit button is visible
+                const extraPadding = 100;
+                const newHeight = scrollHeight + extraPadding;
+                
+                // Only update if the new height is greater than our minimum
+                if (newHeight > 1000) {
+                    iframe.style.height = newHeight + 'px';
+                } else {
+                    iframe.style.height = '1000px'; // Maintain minimum height
+                }
+            } catch(e) {
+                // If we can't access the iframe content due to cross-origin restrictions,
+                // fall back to a larger fixed height that should accommodate most forms
+                const isLargeScreen = window.innerWidth > 768;
+                iframe.style.height = isLargeScreen ? '1200px' : '1500px';
+            }
+        }
+        
+        // Force an immediate check when page loads
+        window.addEventListener('load', function() {
+            setTimeout(adjustFormHeight, 1000);
+        });
+    </script>
 </body>
 </html>
