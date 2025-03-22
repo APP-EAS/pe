@@ -774,7 +774,7 @@
                     </div>
                     <div class="text-center bg-blue-800 bg-opacity-30 rounded-lg p-4 hero-card">
                         <div class="text-3xl sm:text-4xl font-bold text-white mb-2">AI-READY</div>
-                        <div class="text-gray-200">Content Indexing Technology</div>
+                        <div class="text-gray-200">Content Indexing</div>
                     </div>
                 </div>
             </div>
@@ -968,7 +968,7 @@
                     </div>
                 </div>
                 
-                <div class="grid grid-cols-2 gap-6">
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
                     <div class="bg-white rounded-xl p-6 text-center">
                         <img src="./images/logos/chatgpt.png" alt="ChatGPT" class="h-12 mx-auto mb-4">
                         <p class="text-blue-900 font-medium">ChatGPT</p>
@@ -976,6 +976,10 @@
                     <div class="bg-white rounded-xl p-6 text-center">
                         <img src="./images/logos/perplexity.png" alt="Perplexity" class="h-12 mx-auto mb-4">
                         <p class="text-blue-900 font-medium">Perplexity</p>
+                    </div>
+                    <div class="bg-white rounded-xl p-6 text-center">
+                        <img src="./images/logos/grok.png" alt="Grok" class="h-12 mx-auto mb-4">
+                        <p class="text-blue-900 font-medium">Grok</p>
                     </div>
                     <div class="bg-white rounded-xl p-6 text-center">
                         <img src="./images/logos/microsoft-copilot.png" alt="Microsoft Copilot" class="h-12 mx-auto mb-4">
@@ -1151,7 +1155,6 @@
         </div>
     </div>
 
-    <!-- Pricing Section -->
     <div id="pricing" class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4">
             <!-- Trust Indicators Header -->
@@ -1171,14 +1174,14 @@
                     </div>
                 </div>
             </div>
-    
+        
             <div class="text-center max-w-3xl mx-auto mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold mb-6">Transparent, Results-Driven Pricing</h2>
                 <p class="text-xl text-gray-600">Choose a coverage package that meets your growth ambitions.</p>
             </div>
                 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                <!-- Core Coverage Plan -->
+                <!-- Core Coverage Plan (matches Premium) -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden h-full flex flex-col relative">
                     <div class="p-8 flex-grow">
                         <div class="h-5 mb-4"><!-- Spacer for MOST POPULAR banner alignment --></div>
@@ -1193,7 +1196,27 @@
                             </li>
                             <li class="flex items-center ml-6">
                                 <i class="fas fa-circle text-blue-800 mr-3 text-xs"></i>
-                                <span>Benzinga – a widely respected financial news source</span>
+                                <span>Business Insider – a respected international business source</span>
+                            </li>
+                            <li class="flex items-center ml-6">
+                                <i class="fas fa-circle text-blue-800 mr-3 text-xs"></i>
+                                <span>Yahoo Finance – a trusted global finance platform</span>
+                            </li>
+                            <li class="flex items-center ml-6">
+                                <i class="fas fa-circle text-blue-800 mr-3 text-xs"></i>
+                                <span>MarketWatch – a globally renowned financial news leader</span>
+                            </li>
+                            <li class="flex items-center ml-6">
+                                <i class="fas fa-circle text-blue-800 mr-3 text-xs"></i>
+                                <span>Apple News – a prominent digital news aggregator</span>
+                            </li>
+                            <li class="flex items-center ml-6">
+                                <i class="fas fa-circle text-blue-800 mr-3 text-xs"></i>
+                                <span>Associated Press – a respected global news agency</span>
+                            </li>
+                            <li class="flex items-center ml-6">
+                                <i class="fas fa-circle text-blue-800 mr-3 text-xs"></i>
+                                <span>StreetInsider – a trusted financial news source</span>
                             </li>
                             <li class="flex items-center ml-6">
                                 <i class="fas fa-circle text-blue-800 mr-3 text-xs"></i>
@@ -1201,7 +1224,7 @@
                             </li>
                             <li class="flex items-center ml-6">
                                 <i class="fas fa-circle text-blue-800 mr-3 text-xs"></i>
-                                <span>Barchart – a notable market data provider</span>
+                                <span>Morning Star – a leading investment research platform</span>
                             </li>
                             <li class="flex items-center ml-6">
                                 <i class="fas fa-circle text-blue-800 mr-3 text-xs"></i>
@@ -1209,24 +1232,36 @@
                             </li>
                             <li class="flex items-center mt-6">
                                 <i class="fas fa-plus text-blue-800 mr-3"></i>
-                                <span>Additional distribution to hundreds more outlets (not all guaranteed)</span>
+                                <span>Additional distribution to 400+ outlets (not all guaranteed)</span>
                             </li>
                             <li class="flex items-center">
                                 <i class="fas fa-file-alt text-blue-800 mr-3"></i>
                                 <span class="text-gray-600">View coverage details</span>
                                 <a href="javascript:void(0)" onclick="showCsvModal('csvModalCore', 'core.csv')" class="text-blue-800 ml-2 text-sm hover:underline">(See Core Outlets List)</a>
                             </li>
-                            <li class="flex items-center">
-                                <i class="fas fa-check text-green-500 mr-3"></i>
-                                <span>Primarily no-follow links (great for credibility and brand awareness)</span>
+                            <li class="flex items-center mt-4">
+                                <i class="fas fa-info-circle text-blue-800 mr-3"></i>
+                                <span>Max domain authority: 94</span>
                             </li>
                             <li class="flex items-center">
                                 <i class="fas fa-check text-green-500 mr-3"></i>
-                                <span>Up to 800 words & 5 embedded links</span>
+                                <span>AI platforms: <span class="bg-amber-100 text-amber-800 px-2 py-0.5 rounded text-xs">Sometimes</span></span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Newsroom submissions included</span>
                             </li>
                             <li class="flex items-center">
                                 <i class="fas fa-check text-green-500 mr-3"></i>
                                 <span>2 images included</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>1 YouTube video included</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Up to 800 words & 5 embedded links</span>
                             </li>
                             <li class="flex items-center">
                                 <i class="fas fa-check text-green-500 mr-3"></i>
@@ -1235,6 +1270,10 @@
                             <li class="flex items-center">
                                 <i class="fas fa-check text-green-500 mr-3"></i>
                                 <span>Comprehensive coverage report provided</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-times text-red-500 mr-3"></i>
+                                <span class="text-gray-400">Podcast distribution not included</span>
                             </li>
                         </ul>
                     </div>
@@ -1254,8 +1293,8 @@
                         </div>
                     </div>
                 </div>
-    
-                <!-- Elite Global Coverage Plan -->
+        
+                <!-- Elite Global Coverage Plan (matches Gold) -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden border-2 border-blue-800 h-full flex flex-col relative">
                     <div class="absolute top-0 left-0 w-full text-center">
                         <div class="inline-block bg-blue-800 text-white px-6 py-2 text-sm font-semibold rounded-b-lg">
@@ -1274,19 +1313,7 @@
                             </li>
                             <li class="flex items-center ml-6">
                                 <i class="fas fa-star text-blue-800 mr-3"></i>
-                                <span>Business Insider – a respected international business news source</span>
-                            </li>
-                            <li class="flex items-center ml-6">
-                                <i class="fas fa-star text-blue-800 mr-3"></i>
-                                <span>Google News – a globally trusted news aggregator</span>
-                            </li>
-                            <li class="flex items-center ml-6">
-                                <i class="fas fa-star text-blue-800 mr-3"></i>
-                                <span>Apple News – a prominent digital news aggregator</span>
-                            </li>
-                            <li class="flex items-center ml-6">
-                                <i class="fas fa-star text-blue-800 mr-3"></i>
-                                <span>Financial Post – a well-regarded finance and business publication</span>
+                                <span>Business Insider – a respected international business source</span>
                             </li>
                             <li class="flex items-center ml-6">
                                 <i class="fas fa-star text-blue-800 mr-3"></i>
@@ -1296,22 +1323,54 @@
                                 <i class="fas fa-star text-blue-800 mr-3"></i>
                                 <span>MarketWatch – a globally renowned financial news leader</span>
                             </li>
+                            <li class="flex items-center ml-6">
+                                <i class="fas fa-star text-blue-800 mr-3"></i>
+                                <span>Apple News – a prominent digital news aggregator</span>
+                            </li>
+                            <li class="flex items-center ml-6">
+                                <i class="fas fa-star text-blue-800 mr-3"></i>
+                                <span>Associated Press – a respected global news agency</span>
+                            </li>
+                            <li class="flex items-center ml-6">
+                                <i class="fas fa-star text-blue-800 mr-3"></i>
+                                <span>StreetInsider – a trusted financial news source</span>
+                            </li>
+                            <li class="flex items-center ml-6">
+                                <i class="fas fa-star text-blue-800 mr-3"></i>
+                                <span>Google News – a globally trusted news aggregator</span>
+                            </li>
+                            <li class="flex items-center ml-6">
+                                <i class="fas fa-star text-blue-800 mr-3"></i>
+                                <span>Morning Star – a leading investment research platform</span>
+                            </li>
+                            <li class="flex items-center ml-6">
+                                <i class="fas fa-star text-blue-800 mr-3"></i>
+                                <span>Fox40 – a recognized regional news outlet</span>
+                            </li>
                             <li class="flex items-center mt-6">
                                 <i class="fas fa-plus text-blue-800 mr-3"></i>
-                                <span>Extensive guaranteed distribution across hundreds of additional high-credibility outlets</span>
+                                <span>Extensive guaranteed distribution across 500+ high-credibility outlets</span>
                             </li>
                             <li class="flex items-center">
                                 <i class="fas fa-file-alt text-blue-800 mr-3"></i>
                                 <span class="text-gray-600">View coverage details</span>
                                 <a href="javascript:void(0)" onclick="showCsvModal('csvModalElite', 'elite.csv')" class="text-blue-800 ml-2 text-sm hover:underline">(See Elite Outlets List)</a>
                             </li>
-                            <li class="flex items-center">
-                                <i class="fas fa-check text-green-500 mr-3"></i>
-                                <span>ElevateAI technology that indexes your content in leading AI platforms</span>
+                            <li class="flex items-center mt-4">
+                                <i class="fas fa-info-circle text-blue-800 mr-3"></i>
+                                <span>Max domain authority: 97</span>
                             </li>
                             <li class="flex items-center">
                                 <i class="fas fa-check text-green-500 mr-3"></i>
-                                <span>Professional audio conversion and distribution on major podcast networks</span>
+                                <span>ElevateAI indexing in all major AI platforms</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Podcast distribution included across all major platforms</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Newsroom submissions to Bloomberg, Dow Jones, Reuters</span>
                             </li>
                             <li class="flex items-center">
                                 <i class="fas fa-check text-green-500 mr-3"></i>
@@ -1319,11 +1378,15 @@
                             </li>
                             <li class="flex items-center">
                                 <i class="fas fa-check text-green-500 mr-3"></i>
-                                <span>Up to 1200 words & 10 embedded links</span>
+                                <span>2 images included</span>
                             </li>
                             <li class="flex items-center">
                                 <i class="fas fa-check text-green-500 mr-3"></i>
-                                <span>5 images included</span>
+                                <span>1 YouTube video included</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Up to 1200 words & 10 embedded links</span>
                             </li>
                             <li class="flex items-center">
                                 <i class="fas fa-check text-green-500 mr-3"></i>
@@ -1351,11 +1414,12 @@
                         </div>
                     </div>
                 </div>
-    
-           <!-- Payment Security Footer -->
-           <div class="max-w-3xl mx-auto mt-16 text-center">
-               <div class="flex items-center justify-center space-x-8 text-gray-600">
-                   <div class="flex items-center justify-center space-x-8 text-gray-600">
+            </div>
+        
+            <!-- Payment Security Footer -->
+            <div class="max-w-3xl mx-auto mt-16 text-center">
+                <div class="flex items-center justify-center space-x-8 text-gray-600">
+                    <div class="flex items-center justify-center space-x-8 text-gray-600">
                         <div class="flex flex-col items-center">
                             <i class="fab fa-cc-amex text-3xl mb-2 text-gray-400"></i>
                             <span class="text-xs text-gray-400">American Express</span>
@@ -1373,10 +1437,10 @@
                             <span class="text-xs text-gray-400">Powered by Stripe</span>
                         </div>
                     </div>
-               </div>
-               <p class="text-gray-500 text-sm mt-4">Your payment is securely processed with the highest standards.</p>
-           </div>
-       </div>
+                </div>
+                <p class="text-gray-500 text-sm mt-4">Your payment is securely processed with the highest standards.</p>
+            </div>
+        </div>
     </div>
 
     <!-- Contact Section -->
@@ -1490,7 +1554,7 @@
                 
                 <div class="bg-white rounded-lg shadow-sm p-6">
                     <h3 class="font-bold text-lg mb-3">Is podcast distribution included in all plans?</h3>
-                    <p class="text-gray-600">Podcast distribution is automatically included in our Elite Global Coverage plan. This includes conversion of your press release into audio format and distribution across major podcast platforms.</p>
+                    <p class="text-gray-600">Podcast distribution is automatically included in our Elite Global Coverage plan. This includes conversion of your press release into audio format and distribution across 8 major podcast platforms including Spotify, Apple Podcasts, Amazon Music, Player.fm, iHeart, Podchaser, Podbean, and Boomplay.</p>
                 </div>
 
                 <div class="text-center mt-8">
