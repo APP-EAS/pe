@@ -267,6 +267,64 @@
             white-space: nowrap;
         }
         
+        /* ElevateAI Section Styles */
+        .elevateai-section {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2a4292 50%, #1e3a8a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .elevateai-bg-element {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(70px);
+            opacity: 0.15;
+            mix-blend-mode: overlay;
+        }
+        
+        .elevateai-card {
+            background-color: rgba(30, 64, 175, 0.25);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .elevateai-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+            background-color: rgba(30, 64, 175, 0.35);
+        }
+        
+        .elevateai-icon-container {
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .elevateai-logo-box {
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .elevateai-logo-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+        }
+        
+        .elevateai-cta {
+            background: linear-gradient(90deg, #3b82f6 0%, #4f46e5 100%);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .elevateai-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(90deg, #2563eb 0%, #4338ca 100%);
+        }
+        
         /* Adjustments for Mobile View */
         @media (max-width: 768px) {
             .hero-text {
@@ -290,6 +348,29 @@
                 padding-top: 8rem; /* Increased top padding for mobile devices */
                 padding-bottom: 5rem;
             }
+            
+            /* ElevateAI mobile adjustments */
+            .elevateai-section {
+                padding-top: 4rem;
+                padding-bottom: 4rem;
+            }
+            
+            .elevateai-card {
+                background-opacity: 30%;
+                padding: 1.25rem;
+            }
+            
+            .elevateai-section h2 {
+                font-size: 2rem;
+            }
+            
+            .elevateai-section h3 {
+                font-size: 1.5rem;
+            }
+            
+            .elevateai-logo-box {
+                padding: 1rem;
+            }
         }
     
         /* Adjustments for Tablet View */
@@ -310,6 +391,12 @@
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
+            }
+            
+            /* ElevateAI tablet adjustments */
+            .elevateai-section {
+                padding-top: 5rem;
+                padding-bottom: 5rem;
             }
         }
     
@@ -332,9 +419,18 @@
             .hero-text {
                 line-height: 1.25 !important;
             }
+            
+            /* ElevateAI desktop adjustments */
+            .elevateai-section {
+                padding-top: 6rem;
+                padding-bottom: 6rem;
+            }
+            
+            .elevateai-cards-container {
+                margin-top: 2.5rem;
+            }
         }
     </style>
-
     <!-- Tracking Code -->
         <script> (function(e, f, g, h, i){
             $salespanel = window.$salespanel || (window.$salespanel = []);
@@ -955,80 +1051,123 @@
     </div>
 
     <!-- Introducing ElevateAI Section - Optimized Based on Image 2 -->
-    <div class="py-20 bg-gradient-to-br from-blue-900 to-indigo-900 text-white">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-6">Introducing ElevateAI Technology</h2>
-                <p class="text-xl text-gray-200 max-w-3xl mx-auto">The next evolution in media distribution—ensuring your content reaches not just today's outlets, but tomorrow's AI-powered information sources.</p>
+    <div class="py-24 bg-gradient-to-br from-blue-900 via-indigo-900 to-blue-900 text-white relative overflow-hidden">
+        <!-- Decorative Background Elements -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+            <div class="absolute top-10 left-10 w-64 h-64 bg-blue-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+            <div class="absolute bottom-10 right-10 w-80 h-80 bg-indigo-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+            <div class="absolute top-1/2 left-1/4 w-72 h-72 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-10"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 relative z-10">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl md:text-5xl font-bold mb-8 tracking-tight">Introducing ElevateAI Technology</h2>
+                <p class="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto leading-relaxed">The next evolution in media distribution—ensuring your content reaches not just today's outlets, but tomorrow's AI-powered information sources.</p>
             </div>
     
-            <div class="flex flex-col md:flex-row gap-12">
+            <div class="flex flex-col md:flex-row gap-16 items-center">
                 <!-- Left Column: Text Content -->
                 <div class="md:w-1/2">
-                    <h3 class="text-2xl font-bold mb-6">Beyond Traditional Media</h3>
-                    <p class="text-gray-200 mb-8 leading-relaxed">ElevateAI is our groundbreaking technology that ensures your content becomes part of leading AI knowledge systems. While traditional coverage reaches human readers, ElevateAI positions your brand to be referenced when users ask AI platforms questions about your industry.</p>
+                    <h3 class="text-2xl md:text-3xl font-bold mb-8 border-l-4 border-blue-400 pl-4">Beyond Traditional Media</h3>
+                    <p class="text-lg text-blue-100 mb-10 leading-relaxed">ElevateAI is our groundbreaking technology that ensures your content becomes part of leading AI knowledge systems. While traditional coverage reaches human readers, ElevateAI positions your brand to be referenced when users ask AI platforms questions about your industry.</p>
                     
                     <div class="space-y-8">
-                        <div class="bg-blue-800 bg-opacity-30 rounded-lg p-6 transform transition-all duration-300 hover:scale-105">
-                            <h4 class="text-xl font-bold mb-3 flex items-center">
-                                <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                                </svg>
-                                Perpetual Visibility
-                            </h4>
-                            <p class="text-gray-200">Your content becomes part of AI knowledge systems that continue referencing your information months and years later.</p>
+                        <div class="bg-blue-800 bg-opacity-20 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-blue-700 border-opacity-20 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:bg-opacity-30">
+                            <div class="flex items-start">
+                                <div class="bg-gradient-to-br from-blue-400 to-blue-600 p-3 rounded-lg mr-4 shadow-md">
+                                    <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold mb-3 text-white">Perpetual Visibility</h4>
+                                    <p class="text-blue-100">Your content becomes part of AI knowledge systems that continue referencing your information months and years later.</p>
+                                </div>
+                            </div>
                         </div>
                         
-                        <div class="bg-blue-800 bg-opacity-30 rounded-lg p-6 transform transition-all duration-300 hover:scale-105">
-                            <h4 class="text-xl font-bold mb-3 flex items-center">
-                                <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-                                </svg>
-                                Authoritative Positioning
-                            </h4>
-                            <p class="text-gray-200">AI systems will be able to cite your content as their source, providing unprecedented authority positioning.</p>
+                        <div class="bg-blue-800 bg-opacity-20 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-blue-700 border-opacity-20 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:bg-opacity-30">
+                            <div class="flex items-start">
+                                <div class="bg-gradient-to-br from-blue-400 to-blue-600 p-3 rounded-lg mr-4 shadow-md">
+                                    <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold mb-3 text-white">Authoritative Positioning</h4>
+                                    <p class="text-blue-100">AI systems will be able to cite your content as their source, providing unprecedented authority positioning.</p>
+                                </div>
+                            </div>
                         </div>
                         
-                        <div class="bg-blue-800 bg-opacity-30 rounded-lg p-6 transform transition-all duration-300 hover:scale-105">
-                            <h4 class="text-xl font-bold mb-3 flex items-center">
-                                <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"></path>
-                                </svg>
-                                Future-Proof Marketing
-                            </h4>
-                            <p class="text-gray-200">Creates a compound advantage as AI adoption grows, embedding your content in AI knowledge systems ahead of competitors.</p>
+                        <div class="bg-blue-800 bg-opacity-20 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-blue-700 border-opacity-20 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:bg-opacity-30">
+                            <div class="flex items-start">
+                                <div class="bg-gradient-to-br from-blue-400 to-blue-600 p-3 rounded-lg mr-4 shadow-md">
+                                    <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold mb-3 text-white">Future-Proof Marketing</h4>
+                                    <p class="text-blue-100">Creates a compound advantage as AI adoption grows, embedding your content in AI knowledge systems ahead of competitors.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Right Column: AI Platform Logos -->
-                <div class="md:w-1/2 flex flex-col justify-center">
-                    <div class="grid grid-cols-3 gap-6 mb-6">
-                        <!-- Top row - 3 logos -->
-                        <div class="bg-white rounded-xl p-4 flex items-center justify-center transform transition-all duration-300 hover:shadow-lg hover:scale-105">
-                            <img src="./images/logos/chatgpt.png" alt="ChatGPT" class="h-10">
+                <!-- Right Column: AI Platform Logos in a More Elegant Layout -->
+                <div class="md:w-1/2 flex flex-col">
+                    <div class="grid grid-cols-1 gap-8">
+                        <!-- Top row - Featured logos -->
+                        <div class="flex justify-between items-center gap-5">
+                            <div class="bg-white rounded-2xl p-6 flex items-center justify-center transform transition-all duration-300 hover:shadow-xl hover:scale-105 shadow-lg w-full">
+                                <img src="./images/logos/chatgpt.png" alt="ChatGPT" class="h-10">
+                            </div>
+                            
+                            <div class="bg-white rounded-2xl p-6 flex items-center justify-center transform transition-all duration-300 hover:shadow-xl hover:scale-105 shadow-lg w-full">
+                                <img src="./images/logos/perplexity.png" alt="Perplexity" class="h-10">
+                            </div>
                         </div>
                         
-                        <div class="bg-white rounded-xl p-4 flex items-center justify-center transform transition-all duration-300 hover:shadow-lg hover:scale-105">
-                            <img src="./images/logos/perplexity.png" alt="Perplexity" class="h-10">
+                        <!-- Middle row - Center offset -->
+                        <div class="flex justify-center items-center">
+                            <div class="bg-white rounded-2xl p-6 flex items-center justify-center transform transition-all duration-300 hover:shadow-xl hover:scale-105 shadow-lg w-2/3">
+                                <img src="./images/logos/grok.png" alt="Grok" class="h-10">
+                            </div>
                         </div>
                         
-                        <div class="bg-white rounded-xl p-4 flex items-center justify-center transform transition-all duration-300 hover:shadow-lg hover:scale-105">
-                            <img src="./images/logos/grok.png" alt="Grok" class="h-10">
+                        <!-- Bottom row - Featured logos -->
+                        <div class="flex justify-between items-center gap-5">
+                            <div class="bg-white rounded-2xl p-6 flex items-center justify-center transform transition-all duration-300 hover:shadow-xl hover:scale-105 shadow-lg w-full">
+                                <img src="./images/logos/copilot.png" alt="Microsoft Copilot" class="h-10">
+                            </div>
+                            
+                            <div class="bg-white rounded-2xl p-6 flex items-center justify-center transform transition-all duration-300 hover:shadow-xl hover:scale-105 shadow-lg w-full">
+                                <img src="./images/logos/gemini.png" alt="Google Gemini" class="h-10">
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="grid grid-cols-2 gap-6 px-12">
-                        <!-- Bottom row - 2 logos centered -->
-                        <div class="bg-white rounded-xl p-4 flex items-center justify-center transform transition-all duration-300 hover:shadow-lg hover:scale-105">
-                            <img src="./images/logos/copilot.png" alt="Microsoft Copilot" class="h-10">
-                        </div>
-                        
-                        <div class="bg-white rounded-xl p-4 flex items-center justify-center transform transition-all duration-300 hover:shadow-lg hover:scale-105">
-                            <img src="./images/logos/gemini.png" alt="Google Gemini" class="h-10">
-                        </div>
+                    <!-- Decorative connecting lines -->
+                    <div class="hidden md:block absolute right-1/4 top-1/2 w-32 h-32 transform -translate-y-1/2">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="w-full h-full opacity-20">
+                            <path d="M10,50 Q50,10 90,50 Q50,90 10,50" fill="none" stroke="white" stroke-width="1"/>
+                            <path d="M30,30 L70,70" fill="none" stroke="white" stroke-width="1"/>
+                            <path d="M30,70 L70,30" fill="none" stroke="white" stroke-width="1"/>
+                        </svg>
                     </div>
                 </div>
+            </div>
+    
+            <!-- Bottom Call to Action -->
+            <div class="mt-16 text-center">
+                <a href="#pricing" class="inline-flex items-center bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-full hover:from-blue-700 hover:to-indigo-700 transition duration-300 text-lg font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                    Explore Our ElevateAI Coverage Plans
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                    </svg>
+                </a>
             </div>
         </div>
     </div>
