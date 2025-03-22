@@ -789,7 +789,7 @@
                     </div>
                     <div class="text-center bg-blue-800 bg-opacity-30 rounded-lg p-4 hero-card">
                         <div class="text-3xl sm:text-4xl font-bold text-white mb-2 whitespace-nowrap">AI-READY</div>
-                        <div class="text-gray-200">Content Indexing</div>
+                        <div class="text-gray-200">Content<br>Indexing</div>
                     </div>
                 </div>
             </div>
@@ -986,39 +986,31 @@
                     </div>
                 </div>
                 
-                <!-- Right Column: AI Platform Logos - Grid layout that adapts to screen size -->
-                <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
-                    <!-- We'll use a 3-column grid for large screens, 2-column for smaller screens -->
-                    
-                    <!-- Logo 1: ChatGPT -->
-                    <div class="bg-white rounded-xl p-4 flex flex-col items-center justify-center">
-                        <img src="./images/logos/chatgpt.png" alt="ChatGPT" class="h-12 mb-3">
-                        <p class="text-blue-900 font-medium text-center">ChatGPT</p>
+                <!-- Right Column: AI Platform Logos - Cleaner grid layout -->
+                <div class="grid grid-cols-3 gap-3 items-center">
+                    <!-- Platform logos only - no redundant text labels -->
+                    <div class="bg-white rounded-lg p-3 flex items-center justify-center">
+                        <img src="./images/logos/chatgpt.png" alt="ChatGPT" class="h-12">
                     </div>
                     
-                    <!-- Logo 2: Perplexity -->
-                    <div class="bg-white rounded-xl p-4 flex flex-col items-center justify-center">
-                        <img src="./images/logos/perplexity.png" alt="Perplexity" class="h-12 mb-3">
-                        <p class="text-blue-900 font-medium text-center">Perplexity</p>
+                    <div class="bg-white rounded-lg p-3 flex items-center justify-center">
+                        <img src="./images/logos/perplexity.png" alt="Perplexity" class="h-12">
                     </div>
                     
-                    <!-- Logo 3: Grok -->
-                    <div class="bg-white rounded-xl p-4 flex flex-col items-center justify-center lg:col-start-1 lg:col-end-2">
-                        <img src="./images/logos/grok.png" alt="Grok" class="h-12 mb-3">
-                        <p class="text-blue-900 font-medium text-center">Grok</p>
+                    <div class="bg-white rounded-lg p-3 flex items-center justify-center">
+                        <img src="./images/logos/grok.png" alt="Grok" class="h-12">
                     </div>
                     
-                    <!-- Logo 4: Microsoft Copilot -->
-                    <div class="bg-white rounded-xl p-4 flex flex-col items-center justify-center lg:col-start-2 lg:col-end-3">
-                        <img src="./images/logos/copilot.png" alt="Microsoft Copilot" class="h-12 mb-3">
-                        <p class="text-blue-900 font-medium text-center">Microsoft Copilot</p>
+                    <div class="bg-white rounded-lg p-3 flex items-center justify-center">
+                        <img src="./images/logos/copilot.png" alt="Microsoft Copilot" class="h-12">
                     </div>
                     
-                    <!-- Logo 5: Google Gemini - Spans across 2 columns on smaller screens, but fits in its grid on large screens -->
-                    <div class="bg-white rounded-xl p-4 flex flex-col items-center justify-center col-span-2 lg:col-span-1">
-                        <img src="./images/logos/gemini.png" alt="Google Gemini" class="h-12 mb-3">
-                        <p class="text-blue-900 font-medium text-center">Google Gemini</p>
+                    <div class="bg-white rounded-lg p-3 flex items-center justify-center">
+                        <img src="./images/logos/gemini.png" alt="Google Gemini" class="h-12">
                     </div>
+                    
+                    <!-- Empty div to balance the grid on desktop -->
+                    <div class="bg-transparent hidden md:block"></div>
                 </div>
             </div>
         </div>
