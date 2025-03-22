@@ -414,7 +414,7 @@
         </div>
     </div>
     
-    <!-- Elite Plan Modal Content -->
+    <!-- Updated Elite Plan Modal Content -->
     <div id="eliteModal" class="fixed inset-0 flex items-center justify-center hidden z-50">
         <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4">
             <h3 class="text-2xl font-bold mb-6 text-blue-900">Choose Your Package</h3>
@@ -1779,7 +1779,7 @@
         document.querySelector('.mobile-menu-button').addEventListener('click', function() {
             document.querySelector('.mobile-menu').classList.toggle('hidden');
         });
-
+    
         // Back to top button visibility
         window.addEventListener('scroll', function() {
             const backToTopButton = document.getElementById('backToTop');
@@ -1791,7 +1791,7 @@
                 backToTopButton.classList.remove('opacity-100', 'visible');
             }
         });
-
+    
         // Modal functions
         function showModal(modalId) {
             document.getElementById('modalBackdrop').classList.remove('hidden');
@@ -1805,15 +1805,15 @@
     
         function selectEssentialPackage(type) {
             if (type === 'basic') {
-                window.location.href = 'https://buy.stripe.com/5kA6otcdT8sB1LabII';
+                window.location.href = 'https://buy.stripe.com/dR69AH72d3wlgYUbIU';
             }
         }
     
         function selectElitePackage(type) {
             if (type === 'basic') {
-                window.location.href = 'https://buy.stripe.com/5kA1492DjfV34XmfZ0';
+                window.location.href = 'https://buy.stripe.com/bIYaELaepgj76kg6ow';
             } else {
-                window.location.href = 'https://buy.stripe.com/cN24glfq5aAJ1LacMP';
+                window.location.href = 'https://buy.stripe.com/bIYaELaepgj76kg6ow';
             }
         }
     
@@ -1855,7 +1855,7 @@
             document.getElementById('modalBackdrop').classList.add('hidden');
             document.getElementById(modalId).classList.add('hidden');
         }
-
+    
         function handleModalClick(event, modalId) {
             const modal = document.getElementById(modalId);
             const modalContent = modal.querySelector('.bg-white');
@@ -1863,7 +1863,7 @@
                 closeCsvModal(modalId);
             }
         }
-
+    
         function showAllNetworksModal() {
             document.getElementById('allNetworksModal').classList.remove('hidden');
             document.body.style.overflow = 'hidden';
