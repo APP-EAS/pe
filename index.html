@@ -67,7 +67,7 @@
             filter: grayscale(0%);
             opacity: 1;
         }
-
+    
         .network-tab-button.active {
             color: #1e40af;
             border-color: #1e40af;
@@ -97,7 +97,7 @@
         .network-tab-content {
             transition: all 0.3s ease;
         }
-
+    
         /* Google Translate adjustments */
         .goog-te-banner-frame {
             display: none !important;
@@ -133,7 +133,7 @@
         .goog-te-gadget span {
             display: none !important;
         }
-
+    
         #google_translate_element {
             position: absolute;
             top: -9999px;
@@ -153,7 +153,7 @@
         .goog-te-menu2 {
             display: none !important;
         }
-
+    
         #google_translate_element select {
             display: none;
         }
@@ -182,12 +182,12 @@
         .voice-debug {
             display: none !important;
         }
-
+    
         .mobile-menu {
             position: relative;
             z-index: 40;
         }
-
+    
         .skiptranslate,
         .goog-te-spinner-pos {
             display: none !important;
@@ -215,7 +215,7 @@
             margin-top: -13px;
             float: left;
         }
-
+    
         .goog-te-combo {
             margin: 0 !important;
             padding: 0 !important;
@@ -250,6 +250,21 @@
         
         .skiptranslate.goog-te-gadget {
             display: none;
+        }
+        
+        /* Hero Card fixes */
+        .hero-card {
+            height: auto;
+            min-height: 160px; /* Ensures consistent height for all hero cards on desktop */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    
+        /* Fix for AI-READY text to prevent wrapping */
+        .hero-text-nowrap {
+            white-space: nowrap;
         }
         
         /* Adjustments for Mobile View */
@@ -313,7 +328,7 @@
                 justify-content: center;
                 align-items: center;
             }
-
+    
             .hero-text {
                 line-height: 1.25 !important;
             }
