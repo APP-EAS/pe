@@ -773,8 +773,7 @@
                         <div class="text-gray-200">Days Quick Turnaround</div>
                     </div>
                     <div class="text-center bg-blue-800 bg-opacity-30 rounded-lg p-4 hero-card">
-                        <div class="text-3xl sm:text-4xl font-bold text-white mb-2">AI-</div>
-                        <div class="text-3xl sm:text-4xl font-bold text-white mb-2">READY</div>
+                        <div class="text-3xl sm:text-4xl font-bold text-white mb-2 hero-text-nowrap">AI-READY</div>
                         <div class="text-gray-200">Content Indexing</div>
                     </div>
                 </div>
@@ -1189,8 +1188,8 @@
             <!-- Pricing Cards Container -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto mb-16">
                 <!-- Core Coverage Plan -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                    <div class="p-8">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col h-full">
+                    <div class="p-8 flex-grow">
                         <h3 class="font-bold text-2xl mb-2">Core Coverage</h3>
                         <div class="text-3xl font-bold mb-4">$899</div>
                         <p class="text-gray-600 text-sm mb-6">Guaranteed features on credible outlets plus distribution across hundreds of additional media sources for enhanced visibility and authority.</p>
@@ -1256,7 +1255,7 @@
                                 <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"/>
                             </svg>
                             <span>View coverage details</span>
-                            <a href="#" class="text-blue-800 ml-1 underline">(See Core Outlets List)</a>
+                            <a href="#" class="text-blue-800 ml-1 underline" onclick="showCsvModal('csvModalCore', 'core.csv')">(See Core Outlets List)</a>
                         </div>
                         
                         <div class="flex items-start mb-4">
@@ -1325,13 +1324,13 @@
                         </div>
                     </div>
                     
-                    <div class="px-8 pb-8">
+                    <div class="px-8 pb-8 mt-auto">
                         <button class="w-full bg-blue-900 text-white py-3 px-4 rounded-md font-medium hover:bg-blue-800 transition duration-300">
                             Get Started
                         </button>
                         
                         <div class="mt-4 text-center">
-                            <p class="text-xs text-gray-500">By proceeding, you agree to our <a href="#" class="text-blue-700">Terms of Coverage</a></p>
+                            <p class="text-xs text-gray-500">By proceeding, you agree to our <a href="coverage-terms.html" class="text-blue-700">Terms of Coverage</a></p>
                             <div class="flex items-center justify-center mt-2">
                                 <svg class="w-4 h-4 text-gray-500 mr-1" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
@@ -1343,14 +1342,14 @@
                 </div>
                 
                 <!-- Elite Global Coverage Plan -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden border border-blue-700 relative">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden border border-blue-700 relative flex flex-col h-full">
                     <div class="absolute top-0 w-full">
                         <div class="bg-blue-800 text-white text-center py-1 px-4 text-sm font-semibold uppercase tracking-wide">
                             Most Popular
                         </div>
                     </div>
                     
-                    <div class="p-8 pt-12">
+                    <div class="p-8 pt-12 flex-grow">
                         <h3 class="font-bold text-2xl mb-2">Elite Global Coverage</h3>
                         <div class="text-3xl font-bold mb-4">$1,499</div>
                         <p class="text-gray-600 text-sm mb-6">Our most comprehensive package with premium guaranteed placements, ElevateAI indexing, and podcast distribution for maximum reach, visibility and authority.</p>
@@ -1416,7 +1415,7 @@
                                 <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"/>
                             </svg>
                             <span>View coverage details</span>
-                            <a href="#" class="text-blue-800 ml-1 underline">(See Elite Outlets List)</a>
+                            <a href="#" class="text-blue-800 ml-1 underline" onclick="showCsvModal('csvModalElite', 'elite.csv')">(See Elite Outlets List)</a>
                         </div>
                         
                         <div class="flex items-start mb-4">
@@ -1492,13 +1491,13 @@
                         </div>
                     </div>
                     
-                    <div class="px-8 pb-8">
+                    <div class="px-8 pb-8 mt-auto">
                         <button class="w-full bg-blue-900 text-white py-3 px-4 rounded-md font-medium hover:bg-blue-800 transition duration-300">
                             Get Started
                         </button>
                         
                         <div class="mt-4 text-center">
-                            <p class="text-xs text-gray-500">By proceeding, you agree to our <a href="#" class="text-blue-700">Terms of Coverage</a></p>
+                            <p class="text-xs text-gray-500">By proceeding, you agree to our <a href="coverage-terms.html" class="text-blue-700">Terms of Coverage</a></p>
                             <div class="flex items-center justify-center mt-2">
                                 <svg class="w-4 h-4 text-gray-500 mr-1" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
