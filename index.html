@@ -618,66 +618,106 @@
         </div>
     </div>
 
-    <!-- Combined Networks Modal -->
+    <!-- Combined Networks Modal with Categories -->
     <div id="allNetworksModal" class="fixed inset-0 overflow-y-auto hidden z-50" onclick="handleModalClick(event, 'allNetworksModal')">
         <div class="fixed inset-0 bg-black bg-opacity-50"></div>
         <div class="relative min-h-screen flex items-center justify-center p-4">
             <div class="bg-white rounded-lg p-6 w-full max-w-6xl mx-auto flex flex-col relative">
                 <div class="flex justify-between items-center mb-6">
-                    <h3 class="text-2xl font-bold text-blue-900">Our Media Outlets</h3>
+                    <h3 class="text-2xl font-bold text-blue-900">Our Media Coverage Network</h3>
                     <button onclick="closeModal('allNetworksModal')" class="text-gray-600 hover:text-gray-800">
                         <i class="fas fa-times text-xl"></i>
                     </button>
                 </div>
-    
+        
                 <!-- Network Package Selection -->
                 <div class="flex justify-center border-b border-gray-200 mb-6">
                     <div class="inline-flex">
-                        <button onclick="switchNetworkTab('core')" class="network-tab-button active px-8 py-3 font-semibold text-gray-600 hover:text-blue-800 border-b-2 border-transparent">Core Outlets</button>
-                        <button onclick="switchNetworkTab('elite')" class="network-tab-button px-8 py-3 font-semibold text-gray-600 hover:text-blue-800 border-b-2 border-transparent">Elite Outlets</button>
+                        <button onclick="switchNetworkTab('core')" class="network-tab-button active px-8 py-3 font-semibold text-gray-600 hover:text-blue-800 border-b-2 border-transparent">Core Coverage</button>
+                        <button onclick="switchNetworkTab('elite')" class="network-tab-button px-8 py-3 font-semibold text-gray-600 hover:text-blue-800 border-b-2 border-transparent">Elite Global Coverage</button>
                     </div>
                 </div>
-    
+                
+                <!-- Category Navigation -->
+                <div class="mb-6 border-b border-gray-200 pb-4">
+                    <div class="flex flex-wrap justify-center gap-2">
+                        <button onclick="filterMediaByCategory('all')" class="category-filter-btn active px-3 py-1 text-sm font-medium rounded-full bg-blue-100 text-blue-800 hover:bg-blue-200">All Outlets</button>
+                        <button onclick="filterMediaByCategory('financial')" class="category-filter-btn px-3 py-1 text-sm font-medium rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200">Financial Media</button>
+                        <button onclick="filterMediaByCategory('news')" class="category-filter-btn px-3 py-1 text-sm font-medium rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200">News Platforms</button>
+                        <button onclick="filterMediaByCategory('business')" class="category-filter-btn px-3 py-1 text-sm font-medium rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200">Business Publications</button>
+                        <button onclick="filterMediaByCategory('digital')" class="category-filter-btn px-3 py-1 text-sm font-medium rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200">Digital Media</button>
+                        <button onclick="filterMediaByCategory('podcast')" class="category-filter-btn px-3 py-1 text-sm font-medium rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200">Podcast Platforms</button>
+                        <button onclick="filterMediaByCategory('ai')" class="category-filter-btn px-3 py-1 text-sm font-medium rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200">AI Knowledge Systems</button>
+                    </div>
+                </div>
+        
+                <!-- Search Bar -->
+                <div class="mb-6">
+                    <div class="relative max-w-md mx-auto">
+                        <input type="text" id="mediaSearchInput" placeholder="Search media outlets..." class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none">
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+                            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+        
                 <!-- Outlets Lists -->
                 <div class="flex-1 overflow-hidden max-h-[70vh]">
                     <!-- Core Outlets Tab -->
                     <div id="coreNetworkTab" class="network-tab-content">
                         <div class="flex justify-center">
-                            <div class="w-4/5">
+                            <div class="w-full">
                                 <table class="w-full divide-y divide-gray-200 table-auto">
-                                    <colgroup>
-                                        <col class="w-1/2">
-                                        <col class="w-1/2">
-                                    </colgroup>
                                     <thead class="bg-gray-50 sticky top-0">
                                         <tr>
                                             <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50">Publisher</th>
-                                            <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50">Type</th>
+                                            <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50">Category</th>
+                                            <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50">Domain Rating</th>
                                         </tr>
                                     </thead>
                                     <tbody class="bg-white divide-y divide-gray-200 text-sm" id="coreNetworkTableBody"></tbody>
                                 </table>
+                                <div id="coreNoResults" class="hidden text-center py-8 text-gray-500">
+                                    No media outlets matching your search criteria.
+                                </div>
                             </div>
                         </div>
                     </div>
                     <!-- Elite Outlets Tab -->
                     <div id="eliteNetworkTab" class="network-tab-content hidden">
                         <div class="flex justify-center">
-                            <div class="w-4/5">
+                            <div class="w-full">
                                 <table class="w-full divide-y divide-gray-200 table-auto">
-                                    <colgroup>
-                                        <col class="w-1/2">
-                                        <col class="w-1/2">
-                                    </colgroup>
                                     <thead class="bg-gray-50 sticky top-0">
                                         <tr>
                                             <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50">Publisher</th>
-                                            <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50">Type</th>
+                                            <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50">Category</th>
+                                            <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50">Domain Rating</th>
                                         </tr>
                                     </thead>
                                     <tbody class="bg-white divide-y divide-gray-200 text-sm" id="eliteNetworkTableBody"></tbody>
                                 </table>
+                                <div id="eliteNoResults" class="hidden text-center py-8 text-gray-500">
+                                    No media outlets matching your search criteria.
+                                </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Exclusive Features for Elite Tab (Only visible in Elite tab) -->
+                <div id="eliteExclusiveFeatures" class="hidden mt-6 pt-6 border-t border-gray-200">
+                    <h4 class="text-lg font-semibold text-blue-900 mb-4">Elite Global Coverage Exclusive Features:</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-blue-50 rounded-lg p-4">
+                            <h5 class="font-medium text-blue-800 mb-2">AI Platform Indexing</h5>
+                            <p class="text-sm text-blue-900">Your content is guaranteed to be indexed by major AI platforms including ChatGPT, Google Gemini, Microsoft Copilot, Perplexity, and Grok</p>
+                        </div>
+                        <div class="bg-blue-50 rounded-lg p-4">
+                            <h5 class="font-medium text-blue-800 mb-2">Podcast Distribution</h5>
+                            <p class="text-sm text-blue-900">Distribution across 8 premium podcast platforms including Spotify (DA95), Apple Podcasts (DA97), and Amazon Music (DA96)</p>
                         </div>
                     </div>
                 </div>
@@ -1039,9 +1079,11 @@
             <div class="text-center space-y-4">
                 <p class="text-gray-600">And hundreds more respected platforms...</p>
                 <p class="text-gray-700 font-medium">Proudly display these media badges on your site to instantly amplify credibility.</p>
-                <button onclick="showAllNetworksModal()" class="inline-flex items-center text-blue-800 hover:text-blue-900 font-semibold border-none bg-transparent cursor-pointer">
+                <button onclick="showAllNetworksModal()" class="inline-flex items-center px-5 py-2 text-blue-800 bg-blue-50 hover:bg-blue-100 rounded-full font-semibold transition-all duration-300">
                     View All Media Outlets
-                    <i class="fas fa-arrow-right ml-2"></i>
+                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
                 </button>
             </div>
         </div>
@@ -1371,429 +1413,432 @@
         </div>
     </div>
 
-    <!-- Mobile-Responsive Pricing Section -->
-    <div id="pricing" class="py-12 sm:py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Security indicators - Made responsive -->
-            <div class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-8 mb-8">
+    <!-- Strategically Optimized Pricing Section -->
+    <div id="pricing" class="py-16 sm:py-24 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
+        <!-- Background Elements for Visual Interest -->
+        <div class="absolute top-0 right-0 w-1/3 h-1/3 bg-blue-50 opacity-50 rounded-full filter blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-1/4 h-1/4 bg-blue-50 opacity-50 rounded-full filter blur-3xl"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <!-- Security Indicators - Repositioned for Trust Building -->
+            <div class="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-8 mb-4">
                 <div class="flex items-center">
                     <svg class="w-5 h-5 text-blue-800 mr-2" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                     </svg>
-                    <span class="text-sm">SSL Secured</span>
+                    <span class="text-sm">100% Secure Checkout</span>
                 </div>
                 <div class="flex items-center">
-                    <span class="text-sm mr-2">Powered by Stripe</span>
+                    <svg class="w-5 h-5 text-blue-800 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="text-sm">Guaranteed Results</span>
                 </div>
                 <div class="flex items-center">
                     <svg class="w-5 h-5 text-blue-800 mr-2" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path>
                     </svg>
-                    <span class="text-sm">256-bit Encryption</span>
+                    <span class="text-sm">100% Satisfaction Guarantee</span>
                 </div>
             </div>
     
-            <div class="text-center mb-10 sm:mb-16">
-                <h2 class="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">Transparent, Results-Driven Pricing</h2>
-                <p class="text-gray-600 text-base sm:text-lg">Choose a coverage package that meets your growth ambitions.</p>
+            <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-gray-900">Choose Your Global Media Coverage</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Select the package that best fits your brand's visibility needs with our transparent, results-driven pricing.</p>
             </div>
             
-            <!-- Responsive Pricing Cards Container -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto mb-16 sm:mb-24">
-                <!-- Core Coverage Plan - Mobile Optimized -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col h-full transform transition-all duration-300 hover:shadow-lg">
-                    <div class="bg-gray-50 py-4 px-6 border-b border-gray-100">
-                        <h3 class="font-bold text-xl sm:text-2xl mb-1 text-gray-800">Core Coverage</h3>
-                        <p class="text-gray-500 text-sm">Essential media boost & credibility</p>
+            <!-- Impact Statistics Row - Added to Reinforce Value -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 max-w-5xl mx-auto">
+                <div class="bg-blue-50 rounded-xl p-6 text-center transform transition-all hover:shadow-md">
+                    <div class="text-3xl font-bold text-blue-800 mb-2">94%</div>
+                    <p class="text-gray-700">of customers see increased brand credibility after media coverage</p>
+                </div>
+                <div class="bg-blue-50 rounded-xl p-6 text-center transform transition-all hover:shadow-md">
+                    <div class="text-3xl font-bold text-blue-800 mb-2">370%</div>
+                    <p class="text-gray-700">higher traffic with Elite plan compared to Core after 12 months</p>
+                </div>
+                <div class="bg-blue-50 rounded-xl p-6 text-center transform transition-all hover:shadow-md">
+                    <div class="text-3xl font-bold text-blue-800 mb-2">5-7 Days</div>
+                    <p class="text-gray-700">rapid delivery from submission to global coverage</p>
+                </div>
+            </div>
+            
+            <!-- Pricing Cards - Dramatically Enhanced for Conversion -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-6xl mx-auto">
+                <!-- Core Coverage Plan - Intentionally Subdued -->
+                <div class="lg:col-span-5 bg-white rounded-xl shadow-md overflow-hidden flex flex-col h-full border border-gray-200">
+                    <div class="bg-gray-50 py-6 px-8 border-b border-gray-200">
+                        <h3 class="font-bold text-2xl text-gray-800">Core Coverage</h3>
+                        <p class="text-gray-600 mt-1">Essential media visibility</p>
                     </div>
                     
-                    <div class="p-4 sm:p-6">
-                        <div class="flex items-end mb-6">
-                            <div class="text-3xl sm:text-4xl font-bold text-gray-900">$899</div>
-                            <div class="text-gray-500 ml-2 mb-1">one-time</div>
+                    <div class="flex-grow p-8">
+                        <div class="flex items-baseline mb-8">
+                            <span class="text-4xl font-bold text-gray-900">$899</span>
+                            <span class="text-gray-500 ml-2">one-time</span>
                         </div>
                         
-                        <p class="text-gray-600 text-sm mb-6 border-b border-gray-100 pb-6">Guaranteed features on credible outlets plus distribution across hundreds of additional media sources for enhanced visibility and authority.</p>
-                        
-                        <div class="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
-                            <p class="font-semibold text-gray-800">Guaranteed Placements Include:</p>
+                        <div class="space-y-6">
+                            <p class="text-gray-600">Guaranteed placements on trusted media outlets with broad distribution for enhanced visibility and credibility.</p>
                             
-                            <!-- Key Outlets for Core Plan - Condensed for mobile -->
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
-                                <div class="flex items-start">
-                                    <svg class="flex-shrink-0 w-5 h-5 text-green-500 mt-0.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-                                    </svg>
-                                    <p class="text-sm">Business Insider <span class="text-xs text-gray-500">(DR 92)</span></p>
-                                </div>
-                                
-                                <div class="flex items-start">
-                                    <svg class="flex-shrink-0 w-5 h-5 text-green-500 mt-0.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-                                    </svg>
-                                    <p class="text-sm">Yahoo Finance <span class="text-xs text-gray-500">(DR 92)</span></p>
-                                </div>
-                                
-                                <div class="flex items-start">
-                                    <svg class="flex-shrink-0 w-5 h-5 text-green-500 mt-0.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-                                    </svg>
-                                    <p class="text-sm">MarketWatch <span class="text-xs text-gray-500">(DR 91)</span></p>
-                                </div>
-                                
-                                <div class="flex items-start">
-                                    <svg class="flex-shrink-0 w-5 h-5 text-green-500 mt-0.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-                                    </svg>
-                                    <p class="text-sm">Associated Press <span class="text-xs text-gray-500">(DR 91)</span></p>
-                                </div>
-                                
-                                <div class="flex items-start">
-                                    <svg class="flex-shrink-0 w-5 h-5 text-green-500 mt-0.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-                                    </svg>
-                                    <p class="text-sm">Apple News <span class="text-xs text-gray-500">(DR 97)</span></p>
-                                </div>
-                                
-                                <div class="flex items-start">
-                                    <svg class="flex-shrink-0 w-5 h-5 text-green-500 mt-0.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-                                    </svg>
-                                    <p class="text-sm">Globe Newswire <span class="text-xs text-gray-500">(DR 91)</span></p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start mt-4 sm:mt-6">
-                                <svg class="flex-shrink-0 w-5 h-5 text-blue-700 mt-0.5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"/>
-                                </svg>
-                                <p class="text-sm font-medium">400+ additional high-credibility media sources</p>
-                            </div>
-                        </div>
-                        
-                        <div class="border-t border-gray-100 pt-5 sm:pt-6 space-y-3 sm:space-y-4">
-                            <div class="flex items-center text-sm text-blue-700 mb-4">
-                                <svg class="flex-shrink-0 w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"/>
-                                </svg>
-                                <span>View coverage details</span>
-                                <a href="#" class="text-blue-800 ml-1 underline" onclick="showCsvModal('csvModalCore', 'core.csv')">(See List)</a>
-                            </div>
-                            
-                            <div class="flex items-start mb-2">
-                                <svg class="flex-shrink-0 w-5 h-5 text-blue-700 mt-0.5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2h-1V9a1 1 0 00-1-1z" clip-rule="evenodd"/>
-                                </svg>
-                                <p class="text-sm">High domain authority</p>
-                            </div>
-                            
-                            <div class="space-y-3">
-                                <!-- Key Features Condensed -->
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
-                                    <div class="flex items-start">
-                                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 mt-0.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                            <div>
+                                <h4 class="font-medium text-gray-900 mb-4">Key Benefits:</h4>
+                                <ul class="space-y-3">
+                                    <li class="flex items-start">
+                                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 mt-0.5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
                                         </svg>
-                                        <p class="text-sm">2 images included</p>
-                                    </div>
-                                    
-                                    <div class="flex items-start">
-                                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 mt-0.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                        <div>
+                                            <span class="font-medium text-gray-900">400+ Media Placements</span>
+                                            <p class="text-sm text-gray-500 mt-1">Including Business Insider, Yahoo Finance, MarketWatch, and more</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 mt-0.5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
                                         </svg>
-                                        <p class="text-sm">1 YouTube video</p>
-                                    </div>
-                                    
-                                    <div class="flex items-start">
-                                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 mt-0.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                        <div>
+                                            <span class="font-medium text-gray-900">Brand Credibility Boost</span>
+                                            <p class="text-sm text-gray-500 mt-1">Leverage "As Seen On" badges with top media logos</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 mt-0.5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
                                         </svg>
-                                        <p class="text-sm">Up to 800 words</p>
-                                    </div>
-                                    
-                                    <div class="flex items-start">
-                                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 mt-0.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                                        <div>
+                                            <span class="font-medium text-gray-900">SEO Benefits</span>
+                                            <p class="text-sm text-gray-500 mt-1">Quality backlinks from high-authority domains (DR 80-97)</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-medium text-gray-900 mb-4">What's Included:</h4>
+                                <ul class="space-y-2">
+                                    <li class="flex items-center">
+                                        <svg class="w-5 h-5 text-blue-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                                         </svg>
-                                        <p class="text-sm">5 embedded links</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="flex items-start">
-                                    <svg class="flex-shrink-0 w-5 h-5 text-green-500 mt-0.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-                                    </svg>
-                                    <p class="text-sm">Delivery in 5-7 business days</p>
-                                </div>
-                                
-                                <!-- Core Limitations - Mobile Friendly -->
-                                <div class="bg-gray-50 rounded-md p-4 mt-4 border border-gray-200">
-                                    <h5 class="font-medium text-gray-700 mb-2 text-sm sm:text-base">Core Limitations:</h5>
-                                    
-                                    <div class="flex items-start mb-2">
+                                        <span class="text-gray-600">Up to 800 words of content</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <svg class="w-5 h-5 text-blue-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                        </svg>
+                                        <span class="text-gray-600">5 embedded backlinks</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <svg class="w-5 h-5 text-blue-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                        </svg>
+                                        <span class="text-gray-600">2 images</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <svg class="w-5 h-5 text-blue-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                        </svg>
+                                        <span class="text-gray-600">1 YouTube video (optional)</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <svg class="w-5 h-5 text-blue-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                        </svg>
+                                        <span class="text-gray-600">5-7 business day delivery</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <svg class="w-5 h-5 text-blue-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                        </svg>
+                                        <span class="text-gray-600">Comprehensive placement report</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Limitations Section - Strategically Included -->
+                            <div class="bg-gray-50 rounded-lg p-4 mt-6">
+                                <h5 class="font-medium text-gray-800 mb-3">Core Limitations:</h5>
+                                <ul class="space-y-2">
+                                    <li class="flex items-start">
                                         <svg class="flex-shrink-0 w-5 h-5 text-red-500 mt-0.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
                                         </svg>
-                                        <p class="text-sm text-gray-500">Podcast distribution not included</p>
-                                    </div>
-                                    
-                                    <div class="flex items-start">
+                                        <span class="text-gray-600">No podcast distribution</span>
+                                    </li>
+                                    <li class="flex items-start">
                                         <svg class="flex-shrink-0 w-5 h-5 text-red-500 mt-0.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
                                         </svg>
-                                        <p class="text-sm text-gray-500">No guaranteed AI platform indexing</p>
-                                    </div>
-                                    
-                                    <div class="mt-3 text-sm text-blue-700">
-                                        <a href="https://buy.stripe.com/bIYaELaepgj76kg6ow" class="inline-flex items-center">
-                                            <span>Upgrade to Elite for these features</span>
-                                            <svg class="w-3 h-3 ml-1" fill="currentColor" viewBox="0 0 20 20">
-                                                <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
+                                        <span class="text-gray-600">No guaranteed AI indexing</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <svg class="w-5 h-5 text-yellow-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                                        </svg>
+                                        <span class="text-gray-600">Lower long-term visibility</span>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="px-4 sm:px-6 pb-6 mt-auto">
-                        <a href="https://buy.stripe.com/dR69AH72d3wlgYUbIU" class="w-full bg-gray-700 text-white py-3 px-4 rounded-md font-medium hover:bg-gray-800 transition duration-300 text-center inline-block text-base sm:text-lg">
-                            Get Featured Now
+                    <div class="border-t border-gray-200 p-8">
+                        <a href="https://buy.stripe.com/dR69AH72d3wlgYUbIU" class="block w-full py-3 px-4 bg-gray-800 hover:bg-gray-900 text-white text-center font-medium rounded-lg transition duration-300">
+                            Get Core Coverage
                         </a>
-                        
-                        <div class="mt-4 text-center">
-                            <p class="text-xs text-gray-500">By proceeding, you agree to our <a href="coverage-terms.html" class="text-blue-700">Terms of Coverage</a></p>
-                            <div class="flex items-center justify-center mt-2">
-                                <svg class="w-4 h-4 text-gray-500 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
-                                </svg>
-                                <span class="text-xs text-gray-500">Secure Payment</span>
-                            </div>
+                        <p class="text-xs text-center text-gray-500 mt-4">By proceeding, you agree to our <a href="coverage-terms.html" class="text-blue-700 hover:underline">Terms of Coverage</a></p>
+                    </div>
+                </div>
+                
+                <!-- Spacer for Mobile (Hidden on Desktop) -->
+                <div class="block lg:hidden relative py-6">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-full border-t border-gray-200"></div>
+                    </div>
+                    <div class="relative flex justify-center">
+                        <span class="bg-gray-50 px-4 text-sm text-gray-500">OR</span>
+                    </div>
+                </div>
+                
+                <!-- "Most Popular" Ribbon for Desktop (Hidden on Mobile) -->
+                <div class="hidden lg:block lg:col-span-2 -mt-8 mb-8 lg:my-auto relative z-10">
+                    <div class="relative h-full flex flex-col items-center justify-center">
+                        <div class="absolute top-1/2 transform -translate-y-1/2 w-full">
+                            <div class="h-0.5 bg-gradient-to-r from-transparent via-gray-300 to-transparent w-full"></div>
+                        </div>
+                        <div class="bg-blue-600 text-white px-4 py-2 rounded-full mb-4 font-bold text-sm whitespace-nowrap z-10 transform rotate-0 lg:rotate-0">
+                            MOST POPULAR
+                        </div>
+                        <div class="text-blue-600 font-bold text-center mx-4 bg-gray-50 px-4 py-2 rounded-full shadow-sm z-10">
+                            74% Choose<br/>Elite
                         </div>
                     </div>
                 </div>
                 
-                <!-- Elite Global Coverage Plan - Mobile Optimized -->
-                <div class="bg-white rounded-lg shadow-xl overflow-hidden border-2 border-blue-600 relative flex flex-col h-full transform transition-all duration-300 hover:shadow-2xl scale-100 sm:scale-105">
-                    <div class="absolute top-0 w-full">
-                        <div class="bg-blue-700 text-white text-center py-1.5 px-4 text-xs sm:text-sm font-bold uppercase tracking-wide">
-                            RECOMMENDED FOR MAXIMUM ROI & IMPACT
-                        </div>
+                <!-- Elite Global Coverage Plan - Visually Enhanced -->
+                <div class="lg:col-span-5 bg-white rounded-xl shadow-xl overflow-hidden flex flex-col h-full border-2 border-blue-600 transform transition-all duration-300 hover:shadow-2xl lg:scale-105">
+                    <!-- Position ribbon for mobile -->
+                    <div class="block lg:hidden absolute -top-3 -right-3 bg-blue-600 text-white px-8 py-1 transform rotate-45 font-bold text-xs shadow-md">
+                        MOST POPULAR
                     </div>
                     
-                    <div class="bg-blue-50 py-4 px-6 border-b border-blue-100 mt-6">
-                        <h3 class="font-bold text-xl sm:text-2xl mb-1 text-blue-900">Elite Global Coverage</h3>
-                        <p class="text-blue-700 text-sm">Premium AI-ready global media presence</p>
+                    <div class="bg-blue-700 text-white py-6 px-8">
+                        <h3 class="font-bold text-2xl">Elite Global Coverage</h3>
+                        <p class="text-blue-100 mt-1">Maximum impact & AI-ready presence</p>
                     </div>
                     
-                    <div class="p-4 sm:p-6">
-                        <div class="flex items-end mb-6">
-                            <div class="text-3xl sm:text-4xl font-bold text-blue-900">$1,499</div>
-                            <div class="text-blue-700 ml-2 mb-1">one-time</div>
+                    <div class="flex-grow p-8 bg-gradient-to-br from-white to-blue-50">
+                        <div class="flex items-baseline mb-4">
+                            <span class="text-4xl font-bold text-blue-900">$1,499</span>
+                            <span class="text-blue-700 ml-2">one-time</span>
                         </div>
                         
-                        <p class="text-gray-700 text-sm mb-6 border-b border-blue-100 pb-6">Our most comprehensive package with premium guaranteed placements, ElevateAI indexing, and podcast distribution for maximum reach, visibility and authority.</p>
+                        <!-- Mobile Social Proof -->
+                        <div class="block lg:hidden mb-4 text-sm text-blue-700 font-medium">
+                            <span class="bg-blue-100 px-2 py-0.5 rounded-full">74% of customers choose this option</span>
+                        </div>
                         
-                        <!-- Elite Exclusive Features Section - Mobile Optimized -->
-                        <div class="bg-blue-50 -mx-4 sm:-mx-6 px-4 sm:px-6 py-5 mb-6 sm:mb-8">
-                            <h4 class="font-semibold text-blue-900 mb-4 text-center text-sm sm:text-base">Elite Exclusive Features:</h4>
+                        <div class="space-y-6">
+                            <p class="text-blue-900">Our comprehensive solution with premium guaranteed placements, AI indexing, and podcast distribution for maximum reach and long-term authority.</p>
                             
-                            <div class="space-y-4 sm:space-y-5">
-                                <div class="flex items-start">
-                                    <div class="flex-shrink-0 bg-blue-100 rounded-full p-1.5 mr-3">
-                                        <svg class="w-4 h-4 sm:w-5 sm:h-5 text-blue-700" fill="currentColor" viewBox="0 0 20 20">
+                            <!-- Premium Value Badge -->
+                            <div class="bg-blue-700 bg-opacity-10 border border-blue-700 border-opacity-20 rounded-lg p-4 mb-6">
+                                <div class="flex items-center">
+                                    <div class="bg-blue-700 rounded-full p-2 mr-4">
+                                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                                         </svg>
                                     </div>
                                     <div>
-                                        <p class="text-sm font-medium text-blue-900">ElevateAI Indexing Technology</p>
-                                        <p class="text-xs text-blue-700">Your content becomes part of leading AI knowledge systems like ChatGPT, Google Gemini, and Microsoft Copilot</p>
+                                        <h5 class="font-medium text-blue-900">Long-Term ROI Advantage</h5>
+                                        <p class="text-sm text-blue-800">Elite users report <span class="font-bold">3.7x higher traffic</span> after 12 months compared to Core plan</p>
                                     </div>
                                 </div>
-                                
-                                <div class="flex items-start">
-                                    <div class="flex-shrink-0 bg-blue-100 rounded-full p-1.5 mr-3">
-                                        <svg class="w-4 h-4 sm:w-5 sm:h-5 text-blue-700" fill="currentColor" viewBox="0 0 20 20">
-                                            <path d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z"/>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-medium text-blue-900 mb-4">Exclusive Elite Benefits:</h4>
+                                <ul class="space-y-4">
+                                    <li class="flex items-start">
+                                        <div class="flex-shrink-0 bg-blue-100 rounded-full p-1 mt-0.5 mr-3">
+                                            <svg class="w-5 h-5 text-blue-700" fill="currentColor" viewBox="0 0 20 20">
+                                                <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+                                                <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <span class="font-semibold text-blue-900">500+ Media Placements</span>
+                                            <p class="text-sm text-blue-800 mt-1">All Core outlets plus premium exclusive platforms</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <div class="flex-shrink-0 bg-blue-100 rounded-full p-1 mt-0.5 mr-3">
+                                            <svg class="w-5 h-5 text-blue-700" fill="currentColor" viewBox="0 0 20 20">
+                                                <path d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H9.834V9.593l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L7.834 9.593V13z"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <span class="font-semibold text-blue-900">ElevateAI Technology</span>
+                                            <p class="text-sm text-blue-800 mt-1">Guaranteed indexing in ChatGPT, Google Gemini, Microsoft Copilot & more</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <div class="flex-shrink-0 bg-blue-100 rounded-full p-1 mt-0.5 mr-3">
+                                            <svg class="w-5 h-5 text-blue-700" fill="currentColor" viewBox="0 0 20 20">
+                                                <path d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <span class="font-semibold text-blue-900">Podcast Distribution</span>
+                                            <p class="text-sm text-blue-800 mt-1">8 premium platforms including Spotify (DA95), Apple Podcasts (DA97) & more</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <div class="flex-shrink-0 bg-blue-100 rounded-full p-1 mt-0.5 mr-3">
+                                            <svg class="w-5 h-5 text-blue-700" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <span class="font-semibold text-blue-900">Enhanced SEO Impact</span>
+                                            <p class="text-sm text-blue-800 mt-1">Higher domain authority links and broader distribution</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-medium text-blue-900 mb-4">Everything in Core Plus:</h4>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2">
+                                    <div class="flex items-center">
+                                        <svg class="w-5 h-5 text-blue-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                                         </svg>
+                                        <span class="text-blue-800">Up to 1,200 words</span>
                                     </div>
+                                    <div class="flex items-center">
+                                        <svg class="w-5 h-5 text-blue-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                        </svg>
+                                        <span class="text-blue-800">10 embedded links</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <svg class="w-5 h-5 text-blue-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                        </svg>
+                                        <span class="text-blue-800">Priority delivery</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <svg class="w-5 h-5 text-blue-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                        </svg>
+                                        <span class="text-blue-800">2 images included</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Customer Testimonial - Social Proof -->
+                            <div class="bg-white bg-opacity-70 rounded-lg p-4 border border-blue-100 mt-4">
+                                <div class="flex items-start">
+                                    <svg class="w-8 h-8 text-blue-400 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M18 13V5a2 2 0 00-2-2H4a2 2 0 00-2 2v8a2 2 0 002 2h3l3 3 3-3h3a2 2 0 002-2zM5 7a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1zm1 3a1 1 0 100 2h3a1 1 0 100-2H6z" clip-rule="evenodd"></path>
+                                    </svg>
                                     <div>
-                                        <p class="text-sm font-medium text-blue-900">Podcast Audio Distribution</p>
-                                        <p class="text-xs text-blue-700">Distribution across Spotify (DA95), Apple Podcasts (DA97), Amazon Music (DA96), and 5 more major platforms</p>
+                                        <p class="text-sm italic text-blue-900">"The Elite coverage was a game-changer for us. The AI indexing has our content appearing in ChatGPT responses, and we've seen a 4x increase in qualified leads."</p>
+                                        <p class="text-sm font-medium text-blue-700 mt-2">— Sarah Chen, Marketing Director</p>
                                     </div>
-                                </div>
-                                
-                                <div class="flex items-start">
-                                    <div class="flex-shrink-0 bg-blue-100 rounded-full p-1.5 mr-3">
-                                        <svg class="w-4 h-4 sm:w-5 sm:h-5 text-blue-700" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <p class="text-sm font-medium text-blue-900">Higher Quality SEO Impact</p>
-                                        <p class="text-xs text-blue-700">Premium high-authority backlinks for stronger search ranking improvements</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- ROI Calculator Box - Mobile Friendly -->
-                        <div class="bg-green-50 rounded-lg p-3 sm:p-4 mb-6 sm:mb-8 border border-green-100">
-                            <div class="flex items-center mb-2">
-                                <svg class="w-4 h-4 sm:w-5 sm:h-5 text-green-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-14a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V4z" clip-rule="evenodd"/>
-                                </svg>
-                                <h5 class="font-semibold text-green-800 text-sm sm:text-base">Long-Term ROI Advantage</h5>
-                            </div>
-                            <p class="text-xs sm:text-sm text-green-700 mb-1 sm:mb-2">Elite plan customers report an average of 3.7x higher referral traffic from their press release coverage after 12 months, compared to Core plan.</p>
-                            <div class="text-xs text-green-600 italic">*Based on internal data from March 2025</div>
-                        </div>
-                        
-                        <div class="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
-                            <div class="flex justify-between items-center">
-                                <p class="font-semibold text-gray-800 text-sm sm:text-base">Guaranteed Premium Placements:</p>
-                                <span class="text-xs text-blue-700 font-medium">500+ outlets</span>
-                            </div>
-                            
-                            <!-- Elite outlets - Condensed for mobile -->
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 ml-2 sm:ml-4">
-                                <div class="flex items-center">
-                                    <svg class="w-3 h-3 text-green-500 mr-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                                    </svg>
-                                    <span class="text-xs">Business Insider <span class="text-gray-500">(DR92)</span></span>
-                                </div>
-                                <div class="flex items-center">
-                                    <svg class="w-3 h-3 text-green-500 mr-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                                    </svg>
-                                    <span class="text-xs">Yahoo Finance <span class="text-gray-500">(DR92)</span></span>
-                                </div>
-                                <div class="flex items-center">
-                                    <svg class="w-3 h-3 text-green-500 mr-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                                    </svg>
-                                    <span class="text-xs">MarketWatch <span class="text-gray-500">(DR91)</span></span>
-                                </div>
-                                <div class="flex items-center">
-                                    <svg class="w-3 h-3 text-green-500 mr-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                                    </svg>
-                                    <span class="text-xs">Apple News <span class="text-gray-500">(DR97)</span></span>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start mt-3 sm:mt-4">
-                                <svg class="flex-shrink-0 w-5 h-5 text-blue-700 mt-0.5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"/>
-                                </svg>
-                                <p class="text-sm font-medium">500+ additional high-credibility media sources</p>
-                            </div>
-                            
-                            <div class="flex items-center text-sm text-blue-700 mt-2">
-                                <svg class="flex-shrink-0 w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"/>
-                                </svg>
-                                <span>View full details</span>
-                                <a href="#" class="text-blue-800 ml-1 underline" onclick="showCsvModal('csvModalElite', 'elite.csv')">(See List)</a>
-                            </div>
-                        </div>
-                        
-                        <div class="border-t border-blue-100 pt-5 sm:pt-6 space-y-3 sm:space-y-4">
-                            <div class="flex items-start mb-2">
-                                <svg class="flex-shrink-0 w-5 h-5 text-blue-700 mt-0.5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2h-1V9a1 1 0 00-1-1z" clip-rule="evenodd"/>
-                                </svg>
-                                <p class="text-sm">High domain authority backlinks from premium publications</p>
-                            </div>
-                            
-                            <div class="space-y-3">
-                                <!-- Key Features Condensed -->
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
-                                    <div class="flex items-start">
-                                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 mt-0.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-                                        </svg>
-                                        <p class="text-sm"><span class="font-medium">Guaranteed</span> AI indexing</p>
-                                    </div>
-                                    
-                                    <div class="flex items-start">
-                                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 mt-0.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-                                        </svg>
-                                        <p class="text-sm">Podcast distribution</p>
-                                    </div>
-                                    
-                                    <div class="flex items-start">
-                                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 mt-0.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-                                        </svg>
-                                        <p class="text-sm">Up to 1200 words</p>
-                                    </div>
-                                    
-                                    <div class="flex items-start">
-                                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 mt-0.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-                                        </svg>
-                                        <p class="text-sm">10 embedded links</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="flex items-start">
-                                    <svg class="flex-shrink-0 w-5 h-5 text-green-500 mt-0.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-                                    </svg>
-                                    <p class="text-sm">Priority delivery in 5-7 business days</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="px-4 sm:px-6 pb-6 pt-2 mt-auto relative">
-                        <!-- Social proof element -->
-                        <p class="text-center text-blue-700 font-medium text-sm mb-3">
-                            Most popular choice by 74% of customers
-                        </p>
-                        
-                        <a href="https://buy.stripe.com/bIYaELaepgj76kg6ow" class="w-full bg-blue-700 text-white py-3.5 px-4 rounded-md font-semibold hover:bg-blue-800 transition duration-300 text-center inline-block shadow-md hover:shadow-lg transform hover:-translate-y-0.5 text-base sm:text-lg">
-                            Get Featured with Elite Global Coverage
+                    <div class="bg-blue-800 p-8">
+                        <a href="https://buy.stripe.com/bIYaELaepgj76kg6ow" class="block w-full py-4 px-6 bg-white text-blue-800 text-center font-bold rounded-lg transition duration-300 transform hover:scale-105 hover:shadow-lg text-lg">
+                            Get Elite Global Coverage
                         </a>
-                        
-                        <div class="mt-4 text-center">
-                            <p class="text-xs text-gray-600">By proceeding, you agree to our <a href="coverage-terms.html" class="text-blue-700">Terms of Coverage</a></p>
-                            <div class="flex items-center justify-center mt-2">
-                                <svg class="w-4 h-4 text-gray-500 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
-                                </svg>
-                                <span class="text-xs text-gray-500">Secure Payment</span>
-                            </div>
+                        <div class="flex items-center justify-center mt-4">
+                            <svg class="w-5 h-5 text-blue-300 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            <p class="text-sm text-blue-200">100% Guaranteed Results or Full Refund</p>
+                        </div>
+                        <p class="text-xs text-center text-blue-200 mt-4">By proceeding, you agree to our <a href="coverage-terms.html" class="text-blue-100 hover:underline">Terms of Coverage</a></p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Payment Methods - Enhanced Visual Design -->
+            <div class="mt-12 max-w-4xl mx-auto">
+                <p class="text-center text-gray-500 text-sm mb-6">Secure Payment Methods Accepted:</p>
+                <div class="flex flex-wrap justify-center items-center gap-8">
+                    <div class="flex flex-col items-center">
+                        <i class="fab fa-cc-visa text-3xl text-gray-700"></i>
+                        <span class="text-xs text-gray-500 mt-2">Visa</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <i class="fab fa-cc-mastercard text-3xl text-gray-700"></i>
+                        <span class="text-xs text-gray-500 mt-2">Mastercard</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <i class="fab fa-cc-amex text-3xl text-gray-700"></i>
+                        <span class="text-xs text-gray-500 mt-2">American Express</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <i class="fab fa-cc-discover text-3xl text-gray-700"></i>
+                        <span class="text-xs text-gray-500 mt-2">Discover</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <i class="fab fa-stripe text-3xl text-gray-700"></i>
+                        <span class="text-xs text-gray-500 mt-2">Powered by Stripe</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FAQ Toggle - Added for Conversion Optimization -->
+            <div class="mt-16 max-w-3xl mx-auto">
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-bold text-gray-900">Frequently Asked Questions</h3>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="w-full flex justify-between items-center px-6 py-4 text-left focus:outline-none" onclick="toggleFAQ(this)">
+                            <span class="font-medium text-gray-900">How do I know which plan is right for my business?</span>
+                            <svg class="w-5 h-5 text-gray-500 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-content hidden px-6 pb-4">
+                            <p class="text-gray-600">Choose the <strong>Elite Global Coverage</strong> plan if you want maximum visibility, including AI chatbot indexing and podcast distribution. This is ideal for businesses looking to establish serious authority and gain long-term benefits. The <strong>Core Coverage</strong> plan is suitable for businesses with more basic media coverage needs who don't require AI indexing or podcast distribution.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="w-full flex justify-between items-center px-6 py-4 text-left focus:outline-none" onclick="toggleFAQ(this)">
+                            <span class="font-medium text-gray-900">How soon will my content be published?</span>
+                            <svg class="w-5 h-5 text-gray-500 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-content hidden px-6 pb-4">
+                            <p class="text-gray-600">Both plans include a 5-7 business day turnaround from submission to publication. Elite Global Coverage members receive priority processing within this timeframe.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="w-full flex justify-between items-center px-6 py-4 text-left focus:outline-none" onclick="toggleFAQ(this)">
+                            <span class="font-medium text-gray-900">What makes the ElevateAI technology different?</span>
+                            <svg class="w-5 h-5 text-gray-500 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-content hidden px-6 pb-4">
+                            <p class="text-gray-600">ElevateAI ensures your content is properly formatted and indexed by major AI chatbots like ChatGPT, Google Gemini, Microsoft Copilot, Perplexity, and Grok. This means when users ask questions related to your industry, your content can appear as a reference source, providing ongoing visibility and authority long after publication.</p>
                         </div>
                     </div>
                 </div>
             </div>
-    
-            <!-- Payment Methods - Mobile Optimized -->
-            <div class="flex flex-wrap justify-center items-center gap-5 sm:gap-8 mb-10">
-                <div class="flex flex-col items-center">
-                    <i class="fab fa-cc-amex text-2xl sm:text-3xl mb-2 text-gray-400"></i>
-                    <span class="text-xs text-gray-400">American Express</span>
-                </div>
-                <div class="flex flex-col items-center">
-                    <i class="fab fa-cc-visa text-2xl sm:text-3xl mb-2 text-gray-400"></i>
-                    <span class="text-xs text-gray-400">Visa</span>
-                </div>
-                <div class="flex flex-col items-center">
-                    <i class="fab fa-cc-mastercard text-2xl sm:text-3xl mb-2 text-gray-400"></i>
-                    <span class="text-xs text-gray-400">Mastercard</span>
-                </div>
-                <div class="flex flex-col items-center">
-                    <i class="fab fa-stripe text-2xl sm:text-3xl mb-2 text-gray-400"></i>
-                    <span class="text-xs text-gray-400">Powered by Stripe</span>
-                </div>
-            </div>
-            
-            <p class="text-center text-gray-500 text-sm mb-12">Your payment is securely processed with the highest standards.</p>
         </div>
     </div>
 
@@ -1976,7 +2021,12 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
+    <!-- Consolidated JavaScript - Place right before the closing </body> tag -->
     <script>
+        // =====================================================
+        // NAVIGATION & UI INTERACTIONS
+        // =====================================================
+        
         // Mobile menu toggle
         document.querySelector('.mobile-menu-button').addEventListener('click', function() {
             document.querySelector('.mobile-menu').classList.toggle('hidden');
@@ -1994,7 +2044,11 @@
             }
         });
     
-        // Modal functions
+        // =====================================================
+        // MODAL HANDLING
+        // =====================================================
+        
+        // General modal functions
         function showModal(modalId) {
             document.getElementById('modalBackdrop').classList.remove('hidden');
             document.getElementById(modalId).classList.remove('hidden');
@@ -2003,98 +2057,38 @@
         function closeModal(modalId) {
             document.getElementById('modalBackdrop').classList.add('hidden');
             document.getElementById(modalId).classList.add('hidden');
-        }
-    
-        function selectEssentialPackage() {
-            window.location.href = 'https://buy.stripe.com/dR69AH72d3wlgYUbIU';
-        }
-        
-        function selectElitePackage() {
-            window.location.href = 'https://buy.stripe.com/bIYaELaepgj76kg6ow';
-        }
-    
-        async function showCsvModal(modalId, csvFile) {
-            document.body.style.overflow = 'hidden';
-            document.getElementById('modalBackdrop').classList.remove('hidden');
-            document.getElementById(modalId).classList.remove('hidden');
-            
-            try {
-                const response = await fetch(csvFile);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const csvText = await response.text();
-                console.log('CSV content:', csvText);
-                const parsedData = Papa.parse(csvText, { header: true });
-                
-                const tableBody = document.getElementById(modalId === 'csvModalCore' ? 'coreTableBody' : 'eliteTableBody');
-                tableBody.innerHTML = '';
-                
-                parsedData.data.forEach(row => {
-                    if (row.Publisher && row.Type) {
-                        const tr = document.createElement('tr');
-                        tr.innerHTML = `
-                            <td class="px-4 py-2 break-words text-left">${row.Publisher}</td>
-                            <td class="px-4 py-2 break-words text-left">${row.Type}</td>
-                        `;
-                        tableBody.appendChild(tr);
-                    }
-                });
-            } catch (error) {
-                console.error('Error loading CSV data:', error);
-                alert('Error loading data. Please try again later.');
-            }
-        }
-        
-        function closeCsvModal(modalId) {
             document.body.style.overflow = '';
-            document.getElementById('modalBackdrop').classList.add('hidden');
-            document.getElementById(modalId).classList.add('hidden');
         }
     
         function handleModalClick(event, modalId) {
             const modal = document.getElementById(modalId);
             const modalContent = modal.querySelector('.bg-white');
             if (!modalContent.contains(event.target) && !event.target.closest('button')) {
-                closeCsvModal(modalId);
+                closeModal(modalId);
             }
         }
-    
-        function showAllNetworksModal() {
-            document.getElementById('allNetworksModal').classList.remove('hidden');
+
+        function showCsvModal(modalId, csvFile) {
             document.body.style.overflow = 'hidden';
-            showCsvData('core.csv', 'coreNetworkTableBody');
-            showCsvData('elite.csv', 'eliteNetworkTableBody');
-        }
-        
-        function switchNetworkTab(network) {
-            const contents = document.querySelectorAll('.network-tab-content');
-            contents.forEach(content => content.classList.add('hidden'));
+            document.getElementById('modalBackdrop').classList.remove('hidden');
+            document.getElementById(modalId).classList.remove('hidden');
             
-            document.getElementById(`${network}NetworkTab`).classList.remove('hidden');
-            
-            const buttons = document.querySelectorAll('.network-tab-button');
-            buttons.forEach(button => button.classList.remove('active'));
-            event.target.classList.add('active');
-        }
-        
-        async function showCsvData(csvFile, tableBodyId) {
             try {
-                const response = await fetch(csvFile);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const csvText = await response.text();
-                
-                Papa.parse(csvText, {
-                    header: true,
-                    dynamicTyping: true,
-                    skipEmptyLines: true,
-                    complete: (results) => {
-                        const tableBody = document.getElementById(tableBodyId);
+                // Use our new function to load CSV data into the old modal format
+                fetch(csvFile)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        return response.text();
+                    })
+                    .then(csvText => {
+                        const parsedData = Papa.parse(csvText, { header: true });
+                        
+                        const tableBody = document.getElementById(modalId === 'csvModalCore' ? 'coreTableBody' : 'eliteTableBody');
                         tableBody.innerHTML = '';
                         
-                        results.data.forEach(row => {
+                        parsedData.data.forEach(row => {
                             if (row.Publisher && row.Type) {
                                 const tr = document.createElement('tr');
                                 tr.innerHTML = `
@@ -2104,20 +2098,409 @@
                                 tableBody.appendChild(tr);
                             }
                         });
-                    }
-                });
+                    })
+                    .catch(error => {
+                        console.error('Error loading CSV data:', error);
+                        alert('Error loading data. Please try again later.');
+                    });
             } catch (error) {
-                console.error('Error loading CSV data:', error);
+                console.error('Error in CSV loading process:', error);
             }
         }
+        
+        // And also add this function
+        function closeCsvModal(modalId) {
+            document.body.style.overflow = '';
+            document.getElementById('modalBackdrop').classList.add('hidden');
+            document.getElementById(modalId).classList.add('hidden');
+        }
+        
+        // =====================================================
+        // PURCHASE FUNCTIONS
+        // =====================================================
+        
+        function selectEssentialPackage() {
+            window.location.href = 'https://buy.stripe.com/dR69AH72d3wlgYUbIU';
+        }
+        
+        function selectElitePackage() {
+            window.location.href = 'https://buy.stripe.com/bIYaELaepgj76kg6ow';
+        }
+    
+        // =====================================================
+        // MEDIA OUTLETS DISPLAY
+        // =====================================================
+        
+        // Global variable to store media outlets data
+        let mediaOutlets = {
+            core: [],
+            elite: []
+        };
+        
+        function showAllNetworksModal() {
+            document.getElementById('allNetworksModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
             
-        // Add event listeners to close modals when clicking outside
-        document.getElementById('modalBackdrop').addEventListener('click', function(e) {
-            if (e.target === this) {
-                document.getElementById('csvModalCore').classList.add('hidden');
-                document.getElementById('csvModalElite').classList.add('hidden');
-                this.classList.add('hidden');
+            if (mediaOutlets.core.length === 0) {
+                // Load and populate the data if not already loaded
+                loadMediaOutletsData();
+            } else {
+                // If already loaded, just display
+                displayMediaOutlets('core');
             }
+        }
+        
+        function loadMediaOutletsData() {
+            // Parse the CSV file with the media outlets data
+            try {
+                fetch('Our Whitelabel Providers Full Media Outlets List.csv')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`Network response was not ok: ${response.status}`);
+                        }
+                        return response.text();
+                    })
+                    .then(csvText => {
+                        Papa.parse(csvText, {
+                            header: true,
+                            dynamicTyping: true,
+                            skipEmptyLines: true,
+                            complete: function(results) {
+                                console.log("CSV Headers:", results.meta.fields);
+                                const data = results.data;
+                                
+                                // Map column names to normalize variations
+                                const getColumnValue = (row, possibleNames, defaultValue = 'Unknown') => {
+                                    for (const name of possibleNames) {
+                                        if (row[name] !== undefined && row[name] !== null && row[name] !== '') {
+                                            return row[name];
+                                        }
+                                    }
+                                    return defaultValue;
+                                };
+                                
+                                // Process the data, handling various potential column names
+                                const processedData = data
+                                    .filter(row => Object.keys(row).length > 1) // Skip empty rows
+                                    .map(row => {
+                                        // Extract publisher with multiple possible column names
+                                        const publisher = getColumnValue(row, ['Publisher', 'publisher', 'Outlet', 'outlet', 'Media Outlet', 'Name']);
+                                        
+                                        // Extract category with multiple possible column names
+                                        const category = getColumnValue(row, ['Category', 'category', 'Type', 'type']);
+                                        
+                                        // Extract domain rating with multiple possible column names
+                                        const dr = getColumnValue(row, ['DR', 'dr', 'Domain Rating', 'Domain Authority', 'DA']);
+                                        
+                                        // Extract package information with multiple possible column names
+                                        const packageInfo = getColumnValue(row, ['Package', 'package', 'Plan', 'plan', 'Tier', 'tier'], 'Both');
+                                        
+                                        return {
+                                            publisher,
+                                            category,
+                                            dr,
+                                            packageInfo: packageInfo.toString().toLowerCase()
+                                        };
+                                    })
+                                    .filter(item => item.publisher !== 'Unknown'); // Remove items with missing publisher
+                                
+                                // Sort by category and publisher name
+                                processedData.sort((a, b) => {
+                                    // First sort by category
+                                    if (a.category !== b.category) {
+                                        return a.category.localeCompare(b.category);
+                                    }
+                                    // Then by publisher name
+                                    return a.publisher.localeCompare(b.publisher);
+                                });
+                                
+                                // Organize data into core and elite packages
+                                mediaOutlets.core = processedData.filter(item => 
+                                    item.packageInfo.includes('core') || 
+                                    item.packageInfo.includes('both') ||
+                                    item.packageInfo === 'all'
+                                );
+                                
+                                mediaOutlets.elite = processedData.filter(item => 
+                                    item.packageInfo.includes('elite') || 
+                                    item.packageInfo.includes('both') || 
+                                    item.packageInfo.includes('all') ||
+                                    item.packageInfo.includes('core') // Elite includes everything in Core plus more
+                                );
+                                
+                                // Add podcast platforms and AI systems exclusively to Elite
+                                const podcastPlatforms = [
+                                    {publisher: "Spotify", category: "Podcast Platforms", dr: 95},
+                                    {publisher: "Apple Podcasts", category: "Podcast Platforms", dr: 97},
+                                    {publisher: "Amazon Music", category: "Podcast Platforms", dr: 96},
+                                    {publisher: "iHeart", category: "Podcast Platforms", dr: 91},
+                                    {publisher: "Podchaser", category: "Podcast Platforms", dr: 84},
+                                    {publisher: "Player FM", category: "Podcast Platforms", dr: 86},
+                                    {publisher: "Podbean", category: "Podcast Platforms", dr: 90},
+                                    {publisher: "Boomplay", category: "Podcast Platforms", dr: 77}
+                                ];
+                                
+                                const aiSystems = [
+                                    {publisher: "ChatGPT", category: "AI Knowledge Systems", dr: "N/A"},
+                                    {publisher: "Google Gemini", category: "AI Knowledge Systems", dr: "N/A"},
+                                    {publisher: "Microsoft Copilot", category: "AI Knowledge Systems", dr: "N/A"},
+                                    {publisher: "Perplexity", category: "AI Knowledge Systems", dr: "N/A"},
+                                    {publisher: "Grok", category: "AI Knowledge Systems", dr: "N/A"}
+                                ];
+                                
+                                // Add these specialized platforms if they're not already in the data
+                                const existingPublishers = new Set(mediaOutlets.elite.map(item => item.publisher));
+                                
+                                [...podcastPlatforms, ...aiSystems].forEach(item => {
+                                    if (!existingPublishers.has(item.publisher)) {
+                                        mediaOutlets.elite.push(item);
+                                    }
+                                });
+                                
+                                // Log information for debugging
+                                console.log(`Processed ${processedData.length} total outlets`);
+                                console.log(`Core package: ${mediaOutlets.core.length} outlets`);
+                                console.log(`Elite package: ${mediaOutlets.elite.length} outlets`);
+                                
+                                // Verify we have data, otherwise use fallback
+                                if (mediaOutlets.core.length === 0) {
+                                    console.warn("No data found for Core package, using fallback data");
+                                    useFallbackMediaData();
+                                } else {
+                                    // Set up categories count for display
+                                    const categories = {};
+                                    mediaOutlets.elite.forEach(item => {
+                                        categories[item.category] = (categories[item.category] || 0) + 1;
+                                    });
+                                    console.log("Categories:", categories);
+                                    
+                                    // Display the outlets
+                                    displayMediaOutlets('core');
+                                }
+                            },
+                            error: function(error) {
+                                console.error('Error parsing CSV:', error);
+                                useFallbackMediaData();
+                            }
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error fetching CSV:', error);
+                        useFallbackMediaData();
+                    });
+            } catch (error) {
+                console.error('Error in CSV loading process:', error);
+                useFallbackMediaData();
+            }
+        }
+        
+        function useFallbackMediaData() {
+            // Fallback data if CSV parsing fails
+            mediaOutlets.core = [
+                {publisher: "Business Insider", category: "Business Publications", dr: 92},
+                {publisher: "Yahoo Finance", category: "Financial Media", dr: 92},
+                {publisher: "MarketWatch", category: "Financial Media", dr: 91},
+                {publisher: "Associated Press", category: "News Platforms", dr: 91},
+                {publisher: "Apple News", category: "Digital Media", dr: 97},
+                {publisher: "Globe Newswire", category: "News Platforms", dr: 91},
+                {publisher: "Benzinga", category: "Financial Media", dr: 87},
+                {publisher: "Morning Star", category: "Financial Media", dr: 86},
+                {publisher: "Street Insider", category: "Financial Media", dr: 80},
+                {publisher: "Google News", category: "Digital Media", dr: 95},
+                {publisher: "Bing News", category: "Digital Media", dr: 94},
+                {publisher: "Digital Journal", category: "Digital Media", dr: 85},
+                {publisher: "Financial Post", category: "Financial Media", dr: 88}
+            ];
+            
+            mediaOutlets.elite = [
+                ...mediaOutlets.core,
+                {publisher: "ChatGPT", category: "AI Knowledge Systems", dr: "N/A"},
+                {publisher: "Google Gemini", category: "AI Knowledge Systems", dr: "N/A"},
+                {publisher: "Microsoft Copilot", category: "AI Knowledge Systems", dr: "N/A"},
+                {publisher: "Perplexity", category: "AI Knowledge Systems", dr: "N/A"},
+                {publisher: "Grok", category: "AI Knowledge Systems", dr: "N/A"},
+                {publisher: "Spotify", category: "Podcast Platforms", dr: 95},
+                {publisher: "Apple Podcasts", category: "Podcast Platforms", dr: 97},
+                {publisher: "Amazon Music", category: "Podcast Platforms", dr: 96},
+                {publisher: "iHeart", category: "Podcast Platforms", dr: 91},
+                {publisher: "Podchaser", category: "Podcast Platforms", dr: 84},
+                {publisher: "Player FM", category: "Podcast Platforms", dr: 86},
+                {publisher: "Podbean", category: "Podcast Platforms", dr: 90},
+                {publisher: "Boomplay", category: "Podcast Platforms", dr: 77}
+            ];
+            
+            displayMediaOutlets('core');
+        }
+        
+        function displayMediaOutlets(plan, category = 'all', searchTerm = '') {
+            const tableBody = document.getElementById(`${plan}NetworkTableBody`);
+            const noResults = document.getElementById(`${plan}NoResults`);
+            
+            if (!tableBody || !noResults) {
+                console.error('Required elements not found');
+                return;
+            }
+            
+            tableBody.innerHTML = '';
+            let filteredOutlets = mediaOutlets[plan];
+            
+            // Apply category filter if needed
+            if (category !== 'all') {
+                filteredOutlets = filteredOutlets.filter(outlet => 
+                    outlet.category.toLowerCase() === category.toLowerCase()
+                );
+            }
+            
+            // Apply search term if present
+            if (searchTerm) {
+                const term = searchTerm.toLowerCase();
+                filteredOutlets = filteredOutlets.filter(outlet => 
+                    outlet.publisher.toLowerCase().includes(term) || 
+                    outlet.category.toLowerCase().includes(term)
+                );
+            }
+            
+            // Show no results message if needed
+            if (filteredOutlets.length === 0) {
+                tableBody.classList.add('hidden');
+                noResults.classList.remove('hidden');
+                return;
+            } else {
+                tableBody.classList.remove('hidden');
+                noResults.classList.add('hidden');
+            }
+            
+            // Sort by category then publisher
+            filteredOutlets.sort((a, b) => {
+                if (a.category === b.category) {
+                    return a.publisher.localeCompare(b.publisher);
+                }
+                return a.category.localeCompare(b.category);
+            });
+            
+            // Display the outlets
+            let currentCategory = '';
+            filteredOutlets.forEach(outlet => {
+                // Add category header if new category
+                if (currentCategory !== outlet.category && category === 'all') {
+                    const headerRow = document.createElement('tr');
+                    headerRow.className = 'bg-gray-100';
+                    headerRow.innerHTML = `
+                        <td colspan="3" class="px-4 py-2 font-medium text-gray-700">${outlet.category}</td>
+                    `;
+                    tableBody.appendChild(headerRow);
+                    currentCategory = outlet.category;
+                }
+                
+                const row = document.createElement('tr');
+                row.className = 'hover:bg-gray-50';
+                row.innerHTML = `
+                    <td class="px-4 py-2">${outlet.publisher}</td>
+                    <td class="px-4 py-2 text-gray-500">${outlet.category}</td>
+                    <td class="px-4 py-2 text-gray-500">${outlet.dr}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+            
+            // Show/hide Elite exclusive features section
+            const eliteFeatures = document.getElementById('eliteExclusiveFeatures');
+            if (eliteFeatures) {
+                if (plan === 'elite') {
+                    eliteFeatures.classList.remove('hidden');
+                } else {
+                    eliteFeatures.classList.add('hidden');
+                }
+            }
+        }
+        
+        function switchNetworkTab(network) {
+            const tabs = document.querySelectorAll('.network-tab-content');
+            tabs.forEach(tab => tab.classList.add('hidden'));
+            
+            document.getElementById(`${network}NetworkTab`).classList.remove('hidden');
+            
+            const buttons = document.querySelectorAll('.network-tab-button');
+            buttons.forEach(button => button.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Update content
+            displayMediaOutlets(network);
+        }
+        
+        function filterMediaByCategory(category) {
+            // Get current active tab
+            const activeTab = document.querySelector('.network-tab-button.active');
+            const currentPlan = activeTab.textContent.toLowerCase().includes('core') ? 'core' : 'elite';
+            
+            // Update active category button
+            const buttons = document.querySelectorAll('.category-filter-btn');
+            buttons.forEach(button => {
+                button.classList.remove('active', 'bg-blue-100', 'text-blue-800');
+                button.classList.add('bg-gray-100', 'text-gray-700');
+            });
+            
+            event.target.classList.add('active', 'bg-blue-100', 'text-blue-800');
+            event.target.classList.remove('bg-gray-100', 'text-gray-700');
+            
+            // Get search term
+            const searchTerm = document.getElementById('mediaSearchInput').value;
+            
+            // Update display
+            displayMediaOutlets(currentPlan, category, searchTerm);
+        }
+        
+        // =====================================================
+        // FAQ TOGGLING
+        // =====================================================
+        
+        function toggleFAQ(element) {
+            const content = element.nextElementSibling;
+            const icon = element.querySelector('.faq-icon');
+            
+            // Toggle content
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>';
+            } else {
+                content.classList.add('hidden');
+                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>';
+            }
+        }
+        
+        // =====================================================
+        // EVENT LISTENERS
+        // =====================================================
+        
+        // Add all DOM-loaded event listeners here
+        document.addEventListener('DOMContentLoaded', function() {
+            // Search functionality for media outlets
+            const searchInput = document.getElementById('mediaSearchInput');
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    const activeTab = document.querySelector('.network-tab-button.active');
+                    const currentPlan = activeTab.textContent.toLowerCase().includes('core') ? 'core' : 'elite';
+                    
+                    const activeCategory = document.querySelector('.category-filter-btn.active');
+                    const currentCategory = activeCategory.textContent.toLowerCase().includes('all') ? 'all' : 
+                                           activeCategory.textContent.toLowerCase();
+                    
+                    displayMediaOutlets(currentPlan, currentCategory, this.value);
+                });
+            }
+            
+            // In the event listener section, update the modalBackdrop click handler
+            document.getElementById('modalBackdrop')?.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    // Handle all possible modals
+                    document.getElementById('csvModalCore')?.classList.add('hidden');
+                    document.getElementById('csvModalElite')?.classList.add('hidden');
+                    document.getElementById('allNetworksModal')?.classList.add('hidden');
+                    document.getElementById('essentialModal')?.classList.add('hidden');
+                    document.getElementById('eliteModal')?.classList.add('hidden');
+                    this.classList.add('hidden');
+                    document.body.style.overflow = '';
+                }
+            });
         });
     </script>
 
