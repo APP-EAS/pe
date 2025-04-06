@@ -692,7 +692,17 @@
                                         <tr>
                                             <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50">Publisher</th>
                                             <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50">Category</th>
-                                            <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50">Domain Rating</th>
+                                            <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50 relative group">
+                                                Ahrefs Domain Rating
+                                                <span class="ml-1 cursor-help inline-block">
+                                                    <svg class="w-3.5 h-3.5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/>
+                                                    </svg>
+                                                    <span class="absolute hidden group-hover:block bg-gray-800 text-white text-xs rounded py-1 px-2 -mt-16 -ml-24 w-48 z-50">
+                                                        Ahrefs Domain Rating (0-100) measures a website's backlink strength and SEO authority. Higher ratings indicate more trusted sources.
+                                                    </span>
+                                                </span>
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody class="bg-white divide-y divide-gray-200 text-sm" id="coreNetworkTableBody"></tbody>
@@ -712,7 +722,17 @@
                                         <tr>
                                             <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50">Publisher</th>
                                             <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50">Category</th>
-                                            <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50">Domain Rating</th>
+                                            <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50 relative group">
+                                                Ahrefs Domain Rating
+                                                <span class="ml-1 cursor-help inline-block">
+                                                    <svg class="w-3.5 h-3.5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/>
+                                                    </svg>
+                                                    <span class="absolute hidden group-hover:block bg-gray-800 text-white text-xs rounded py-1 px-2 -mt-16 -ml-24 w-48 z-50">
+                                                        Ahrefs Domain Rating (0-100) measures a website's backlink strength and SEO authority. Higher ratings indicate more trusted sources.
+                                                    </span>
+                                                </span>
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody class="bg-white divide-y divide-gray-200 text-sm" id="eliteNetworkTableBody"></tbody>
@@ -2706,16 +2726,25 @@
             // Elite package includes all Core outlets
             mediaOutlets.elite = [...mediaOutlets.core];
             
-            // Add AI Knowledge Systems
-            ["ChatGPT", "Grok AI", "Microsoft Copilot", "Google Gemini", "Perplexity"].forEach(platform => {
+            // Add AI Knowledge Systems with proper domain ratings
+            const aiPlatformRatings = {
+                "ChatGPT": "91",
+                "Grok AI": "80",
+                "Microsoft Copilot": "96",
+                "Google Gemini": "87",
+                "Perplexity": "84"
+            };
+            
+            Object.entries(aiPlatformRatings).forEach(([platform, rating]) => {
                 mediaOutlets.elite.push({
                     publisher: platform,
                     category: "AI Knowledge Systems",
-                    dr: "N/A",
+                    dr: rating,
                     guaranteed: true,
                     elite_exclusive: true
                 });
             });
+
             
             // Add Podcast Platforms
             const podcastPlatforms = {
@@ -2779,7 +2808,7 @@
         displayMediaOutlets('core');
     }
         
-        // Function to sort and display media outlets
+        // Function to sort and display media outlets with customized category order
         function displayMediaOutlets(plan, category = 'all', searchTerm = '') {
             const tableBody = document.getElementById(`${plan}NetworkTableBody`);
             const noResults = document.getElementById(`${plan}NoResults`);
@@ -2818,16 +2847,34 @@
                 noResults.classList.add('hidden');
             }
             
-            // Custom sorting function:
-            // 1. Sort by category
-            // 2. Within "Guaranteed Media" category: 
-            //    a. Items with numerical domain ratings first (sorted by DR value, highest first)
-            //    b. Items without domain ratings (showing "-") at the end
-            // 3. For other categories, sort alphabetically by publisher
+            // Define category order priority based on plan
+            const categoryPriority = {
+                // For Core plan - Guaranteed Media first, then alphabetical
+                core: {
+                    "Guaranteed Media": 1,
+                    // All other categories will get high numbers from the default case
+                },
+                // For Elite plan - specific ordering
+                elite: {
+                    "Guaranteed Media": 1,
+                    "AI Knowledge Systems": 2,
+                    "Podcast Platforms": 3,
+                    // All other categories will get high numbers from the default case
+                }
+            };
+            
+            // Custom sorting function
             filteredOutlets.sort((a, b) => {
-                // First sort by category
-                if (a.category !== b.category) {
-                    return a.category.localeCompare(b.category);
+                // Get category priorities
+                const priorities = categoryPriority[plan] || categoryPriority.core;
+                
+                // Assign priority to categories (default to 100 + alphabetical index for uncategorized)
+                const aPriority = priorities[a.category] || 100 + a.category.charCodeAt(0);
+                const bPriority = priorities[b.category] || 100 + b.category.charCodeAt(0);
+                
+                // First sort by category priority
+                if (aPriority !== bPriority) {
+                    return aPriority - bPriority;
                 }
                 
                 // Special handling for Guaranteed Media category
