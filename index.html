@@ -642,12 +642,14 @@
                 <div class="mb-6 border-b border-gray-200 pb-4">
                     <div class="flex flex-wrap justify-center gap-2">
                         <button onclick="filterMediaByCategory('all')" class="category-filter-btn active px-3 py-1 text-sm font-medium rounded-full bg-blue-100 text-blue-800 hover:bg-blue-200">All Outlets</button>
-                        <button onclick="filterMediaByCategory('financial')" class="category-filter-btn px-3 py-1 text-sm font-medium rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200">Financial Media</button>
-                        <button onclick="filterMediaByCategory('news')" class="category-filter-btn px-3 py-1 text-sm font-medium rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200">News Platforms</button>
-                        <button onclick="filterMediaByCategory('business')" class="category-filter-btn px-3 py-1 text-sm font-medium rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200">Business Publications</button>
-                        <button onclick="filterMediaByCategory('digital')" class="category-filter-btn px-3 py-1 text-sm font-medium rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200">Digital Media</button>
-                        <button onclick="filterMediaByCategory('podcast')" class="category-filter-btn px-3 py-1 text-sm font-medium rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200">Podcast Platforms</button>
-                        <button onclick="filterMediaByCategory('ai')" class="category-filter-btn px-3 py-1 text-sm font-medium rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200">AI Knowledge Systems</button>
+                        <button onclick="filterMediaByCategory('Online Media')" class="category-filter-btn px-3 py-1 text-sm font-medium rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200">Online Media</button>
+                        <button onclick="filterMediaByCategory('Newspapers')" class="category-filter-btn px-3 py-1 text-sm font-medium rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200">Newspapers</button>
+                        <button onclick="filterMediaByCategory('Magazines')" class="category-filter-btn px-3 py-1 text-sm font-medium rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200">Magazines</button>
+                        <button onclick="filterMediaByCategory('Television')" class="category-filter-btn px-3 py-1 text-sm font-medium rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200">Television</button>
+                        <button onclick="filterMediaByCategory('Radio')" class="category-filter-btn px-3 py-1 text-sm font-medium rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200">Radio</button>
+                        <button onclick="filterMediaByCategory('News Agencies')" class="category-filter-btn px-3 py-1 text-sm font-medium rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200">News Agencies</button>
+                        <button onclick="filterMediaByCategory('AI Knowledge Systems')" class="category-filter-btn px-3 py-1 text-sm font-medium rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200">AI Knowledge Systems</button>
+                        <button onclick="filterMediaByCategory('Podcast Platforms')" class="category-filter-btn px-3 py-1 text-sm font-medium rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200">Podcast Platforms</button>
                     </div>
                 </div>
         
@@ -1508,7 +1510,7 @@
                                         </svg>
                                         <div>
                                             <span class="font-medium text-gray-900">SEO Benefits</span>
-                                            <p class="text-sm text-gray-500 mt-1">Quality backlinks from high-authority domains (DR 80-97)</p>
+                                            <p class="text-sm text-gray-500 mt-1">Quality backlinks from high-authority domains</p>
                                         </div>
                                     </li>
                                 </ul>
@@ -1553,14 +1555,35 @@
                                         </svg>
                                         <span class="text-sm text-gray-600">Globe Newswire</span>
                                     </div>
-                                </div>
-                                
-                                <div class="mt-3">
-                                    <div class="flex items-start mt-4 sm:mt-6">
-                                        <svg class="flex-shrink-0 w-5 h-5 text-blue-700 mt-0.5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"/>
+                                    <div class="flex items-center">
+                                        <svg class="w-4 h-4 text-blue-600 mr-1.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                                         </svg>
-                                        <p class="text-sm font-medium">And 5 more guaranteed outlets</p>
+                                        <span class="text-sm text-gray-600">Street Insider</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <svg class="w-4 h-4 text-blue-600 mr-1.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                        </svg>
+                                        <span class="text-sm text-gray-600">Morning Star</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <svg class="w-4 h-4 text-blue-600 mr-1.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                        </svg>
+                                        <span class="text-sm text-gray-600">Benzinga</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <svg class="w-4 h-4 text-blue-600 mr-1.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                        </svg>
+                                        <span class="text-sm text-gray-600">Fox affiliates</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <svg class="w-4 h-4 text-blue-600 mr-1.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                        </svg>
+                                        <span class="text-sm text-gray-600">NBC affiliates</span>
                                     </div>
                                 </div>
                             </div>
@@ -1797,6 +1820,48 @@
                                         </svg>
                                         <span class="text-sm text-blue-800">Associated Press</span>
                                     </div>
+                                    <div class="flex items-center">
+                                        <svg class="w-4 h-4 text-green-500 mr-1.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                        </svg>
+                                        <span class="text-sm text-blue-800">Apple News</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <svg class="w-4 h-4 text-green-500 mr-1.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                        </svg>
+                                        <span class="text-sm text-blue-800">Benzinga</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <svg class="w-4 h-4 text-green-500 mr-1.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                        </svg>
+                                        <span class="text-sm text-blue-800">Street Insider</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <svg class="w-4 h-4 text-green-500 mr-1.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                        </svg>
+                                        <span class="text-sm text-blue-800">Morning Star</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <svg class="w-4 h-4 text-green-500 mr-1.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                        </svg>
+                                        <span class="text-sm text-blue-800">Globe Newswire</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <svg class="w-4 h-4 text-green-500 mr-1.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                        </svg>
+                                        <span class="text-sm text-blue-800">Fox affiliates</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <svg class="w-4 h-4 text-green-500 mr-1.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                        </svg>
+                                        <span class="text-sm text-blue-800">NBC affiliates</span>
+                                    </div>
                                 </div>
                                 
                                 <div class="mt-3">
@@ -1804,14 +1869,14 @@
                                         <svg class="flex-shrink-0 w-5 h-5 text-blue-700 mt-0.5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"/>
                                         </svg>
-                                        <p class="text-sm font-medium text-blue-800">Plus 7 more guaranteed media outlets</p>
+                                        <p class="text-sm font-medium text-blue-800">Plus all 5 major AI chatbots</p>
                                     </div>
                                     
                                     <div class="flex items-start mt-2">
                                         <svg class="flex-shrink-0 w-5 h-5 text-blue-700 mt-0.5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"/>
                                         </svg>
-                                        <p class="text-sm font-medium text-blue-800">5 AI chatbots and 8 podcast platforms</p>
+                                        <p class="text-sm font-medium text-blue-800">And 8 podcast platforms</p>
                                     </div>
                                 </div>
                             </div>
@@ -1891,12 +1956,20 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Consolidated FAQ Section -->
+    <div class="py-16 bg-gray-50">
+        <div class="max-w-3xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Frequently Asked Questions</h2>
+                <p class="text-gray-600">Everything you need to know about our professional media coverage services</p>
+            </div>
             
-            <!-- FAQ Toggle - Added for Conversion Optimization -->
-            <div class="mt-16 max-w-3xl mx-auto">
-                <div class="text-center mb-8">
-                    <h3 class="text-2xl font-bold text-gray-900">Frequently Asked Questions</h3>
-                </div>
+            <!-- Service Details -->
+            <div class="mb-10">
+                <h3 class="text-xl font-bold text-blue-800 mb-6">Service Details</h3>
                 
                 <div class="space-y-4">
                     <div class="border border-gray-200 rounded-lg overflow-hidden">
@@ -1919,7 +1992,7 @@
                             </svg>
                         </button>
                         <div class="faq-content hidden px-6 pb-4">
-                            <p class="text-gray-600">Yes. Each plan includes guaranteed features on top-tier outlets like Business Insider, Yahoo Finance, MarketWatch, and Associated Press. Our Elite Global Coverage plan includes additional guaranteed placements and 100% guaranteed AI platform indexing.</p>
+                            <p class="text-gray-600">Yes. Each plan includes guaranteed features on top-tier outlets like Business Insider, Yahoo Finance, MarketWatch, and Associated Press. Our Elite Global Coverage plan includes additional guaranteed placements on podcast platforms and 100% guaranteed AI platform indexing.</p>
                         </div>
                     </div>
                     
@@ -1946,7 +2019,26 @@
                             <p class="text-gray-600">While our focus is on securing coverage, we're happy to offer editorial guidance and feedback on your press release. This helps ensure it resonates with journalists and audiences worldwide.</p>
                         </div>
                     </div>
-                    
+    
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="w-full flex justify-between items-center px-6 py-4 text-left focus:outline-none" onclick="toggleFAQ(this)">
+                            <span class="font-medium text-gray-900">Is there a limit on word count or the number of links?</span>
+                            <svg class="w-5 h-5 text-gray-500 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-content hidden px-6 pb-4">
+                            <p class="text-gray-600">No, we don't impose strict limits on word count or the number of embedded links in your press release. However, we recommend keeping your content concise and focused for maximum impact and readability.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ElevateAI Technology FAQs -->
+            <div class="mb-10">
+                <h3 class="text-xl font-bold text-blue-800 mb-6">ElevateAI Technology</h3>
+                
+                <div class="space-y-4">
                     <div class="border border-blue-200 rounded-lg overflow-hidden bg-blue-50">
                         <button class="w-full flex justify-between items-center px-6 py-4 text-left focus:outline-none" onclick="toggleFAQ(this)">
                             <span class="font-medium text-blue-900">What is ElevateAI technology?</span>
@@ -1975,6 +2067,32 @@
                     
                     <div class="border border-blue-200 rounded-lg overflow-hidden bg-blue-50">
                         <button class="w-full flex justify-between items-center px-6 py-4 text-left focus:outline-none" onclick="toggleFAQ(this)">
+                            <span class="font-medium text-blue-900">How does AI platform indexing benefit my business?</span>
+                            <svg class="w-5 h-5 text-blue-500 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-content hidden px-6 pb-4">
+                            <p class="text-blue-900 mb-2">AI platform indexing provides several key benefits:</p>
+                            <ul class="list-disc pl-6 space-y-2 text-blue-800 mb-4">
+                                <li>Extended content lifespan - your information remains discoverable months or years after publication</li>
+                                <li>Reach new audiences - connect with people searching via AI who would never find you otherwise</li>
+                                <li>Establish authority - position your brand as the trusted source for information in your industry</li>
+                                <li>Future-proof marketing - gain a first-mover advantage as AI adoption continues to grow</li>
+                            </ul>
+                            <div class="text-sm text-blue-700 italic">With over 57% of internet users now turning to AI chatbots before traditional search engines, ensuring your content is indexed in these systems is crucial for visibility.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Podcast Distribution FAQs -->
+            <div class="mb-10">
+                <h3 class="text-xl font-bold text-blue-800 mb-6">Podcast Distribution</h3>
+                
+                <div class="space-y-4">
+                    <div class="border border-blue-200 rounded-lg overflow-hidden bg-blue-50">
+                        <button class="w-full flex justify-between items-center px-6 py-4 text-left focus:outline-none" onclick="toggleFAQ(this)">
                             <span class="font-medium text-blue-900">Is podcast distribution included in all plans?</span>
                             <svg class="w-5 h-5 text-blue-500 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -1986,6 +2104,25 @@
                         </div>
                     </div>
                     
+                    <div class="border border-blue-200 rounded-lg overflow-hidden bg-blue-50">
+                        <button class="w-full flex justify-between items-center px-6 py-4 text-left focus:outline-none" onclick="toggleFAQ(this)">
+                            <span class="font-medium text-blue-900">How does the podcast audio conversion work?</span>
+                            <svg class="w-5 h-5 text-blue-500 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-content hidden px-6 pb-4">
+                            <p class="text-blue-900">Your press release content is professionally converted into audio format using advanced text-to-speech technology. This audio version is then distributed to major podcast platforms, creating additional exposure channels and high-authority backlinks from platforms like Spotify (DA95), Apple Podcasts (DA97), and Amazon Music (DA96).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pricing & Payment FAQs -->
+            <div class="mb-10">
+                <h3 class="text-xl font-bold text-blue-800 mb-6">Pricing & Payment</h3>
+                
+                <div class="space-y-4">
                     <div class="border border-gray-200 rounded-lg overflow-hidden">
                         <button class="w-full flex justify-between items-center px-6 py-4 text-left focus:outline-none" onclick="toggleFAQ(this)">
                             <span class="font-medium text-gray-900">Are there additional fees or hidden costs?</span>
@@ -1997,11 +2134,85 @@
                             <p class="text-gray-600">No. Our pricing is completely transparent with no hidden fees. You pay only the advertised price for your chosen plan, with no surprise charges or upsells later.</p>
                         </div>
                     </div>
+                    
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="w-full flex justify-between items-center px-6 py-4 text-left focus:outline-none" onclick="toggleFAQ(this)">
+                            <span class="font-medium text-gray-900">What payment methods do you accept?</span>
+                            <svg class="w-5 h-5 text-gray-500 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-content hidden px-6 pb-4">
+                            <p class="text-gray-600">We accept all major credit cards including Visa, Mastercard, American Express, and Discover. All payments are processed securely through Stripe's trusted payment gateway.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="w-full flex justify-between items-center px-6 py-4 text-left focus:outline-none" onclick="toggleFAQ(this)">
+                            <span class="font-medium text-gray-900">Do you offer refunds?</span>
+                            <svg class="w-5 h-5 text-gray-500 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-content hidden px-6 pb-4">
+                            <p class="text-gray-600">As per our Terms of Coverage, we do not offer refunds once content has been published. We guarantee placements on the specified media outlets, and our service is considered fulfilled once these placements are secured. Please review our full Terms of Coverage for more details.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Support & Process FAQs -->
+            <div>
+                <h3 class="text-xl font-bold text-blue-800 mb-6">Support & Process</h3>
+                
+                <div class="space-y-4">
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="w-full flex justify-between items-center px-6 py-4 text-left focus:outline-none" onclick="toggleFAQ(this)">
+                            <span class="font-medium text-gray-900">What happens after I purchase a plan?</span>
+                            <svg class="w-5 h-5 text-gray-500 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-content hidden px-6 pb-4">
+                            <p class="text-gray-600 mb-2">After purchase, you'll receive a welcome email with next steps. Our process includes:</p>
+                            <ol class="list-decimal pl-6 space-y-2 text-gray-600">
+                                <li>Submit your press release or collaborate with our team</li>
+                                <li>Receive editorial feedback (if needed)</li>
+                                <li>Approve final version for distribution</li>
+                                <li>Distribution across our media network</li>
+                                <li>Receive comprehensive coverage report with all placement links</li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="w-full flex justify-between items-center px-6 py-4 text-left focus:outline-none" onclick="toggleFAQ(this)">
+                            <span class="font-medium text-gray-900">How can I track my placements?</span>
+                            <svg class="w-5 h-5 text-gray-500 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-content hidden px-6 pb-4">
+                            <p class="text-gray-600">Within 5-7 business days after distribution, you'll receive a comprehensive report listing all media placements. This report includes clickable links to your press release on each outlet, allowing you to verify coverage and share with stakeholders.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="w-full flex justify-between items-center px-6 py-4 text-left focus:outline-none" onclick="toggleFAQ(this)">
+                            <span class="font-medium text-gray-900">How can I contact support?</span>
+                            <svg class="w-5 h-5 text-gray-500 faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-content hidden px-6 pb-4">
+                            <p class="text-gray-600">Our support team is available via email at <a href="mailto:alex@presselevate.com" class="text-blue-600">alex@presselevate.com</a>. We strive to respond to all inquiries within one business day. For immediate assistance, you can also use our AI assistant available 24/7 via the chat icon in the bottom right corner of this page.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
+    
     <!-- Contact Section -->
     <div id="contact" class="py-24 bg-gradient-to-br from-white via-gray-50 to-blue-50">
         <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
@@ -2242,223 +2453,219 @@
             }
         }
         
+        // Function to load structured media data
         function loadMediaOutletsData() {
-        // Create structured media data from the comprehensive list
-        const mediaData = {
-            "Online Media": [
-                "Above The Law", "AdvisorHub", "AhoraMismo", "ALM | Treasury & Risk", "Bloomberg Opinion", 
-                "Boardroom", "Bushwick Daily", "Business Insider", "Capital B", "Chop Chat", 
-                "Climate & Capital Media", "CoinDesk", "Dealbreaker", "Digiday", "Elite Daily", 
-                "Enstarz", "Equipment Finance News", "ETF Database", "ETF Report - Features", "ETF.com", 
-                "Financial Buzz", "FN Online", "Fortune Online", "Forward", "Fox affiliates", 
-                "Front Office Sports", "FutureMusic", "Gothamist", "GreenMatters", "Health Payer Specialist", 
-                "Heavy.", "Hell Gate", "Hive", "InsideHook", "Intelligencer", 
-                "Investopedia", "KDrama Stars", "KpopStarz", "Latin Post", "Law & Crime", 
-                "Law.com", "Lifewire", "ManagersOfWealth", "MarketIQ", "Markets Insider", 
-                "MarketWatch", "Mashable", "Mobile & Apps", "MoneyWatch", "MutualFunds.com", 
-                "NBC News Digital", "NBC Affiliates", "New York YIMBY", "Newest", "Next | TV", 
-                "Observer", "P&C Specialist", "P&I Daily", "Parents", "Patch - New York City, NY", 
-                "Patch - Park Slope, NY", "PE Hub", "Pensions & Investments Online", "People Online", 
-                "Pharmacy Technology Report", "Prevention.com", "ProPublica", "ProPublica - Midwest", 
-                "Puck", "Quartz", "Quartz Africa", "Romper", "Secret NYC", "Semafor", 
-                "Sourcing Journal", "Space.com", "Sports World News", "SSON", "Stacker", 
-                "Tearsheet", "The City", "The Daily Upside", "The Haitian Times", "The Marshall Project", 
-                "The New York Sun", "The Points Guy", "The Times Of Earth", "The Verge", "The Wire China", 
-                "TheLoop", "TheStreet.", "TheUpshot", "ThinkAdvisor", "Tom's Guide", 
-                "U.S. News & World Report", "ValueWalk", "VeryWell Mind", "Vital City", "Vulture", 
-                "WealthManagement.com", "WWD.com", "Yahoo! Finance"
-            ],
-            "AI Knowledge Systems": [
-                "ChatGPT", "Grok AI", "Microsoft Copilot", "Google Gemini", "Perplexity"
-            ],
-            "Podcast Platforms": [
-                "Apple Podcasts", "Amazon Music", "Spotify", "Boomplay", "iHeart", 
-                "Podchaser", "Player FM", "Podbean"
-            ],
-            "Newspapers": [
-                "Accounting And Financial Planning For Law Firms", "Advances In Fuzzy Systems", "Air Mail", 
-                "Bisnow", "Blockworks", "Bronx Community News", "Brooklyn Community News", 
-                "Business Horizons", "CFO Journal", "Commercial Observer", "Crain's Health Pulse New York", 
-                "Crain's New York Business", "Cybersecurity Law & Strategy", "Dealbook", "Downtown Post NYC", 
-                "Entertainment Law & Finance", "Financial Services Internal Audit SmartBrief", "FPA SmartBrief", 
-                "FSI Newsbrief", "GFMA SmartBrief", "Harlem Community News", "Healthcare Brew", "HR Brew", 
-                "Insider Today", "LZ Sunday Paper", "Marketing Brew", "Morning Brew", "New York Business Journal", 
-                "New York Post", "New York Today", "Numlock News", "Pensions & Investments", "Queens Community News", 
-                "Research In International Business And Finance", "Retail Brew", "Retirement Security SmartBrief", 
-                "SmartBrief For CFOs", "SmartBrief On Main Street", "SmartBrief On Sustainability", "Tech Brew", 
-                "The Bond Buyer", "The Broadsheet", "The Drunken Canal", "The Epoch Times", "The Evening", 
-                "The Guardian", "The Journal Of Beta Investment Strategies", "The Journal Of Impact & ESG Investing", 
-                "The Journal Of Investing", "The Morning", "The New York Times", "The U.S. Sun", "The Upshot", 
-                "The Wall Street Journal"
-            ],
-            "Magazines": [
-                "Ad Age", "Airline Weekly", "American Banker", "Americas Quarterly", "Auto Finance News", 
-                "Barron's", "Billboard", "Bloomberg Businessweek", "Bloomberg Green", "Bloomberg Markets", 
-                "BOH (Business Of Home)", "Broadcasting+Cable", "Buyouts", "CEOWorld Magazine", "CEPro", 
-                "Chemical Engineering", "City Journal", "City & State New York", "Commercial Integrator", 
-                "Cosmopolitan", "DuJour", "EBN (Employee Benefit News)", "Elle Decor", "Fast Company", 
-                "FCW (Floor Covering Weekly)", "Financial Planning", "FN", "Fordham Urban Law Journal", 
-                "Fortune", "Global Biz Outlook", "Global Finance", "Global Glam", "Good Housekeeping", 
-                "Grant's Interest Rate Observer", "Inc.", "Kiplinger's Personal Finance", "MeetingsNet", 
-                "Multichannel News", "National Review", "New York", "Newsweek", "October Hill Magazine", 
-                "O'Dwyer's", "Page Six", "People", "Pharmacy Practice News", "Prevention", 
-                "Private Equity International", "Publishers Weekly", "Queen City Nerve", "Reductress", 
-                "Rolling Stone", "Security Sales & Integration", "Specialty Pharmacy Continuum", 
-                "Strategy+Business", "The Africa Bazaar", "The Nation", "The New Criterion", "The New Yorker", 
-                "The Secured Lender", "Time", "Trusts & Estates", "Vanity Fair", "Venture Capital Journal", 
-                "VMH Magazine", "Vogue", "Wealth Management", "WWD (Women's Wear Daily)"
-            ],
-            "Television": [
-                "Bloomberg Originals", "Bloomberg Television", "CBS 2 News At 11PM", "CBS 2 News This Morning", 
-                "CBS News", "Eyewitness News At 11PM", "Eyewitness News First At 4PM", 
-                "Eyewitness News Sunday Morning", "Eyewitness News This Saturday Morning", "Fox Business", 
-                "Hannity", "NBC Latino", "NBC News", "NBCUniversal", "News 4 NY At 4", "News 4 NY At 6", 
-                "Real Vision", "The New Yorker Radio Hour", "Today In New York", "WABC-TV [ABC 7]", 
-                "WCBS-TV [CBS New York]", "WLIW-TV [WLIW 21]", "WLNY-TV [New York 55]", 
-                "WNBC-TV [NBC 4 New York]", "WPIX-TV [PIX 11]"
-            ],
-            "Radio": [
-                "Elvis Duran And The Morning Show", "The Brian Lehrer Show", "WABC-AM [TalkRadio 77 WABC]", 
-                "WGY-AM [NewsRadio 810 & 103.1 WGY]", "WHCR-FM [The Voice of Harlem]", "WINS-AM [1010 WINS]", 
-                "WINS-FM [1010 WINS]", "WKCR-FM [WKCR 89.9FM NY]", "WLIW-FM [88.3 WLIW-FM]", 
-                "WNYC-AM [WNYC AM 820]", "WNYC-FM [WNYC 93.9 FM]", "WNYM-AM [AM 970, The Answer]", 
-                "WNYU-FM [WNYU 89.1 FM]", "WOR-AM [710 WOR]", "WSYR-FM [Newsradio 570 WSYR]"
-            ],
-            "News Agencies and Terminals": [
-                "Bloomberg Terminals", "Dow Jones", "Dow Jones Factiva", "Law360", "Opalesque", "Private Funds CFO"
-            ]
-        };
-    
-        // Define guaranteed placements for both packages
-        const guaranteedPlacements = [
-            "Business Insider", "MarketWatch", "Street Insider", "Yahoo! Finance", 
-            "Associated Press", "Morning Star", "Apple News", "Globe Newswire", 
-            "Fox affiliates", "NBC affiliates", "Benzinga"
-        ];
-    
-        // Build the properly formatted data structure
-        try {
-            // Process for Core package
-            mediaOutlets.core = [];
-            
-            // Add each guaranteed outlet with appropriate domain rating
-            guaranteedPlacements.forEach(outlet => {
-                // Assign estimated domain ratings to guaranteed placements
-                let dr = 90; // Default high value
+            // Create structured media data from the comprehensive list
+            const mediaData = {
+                "Online Media": [
+                    "Above The Law", "AdvisorHub", "AhoraMismo", "ALM | Treasury & Risk", "Bloomberg Opinion", 
+                    "Boardroom", "Bushwick Daily", "Business Insider", "Capital B", "Chop Chat", 
+                    "Climate & Capital Media", "CoinDesk", "Dealbreaker", "Digiday", "Elite Daily", 
+                    "Enstarz", "Equipment Finance News", "ETF Database", "ETF Report - Features", "ETF.com", 
+                    "Financial Buzz", "FN Online", "Fortune Online", "Forward", "Fox affiliates", 
+                    "Front Office Sports", "FutureMusic", "Gothamist", "GreenMatters", "Health Payer Specialist", 
+                    "Heavy.", "Hell Gate", "Hive", "InsideHook", "Intelligencer", 
+                    "Investopedia", "KDrama Stars", "KpopStarz", "Latin Post", "Law & Crime", 
+                    "Law.com", "Lifewire", "ManagersOfWealth", "MarketIQ", "Markets Insider", 
+                    "MarketWatch", "Mashable", "Mobile & Apps", "MoneyWatch", "MutualFunds.com", 
+                    "NBC News Digital", "NBC Affiliates", "New York YIMBY", "Newest", "Next | TV", 
+                    "Observer", "P&C Specialist", "P&I Daily", "Parents", "Patch - New York City, NY", 
+                    "Patch - Park Slope, NY", "PE Hub", "Pensions & Investments Online", "People Online", 
+                    "Pharmacy Technology Report", "Prevention.com", "ProPublica", "ProPublica - Midwest", 
+                    "Puck", "Quartz", "Quartz Africa", "Romper", "Secret NYC", "Semafor", 
+                    "Sourcing Journal", "Space.com", "Sports World News", "SSON", "Stacker", 
+                    "Tearsheet", "The City", "The Daily Upside", "The Haitian Times", "The Marshall Project", 
+                    "The New York Sun", "The Points Guy", "The Times Of Earth", "The Verge", "The Wire China", 
+                    "TheLoop", "TheStreet.", "TheUpshot", "ThinkAdvisor", "Tom's Guide", 
+                    "U.S. News & World Report", "ValueWalk", "VeryWell Mind", "Vital City", "Vulture", 
+                    "WealthManagement.com", "WWD.com", "Yahoo! Finance", "Globe Newswire", "Benzinga"
+                ],
+                "AI Knowledge Systems": [
+                    "ChatGPT", "Grok AI", "Microsoft Copilot", "Google Gemini", "Perplexity"
+                ],
+                "Podcast Platforms": [
+                    "Apple Podcasts", "Amazon Music", "Spotify", "Boomplay", "iHeart", 
+                    "Podchaser", "Player FM", "Podbean"
+                ],
+                "Newspapers": [
+                    "Accounting And Financial Planning For Law Firms", "Advances In Fuzzy Systems", "Air Mail", 
+                    "Bisnow", "Blockworks", "Bronx Community News", "Brooklyn Community News", 
+                    "Business Horizons", "CFO Journal", "Commercial Observer", "Crain's Health Pulse New York", 
+                    "Crain's New York Business", "Cybersecurity Law & Strategy", "Dealbook", "Downtown Post NYC", 
+                    "Entertainment Law & Finance", "Financial Services Internal Audit SmartBrief", "FPA SmartBrief", 
+                    "FSI Newsbrief", "GFMA SmartBrief", "Harlem Community News", "Healthcare Brew", "HR Brew", 
+                    "Insider Today", "LZ Sunday Paper", "Marketing Brew", "Morning Brew", "New York Business Journal", 
+                    "New York Post", "New York Today", "Numlock News", "Pensions & Investments", "Queens Community News", 
+                    "Research In International Business And Finance", "Retail Brew", "Retirement Security SmartBrief", 
+                    "SmartBrief For CFOs", "SmartBrief On Main Street", "SmartBrief On Sustainability", "Tech Brew", 
+                    "The Bond Buyer", "The Broadsheet", "The Drunken Canal", "The Epoch Times", "The Evening", 
+                    "The Guardian", "The Journal Of Beta Investment Strategies", "The Journal Of Impact & ESG Investing", 
+                    "The Journal Of Investing", "The Morning", "The New York Times", "The U.S. Sun", "The Upshot", 
+                    "The Wall Street Journal", "Street Insider"
+                ],
+                "Magazines": [
+                    "Ad Age", "Airline Weekly", "American Banker", "Americas Quarterly", "Auto Finance News", 
+                    "Barron's", "Billboard", "Bloomberg Businessweek", "Bloomberg Green", "Bloomberg Markets", 
+                    "BOH (Business Of Home)", "Broadcasting+Cable", "Buyouts", "CEOWorld Magazine", "CEPro", 
+                    "Chemical Engineering", "City Journal", "City & State New York", "Commercial Integrator", 
+                    "Cosmopolitan", "DuJour", "EBN (Employee Benefit News)", "Elle Decor", "Fast Company", 
+                    "FCW (Floor Covering Weekly)", "Financial Planning", "FN", "Fordham Urban Law Journal", 
+                    "Fortune", "Global Biz Outlook", "Global Finance", "Global Glam", "Good Housekeeping", 
+                    "Grant's Interest Rate Observer", "Inc.", "Kiplinger's Personal Finance", "MeetingsNet", 
+                    "Multichannel News", "National Review", "New York", "Newsweek", "October Hill Magazine", 
+                    "O'Dwyer's", "Page Six", "People", "Pharmacy Practice News", "Prevention", 
+                    "Private Equity International", "Publishers Weekly", "Queen City Nerve", "Reductress", 
+                    "Rolling Stone", "Security Sales & Integration", "Specialty Pharmacy Continuum", 
+                    "Strategy+Business", "The Africa Bazaar", "The Nation", "The New Criterion", "The New Yorker", 
+                    "The Secured Lender", "Time", "Trusts & Estates", "Vanity Fair", "Venture Capital Journal", 
+                    "VMH Magazine", "Vogue", "Wealth Management", "WWD (Women's Wear Daily)", "Morning Star"
+                ],
+                "Television": [
+                    "Bloomberg Originals", "Bloomberg Television", "CBS 2 News At 11PM", "CBS 2 News This Morning", 
+                    "CBS News", "Eyewitness News At 11PM", "Eyewitness News First At 4PM", 
+                    "Eyewitness News Sunday Morning", "Eyewitness News This Saturday Morning", "Fox Business", 
+                    "Hannity", "NBC Latino", "NBC News", "NBCUniversal", "News 4 NY At 4", "News 4 NY At 6", 
+                    "Real Vision", "The New Yorker Radio Hour", "Today In New York", "WABC-TV [ABC 7]", 
+                    "WCBS-TV [CBS New York]", "WLIW-TV [WLIW 21]", "WLNY-TV [New York 55]", 
+                    "WNBC-TV [NBC 4 New York]", "WPIX-TV [PIX 11]", "Apple News"
+                ],
+                "Radio": [
+                    "Elvis Duran And The Morning Show", "The Brian Lehrer Show", "WABC-AM [TalkRadio 77 WABC]", 
+                    "WGY-AM [NewsRadio 810 & 103.1 WGY]", "WHCR-FM [The Voice of Harlem]", "WINS-AM [1010 WINS]", 
+                    "WINS-FM [1010 WINS]", "WKCR-FM [WKCR 89.9FM NY]", "WLIW-FM [88.3 WLIW-FM]", 
+                    "WNYC-AM [WNYC AM 820]", "WNYC-FM [WNYC 93.9 FM]", "WNYM-AM [AM 970, The Answer]", 
+                    "WNYU-FM [WNYU 89.1 FM]", "WOR-AM [710 WOR]", "WSYR-FM [Newsradio 570 WSYR]"
+                ],
+                "News Agencies": [
+                    "Bloomberg Terminals", "Dow Jones", "Dow Jones Factiva", "Law360", "Opalesque", 
+                    "Private Funds CFO", "Associated Press"
+                ]
+            };
+        
+            // Define guaranteed placements for both packages
+            const guaranteedPlacements = [
+                "Business Insider", "MarketWatch", "Street Insider", "Yahoo! Finance", 
+                "Associated Press", "Morning Star", "Apple News", "Globe Newswire", 
+                "Fox affiliates", "NBC affiliates", "Benzinga"
+            ];
+        
+            // Build the properly formatted data structure
+            try {
+                // Process for Core package
+                mediaOutlets.core = [];
                 
-                // Specific known DR values
-                if (outlet === "Business Insider") dr = 92;
-                if (outlet === "Yahoo! Finance") dr = 92;
-                if (outlet === "MarketWatch") dr = 91;
-                if (outlet === "Associated Press") dr = 91;
-                if (outlet === "Apple News") dr = 97;
-                if (outlet === "Morning Star") dr = 86;
-                if (outlet === "Benzinga") dr = 87;
-                if (outlet === "Street Insider") dr = 80;
+                // Add each guaranteed outlet with appropriate domain rating
+                guaranteedPlacements.forEach(outlet => {
+                    // Assign specific known DR values
+                    let dr = "-";
+                    
+                    // Specific known DR values
+                    if (outlet === "Business Insider") dr = "92";
+                    if (outlet === "Yahoo! Finance") dr = "92";
+                    if (outlet === "MarketWatch") dr = "91";
+                    if (outlet === "Associated Press") dr = "91";
+                    if (outlet === "Apple News") dr = "97";
+                    if (outlet === "Globe Newswire") dr = "91";
+                    if (outlet === "Morning Star") dr = "86";
+                    if (outlet === "Benzinga") dr = "87";
+                    if (outlet === "Street Insider") dr = "80";
+                    
+                    // Find the category for this outlet
+                    let category = "Guaranteed Media";
+                    
+                    // Try to find the category in our structured data
+                    for (const [cat, outlets] of Object.entries(mediaData)) {
+                        if (outlets.includes(outlet)) {
+                            category = cat;
+                            break;
+                        }
+                    }
+                    
+                    mediaOutlets.core.push({
+                        publisher: outlet,
+                        category: category,
+                        dr: dr,
+                        guaranteed: true
+                    });
+                });
                 
-                // Find the category for this outlet
-                let category = "Guaranteed Media";
-                
-                // Try to find the category in our structured data
-                for (const [cat, outlets] of Object.entries(mediaData)) {
-                    if (outlets.includes(outlet)) {
-                        category = cat;
-                        break;
+                // Add all other media outlets to Core except AI and Podcast platforms
+                for (const [category, outlets] of Object.entries(mediaData)) {
+                    if (category !== "AI Knowledge Systems" && category !== "Podcast Platforms") {
+                        outlets.forEach(outlet => {
+                            // Skip if already added as guaranteed
+                            if (!guaranteedPlacements.includes(outlet)) {
+                                mediaOutlets.core.push({
+                                    publisher: outlet,
+                                    category: category,
+                                    dr: "-",
+                                    guaranteed: false
+                                });
+                            }
+                        });
                     }
                 }
                 
-                mediaOutlets.core.push({
-                    publisher: outlet,
-                    category: category,
-                    dr: dr,
-                    guaranteed: true
-                });
-            });
-            
-            // Add all other media outlets to Core except AI and Podcast platforms
-            for (const [category, outlets] of Object.entries(mediaData)) {
-                if (category !== "AI Knowledge Systems" && category !== "Podcast Platforms") {
-                    outlets.forEach(outlet => {
-                        // Skip if already added as guaranteed
-                        if (!guaranteedPlacements.includes(outlet)) {
-                            // Assign reasonable domain rating values
-                            let dr = Math.floor(Math.random() * 20) + 70; // Random DR between 70-90
-                            
-                            mediaOutlets.core.push({
-                                publisher: outlet,
-                                category: category,
-                                dr: dr,
-                                guaranteed: false
-                            });
-                        }
+                // Process for Elite package - starts with all Core outlets
+                mediaOutlets.elite = [...mediaOutlets.core];
+                
+                // Add AI Knowledge Systems (exclusively for Elite)
+                mediaData["AI Knowledge Systems"].forEach(platform => {
+                    mediaOutlets.elite.push({
+                        publisher: platform,
+                        category: "AI Knowledge Systems",
+                        dr: "N/A",
+                        guaranteed: true,
+                        elite_exclusive: true
                     });
-                }
+                });
+                
+                // Add Podcast Platforms (exclusively for Elite)
+                mediaData["Podcast Platforms"].forEach(platform => {
+                    let dr = "-";
+                    
+                    // Specific known DR values
+                    if (platform === "Spotify") dr = "95";
+                    if (platform === "Apple Podcasts") dr = "97";
+                    if (platform === "Amazon Music") dr = "96";
+                    if (platform === "iHeart") dr = "91";
+                    if (platform === "Podchaser") dr = "84";
+                    if (platform === "Player FM") dr = "86";
+                    if (platform === "Podbean") dr = "90";
+                    if (platform === "Boomplay") dr = "77";
+                    
+                    mediaOutlets.elite.push({
+                        publisher: platform,
+                        category: "Podcast Platforms",
+                        dr: dr,
+                        guaranteed: true,
+                        elite_exclusive: true
+                    });
+                });
+                
+                // Sort outlets alphabetically within categories
+                mediaOutlets.core.sort((a, b) => {
+                    if (a.category !== b.category) {
+                        return a.category.localeCompare(b.category);
+                    }
+                    return a.publisher.localeCompare(b.publisher);
+                });
+                
+                mediaOutlets.elite.sort((a, b) => {
+                    if (a.category !== b.category) {
+                        return a.category.localeCompare(b.category);
+                    }
+                    return a.publisher.localeCompare(b.publisher);
+                });
+                
+                // Display the data
+                displayMediaOutlets('core');
+                
+            } catch (error) {
+                console.error('Error creating media outlets data:', error);
+                useFallbackMediaData();
             }
-            
-            // Process for Elite package - starts with all Core outlets
-            mediaOutlets.elite = [...mediaOutlets.core];
-            
-            // Add AI Knowledge Systems (exclusively for Elite)
-            mediaData["AI Knowledge Systems"].forEach(platform => {
-                mediaOutlets.elite.push({
-                    publisher: platform,
-                    category: "AI Knowledge Systems",
-                    dr: "N/A",
-                    guaranteed: true,
-                    elite_exclusive: true
-                });
-            });
-            
-            // Add Podcast Platforms (exclusively for Elite)
-            mediaData["Podcast Platforms"].forEach(platform => {
-                let dr = 90; // Default high value
-                
-                // Specific known DR values
-                if (platform === "Spotify") dr = 95;
-                if (platform === "Apple Podcasts") dr = 97;
-                if (platform === "Amazon Music") dr = 96;
-                if (platform === "iHeart") dr = 91;
-                if (platform === "Podchaser") dr = 84;
-                if (platform === "Player FM") dr = 86;
-                if (platform === "Podbean") dr = 90;
-                if (platform === "Boomplay") dr = 77;
-                
-                mediaOutlets.elite.push({
-                    publisher: platform,
-                    category: "Podcast Platforms",
-                    dr: dr,
-                    guaranteed: true,
-                    elite_exclusive: true
-                });
-            });
-            
-            // Sort outlets alphabetically within categories
-            mediaOutlets.core.sort((a, b) => {
-                if (a.category !== b.category) {
-                    return a.category.localeCompare(b.category);
-                }
-                return a.publisher.localeCompare(b.publisher);
-            });
-            
-            mediaOutlets.elite.sort((a, b) => {
-                if (a.category !== b.category) {
-                    return a.category.localeCompare(b.category);
-                }
-                return a.publisher.localeCompare(b.publisher);
-            });
-            
-            // Count for display
-            console.log(`Core package: ${mediaOutlets.core.length} outlets`);
-            console.log(`Elite package: ${mediaOutlets.elite.length} outlets`);
-            
-            // Display the data
-            displayMediaOutlets('core');
-            
-        } catch (error) {
-            console.error('Error creating media outlets data:', error);
-            useFallbackMediaData();
         }
-    }
     
     // Fallback function in case the primary function fails
     function useFallbackMediaData() {
