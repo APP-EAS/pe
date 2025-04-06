@@ -638,10 +638,26 @@
                     </div>
                 </div>
                 
+                <!-- Exclusive Features for Elite Tab (MOVED UP HERE) -->
+                <div id="eliteExclusiveFeatures" class="hidden mb-6 pt-2 pb-4 border-b border-gray-200">
+                    <h4 class="text-lg font-semibold text-blue-900 mb-4">Elite Global Coverage Exclusive Features:</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-blue-50 rounded-lg p-4">
+                            <h5 class="font-medium text-blue-800 mb-2">AI Platform Indexing</h5>
+                            <p class="text-sm text-blue-900">Your content is guaranteed to be indexed by major AI platforms including ChatGPT, Google Gemini, Microsoft Copilot, Perplexity, and Grok</p>
+                        </div>
+                        <div class="bg-blue-50 rounded-lg p-4">
+                            <h5 class="font-medium text-blue-800 mb-2">Podcast Distribution</h5>
+                            <p class="text-sm text-blue-900">Distribution across 8 premium podcast platforms including Spotify (DA95), Apple Podcasts (DA97), and Amazon Music (DA96)</p>
+                        </div>
+                    </div>
+                </div>
+                
                 <!-- Category Navigation -->
                 <div class="mb-6 border-b border-gray-200 pb-4">
                     <div class="flex flex-wrap justify-center gap-2">
                         <button onclick="filterMediaByCategory('all')" class="category-filter-btn active px-3 py-1 text-sm font-medium rounded-full bg-blue-100 text-blue-800 hover:bg-blue-200">All Outlets</button>
+                        <button onclick="filterMediaByCategory('Guaranteed Media')" class="category-filter-btn px-3 py-1 text-sm font-medium rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200">Guaranteed Media</button>
                         <button onclick="filterMediaByCategory('Online Media')" class="category-filter-btn px-3 py-1 text-sm font-medium rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200">Online Media</button>
                         <button onclick="filterMediaByCategory('Newspapers')" class="category-filter-btn px-3 py-1 text-sm font-medium rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200">Newspapers</button>
                         <button onclick="filterMediaByCategory('Magazines')" class="category-filter-btn px-3 py-1 text-sm font-medium rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200">Magazines</button>
@@ -705,21 +721,6 @@
                                     No media outlets matching your search criteria.
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Exclusive Features for Elite Tab (Only visible in Elite tab) -->
-                <div id="eliteExclusiveFeatures" class="hidden mt-6 pt-6 border-t border-gray-200">
-                    <h4 class="text-lg font-semibold text-blue-900 mb-4">Elite Global Coverage Exclusive Features:</h4>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="bg-blue-50 rounded-lg p-4">
-                            <h5 class="font-medium text-blue-800 mb-2">AI Platform Indexing</h5>
-                            <p class="text-sm text-blue-900">Your content is guaranteed to be indexed by major AI platforms including ChatGPT, Google Gemini, Microsoft Copilot, Perplexity, and Grok</p>
-                        </div>
-                        <div class="bg-blue-50 rounded-lg p-4">
-                            <h5 class="font-medium text-blue-800 mb-2">Podcast Distribution</h5>
-                            <p class="text-sm text-blue-900">Distribution across 8 premium podcast platforms including Spotify (DA95), Apple Podcasts (DA97), and Amazon Music (DA96)</p>
                         </div>
                     </div>
                 </div>
@@ -2455,20 +2456,27 @@
         
         // Function to load structured media data
         function loadMediaOutletsData() {
+            // Define guaranteed placements for both packages
+            const guaranteedPlacements = [
+                "Business Insider", "MarketWatch", "Street Insider", "Yahoo! Finance", 
+                "Associated Press", "Morning Star", "Apple News", "Globe Newswire", 
+                "Fox affiliates", "NBC affiliates", "Benzinga"
+            ];
+            
             // Create structured media data from the comprehensive list
             const mediaData = {
                 "Online Media": [
                     "Above The Law", "AdvisorHub", "AhoraMismo", "ALM | Treasury & Risk", "Bloomberg Opinion", 
-                    "Boardroom", "Bushwick Daily", "Business Insider", "Capital B", "Chop Chat", 
+                    "Boardroom", "Bushwick Daily", "Capital B", "Chop Chat", 
                     "Climate & Capital Media", "CoinDesk", "Dealbreaker", "Digiday", "Elite Daily", 
                     "Enstarz", "Equipment Finance News", "ETF Database", "ETF Report - Features", "ETF.com", 
-                    "Financial Buzz", "FN Online", "Fortune Online", "Forward", "Fox affiliates", 
+                    "Financial Buzz", "FN Online", "Fortune Online", "Forward", 
                     "Front Office Sports", "FutureMusic", "Gothamist", "GreenMatters", "Health Payer Specialist", 
                     "Heavy.", "Hell Gate", "Hive", "InsideHook", "Intelligencer", 
                     "Investopedia", "KDrama Stars", "KpopStarz", "Latin Post", "Law & Crime", 
                     "Law.com", "Lifewire", "ManagersOfWealth", "MarketIQ", "Markets Insider", 
-                    "MarketWatch", "Mashable", "Mobile & Apps", "MoneyWatch", "MutualFunds.com", 
-                    "NBC News Digital", "NBC Affiliates", "New York YIMBY", "Newest", "Next | TV", 
+                    "Mashable", "Mobile & Apps", "MoneyWatch", "MutualFunds.com", 
+                    "NBC News Digital", "New York YIMBY", "Newest", "Next | TV", 
                     "Observer", "P&C Specialist", "P&I Daily", "Parents", "Patch - New York City, NY", 
                     "Patch - Park Slope, NY", "PE Hub", "Pensions & Investments Online", "People Online", 
                     "Pharmacy Technology Report", "Prevention.com", "ProPublica", "ProPublica - Midwest", 
@@ -2478,7 +2486,7 @@
                     "The New York Sun", "The Points Guy", "The Times Of Earth", "The Verge", "The Wire China", 
                     "TheLoop", "TheStreet.", "TheUpshot", "ThinkAdvisor", "Tom's Guide", 
                     "U.S. News & World Report", "ValueWalk", "VeryWell Mind", "Vital City", "Vulture", 
-                    "WealthManagement.com", "WWD.com", "Yahoo! Finance", "Globe Newswire", "Benzinga"
+                    "WealthManagement.com", "WWD.com"
                 ],
                 "AI Knowledge Systems": [
                     "ChatGPT", "Grok AI", "Microsoft Copilot", "Google Gemini", "Perplexity"
@@ -2501,7 +2509,7 @@
                     "The Bond Buyer", "The Broadsheet", "The Drunken Canal", "The Epoch Times", "The Evening", 
                     "The Guardian", "The Journal Of Beta Investment Strategies", "The Journal Of Impact & ESG Investing", 
                     "The Journal Of Investing", "The Morning", "The New York Times", "The U.S. Sun", "The Upshot", 
-                    "The Wall Street Journal", "Street Insider"
+                    "The Wall Street Journal"
                 ],
                 "Magazines": [
                     "Ad Age", "Airline Weekly", "American Banker", "Americas Quarterly", "Auto Finance News", 
@@ -2518,7 +2526,7 @@
                     "Rolling Stone", "Security Sales & Integration", "Specialty Pharmacy Continuum", 
                     "Strategy+Business", "The Africa Bazaar", "The Nation", "The New Criterion", "The New Yorker", 
                     "The Secured Lender", "Time", "Trusts & Estates", "Vanity Fair", "Venture Capital Journal", 
-                    "VMH Magazine", "Vogue", "Wealth Management", "WWD (Women's Wear Daily)", "Morning Star"
+                    "VMH Magazine", "Vogue", "Wealth Management", "WWD (Women's Wear Daily)"
                 ],
                 "Television": [
                     "Bloomberg Originals", "Bloomberg Television", "CBS 2 News At 11PM", "CBS 2 News This Morning", 
@@ -2527,7 +2535,7 @@
                     "Hannity", "NBC Latino", "NBC News", "NBCUniversal", "News 4 NY At 4", "News 4 NY At 6", 
                     "Real Vision", "The New Yorker Radio Hour", "Today In New York", "WABC-TV [ABC 7]", 
                     "WCBS-TV [CBS New York]", "WLIW-TV [WLIW 21]", "WLNY-TV [New York 55]", 
-                    "WNBC-TV [NBC 4 New York]", "WPIX-TV [PIX 11]", "Apple News"
+                    "WNBC-TV [NBC 4 New York]", "WPIX-TV [PIX 11]"
                 ],
                 "Radio": [
                     "Elvis Duran And The Morning Show", "The Brian Lehrer Show", "WABC-AM [TalkRadio 77 WABC]", 
@@ -2538,23 +2546,17 @@
                 ],
                 "News Agencies": [
                     "Bloomberg Terminals", "Dow Jones", "Dow Jones Factiva", "Law360", "Opalesque", 
-                    "Private Funds CFO", "Associated Press"
-                ]
+                    "Private Funds CFO"
+                ],
+                "Guaranteed Media": []
             };
-        
-            // Define guaranteed placements for both packages
-            const guaranteedPlacements = [
-                "Business Insider", "MarketWatch", "Street Insider", "Yahoo! Finance", 
-                "Associated Press", "Morning Star", "Apple News", "Globe Newswire", 
-                "Fox affiliates", "NBC affiliates", "Benzinga"
-            ];
         
             // Build the properly formatted data structure
             try {
                 // Process for Core package
                 mediaOutlets.core = [];
                 
-                // Add each guaranteed outlet with appropriate domain rating
+                // Add each guaranteed outlet to the Guaranteed Media category
                 guaranteedPlacements.forEach(outlet => {
                     // Assign specific known DR values
                     let dr = "-";
@@ -2570,28 +2572,19 @@
                     if (outlet === "Benzinga") dr = "87";
                     if (outlet === "Street Insider") dr = "80";
                     
-                    // Find the category for this outlet
-                    let category = "Guaranteed Media";
-                    
-                    // Try to find the category in our structured data
-                    for (const [cat, outlets] of Object.entries(mediaData)) {
-                        if (outlets.includes(outlet)) {
-                            category = cat;
-                            break;
-                        }
-                    }
-                    
+                    // Add to core outlets with Guaranteed Media category
                     mediaOutlets.core.push({
                         publisher: outlet,
-                        category: category,
+                        category: "Guaranteed Media",
                         dr: dr,
                         guaranteed: true
                     });
                 });
                 
                 // Add all other media outlets to Core except AI and Podcast platforms
+                // and except those that are already in the guaranteed list
                 for (const [category, outlets] of Object.entries(mediaData)) {
-                    if (category !== "AI Knowledge Systems" && category !== "Podcast Platforms") {
+                    if (category !== "AI Knowledge Systems" && category !== "Podcast Platforms" && category !== "Guaranteed Media") {
                         outlets.forEach(outlet => {
                             // Skip if already added as guaranteed
                             if (!guaranteedPlacements.includes(outlet)) {
@@ -2643,21 +2636,6 @@
                     });
                 });
                 
-                // Sort outlets alphabetically within categories
-                mediaOutlets.core.sort((a, b) => {
-                    if (a.category !== b.category) {
-                        return a.category.localeCompare(b.category);
-                    }
-                    return a.publisher.localeCompare(b.publisher);
-                });
-                
-                mediaOutlets.elite.sort((a, b) => {
-                    if (a.category !== b.category) {
-                        return a.category.localeCompare(b.category);
-                    }
-                    return a.publisher.localeCompare(b.publisher);
-                });
-                
                 // Display the data
                 displayMediaOutlets('core');
                 
@@ -2665,6 +2643,103 @@
                 console.error('Error creating media outlets data:', error);
                 useFallbackMediaData();
             }
+        }
+        
+        // Fallback function in case the primary function fails
+        function useFallbackMediaData() {
+            // Define guaranteed placements for both packages
+            const guaranteedPlacements = [
+                "Business Insider", "MarketWatch", "Street Insider", "Yahoo! Finance", 
+                "Associated Press", "Morning Star", "Apple News", "Globe Newswire", 
+                "Fox affiliates", "NBC affiliates", "Benzinga"
+            ];
+            
+            // Simplified fallback data
+            mediaOutlets.core = [];
+            
+            // Add each guaranteed outlet with appropriate domain rating
+            guaranteedPlacements.forEach(outlet => {
+                // Assign specific known DR values
+                let dr = "-";
+                
+                // Specific known DR values
+                if (outlet === "Business Insider") dr = "92";
+                if (outlet === "Yahoo! Finance") dr = "92";
+                if (outlet === "MarketWatch") dr = "91";
+                if (outlet === "Associated Press") dr = "91";
+                if (outlet === "Apple News") dr = "97";
+                if (outlet === "Globe Newswire") dr = "91";
+                if (outlet === "Morning Star") dr = "86";
+                if (outlet === "Benzinga") dr = "87";
+                if (outlet === "Street Insider") dr = "80";
+                
+                mediaOutlets.core.push({
+                    publisher: outlet,
+                    category: "Guaranteed Media",
+                    dr: dr,
+                    guaranteed: true
+                });
+            });
+            
+            // Add some sample outlets for each category
+            const sampleCategories = {
+                "Online Media": ["The Verge", "Mashable", "TechCrunch"],
+                "Newspapers": ["The New York Times", "The Guardian", "The Wall Street Journal"],
+                "Magazines": ["Time", "Vogue", "Forbes"],
+                "Television": ["CBS News", "Fox Business", "NBC News"],
+                "Radio": ["NPR", "WNYC-FM", "WABC-AM"],
+                "News Agencies": ["Bloomberg Terminals", "Dow Jones", "Reuters"]
+            };
+            
+            // Add sample outlets
+            for (const [category, outlets] of Object.entries(sampleCategories)) {
+                outlets.forEach(outlet => {
+                    mediaOutlets.core.push({
+                        publisher: outlet,
+                        category: category,
+                        dr: "-",
+                        guaranteed: false
+                    });
+                });
+            }
+            
+            // Elite package includes all Core outlets
+            mediaOutlets.elite = [...mediaOutlets.core];
+            
+            // Add AI Knowledge Systems
+            ["ChatGPT", "Grok AI", "Microsoft Copilot", "Google Gemini", "Perplexity"].forEach(platform => {
+                mediaOutlets.elite.push({
+                    publisher: platform,
+                    category: "AI Knowledge Systems",
+                    dr: "N/A",
+                    guaranteed: true,
+                    elite_exclusive: true
+                });
+            });
+            
+            // Add Podcast Platforms
+            const podcastPlatforms = {
+                "Spotify": "95",
+                "Apple Podcasts": "97",
+                "Amazon Music": "96",
+                "iHeart": "91",
+                "Podchaser": "84",
+                "Player FM": "86",
+                "Podbean": "90",
+                "Boomplay": "77"
+            };
+            
+            for (const [platform, dr] of Object.entries(podcastPlatforms)) {
+                mediaOutlets.elite.push({
+                    publisher: platform,
+                    category: "Podcast Platforms",
+                    dr: dr,
+                    guaranteed: true,
+                    elite_exclusive: true
+                });
+            }
+            
+            displayMediaOutlets('core');
         }
     
     // Fallback function in case the primary function fails
@@ -2785,6 +2860,7 @@
             }
         }
         
+        // Update the switchNetworkTab function to show/hide the Elite Exclusive Features
         function switchNetworkTab(network) {
             const tabs = document.querySelectorAll('.network-tab-content');
             tabs.forEach(tab => tab.classList.add('hidden'));
@@ -2794,6 +2870,14 @@
             const buttons = document.querySelectorAll('.network-tab-button');
             buttons.forEach(button => button.classList.remove('active'));
             event.target.classList.add('active');
+            
+            // Show or hide the Elite exclusive features section
+            const eliteFeatures = document.getElementById('eliteExclusiveFeatures');
+            if (network === 'elite') {
+                eliteFeatures.classList.remove('hidden');
+            } else {
+                eliteFeatures.classList.add('hidden');
+            }
             
             // Update content
             displayMediaOutlets(network);
