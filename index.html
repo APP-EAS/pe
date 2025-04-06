@@ -2802,6 +2802,7 @@
         displayMediaOutlets('core');
     }
         
+        // Fixed displayMediaOutlets function to properly group by categories in both tabs
         function displayMediaOutlets(plan, category = 'all', searchTerm = '') {
             const tableBody = document.getElementById(`${plan}NetworkTableBody`);
             const noResults = document.getElementById(`${plan}NoResults`);
@@ -2842,27 +2843,21 @@
             
             // Function to get category priority for sorting
             function getCategoryPriority(category) {
-                // For Elite plan, use specific category order
-                if (plan === 'elite') {
-                    const priorityOrder = {
-                        "Guaranteed Media": 1,
-                        "AI Knowledge Systems": 2,
-                        "Podcast Platforms": 3,
-                        "Online Media": 4,
-                        "Newspapers": 5,
-                        "Magazines": 6,
-                        "Television": 7,
-                        "Radio": 8,
-                        "News Agencies": 9
-                    };
-                    return priorityOrder[category] || 10;
-                } else {
-                    // For Core plan, Guaranteed Media first, then alphabetical
-                    return category === "Guaranteed Media" ? 1 : 2;
-                }
+                const priorityOrder = {
+                    "Guaranteed Media": 1,
+                    "AI Knowledge Systems": 2,
+                    "Podcast Platforms": 3,
+                    "Online Media": 4,
+                    "Newspapers": 5,
+                    "Magazines": 6,
+                    "Television": 7,
+                    "Radio": 8,
+                    "News Agencies": 9
+                };
+                return priorityOrder[category] || 10;
             }
             
-            // Custom sorting function for comprehensive ordering
+            // Sort filteredOutlets by category first
             filteredOutlets.sort((a, b) => {
                 // First sort by category priority
                 const aPriority = getCategoryPriority(a.category);
@@ -2895,29 +2890,59 @@
                 return a.publisher.localeCompare(b.publisher);
             });
             
-            // Display the outlets
-            let currentCategory = '';
+            // Group outlets by category
+            const groupedOutlets = {};
             filteredOutlets.forEach(outlet => {
-                // Add category header if new category
-                if (currentCategory !== outlet.category && category === 'all') {
+                if (!groupedOutlets[outlet.category]) {
+                    groupedOutlets[outlet.category] = [];
+                }
+                groupedOutlets[outlet.category].push(outlet);
+            });
+            
+            // Display outlets by category
+            if (category === 'all') {
+                // Get ordered categories based on priority
+                const categoryOrder = Object.keys(groupedOutlets).sort((a, b) => {
+                    return getCategoryPriority(a) - getCategoryPriority(b);
+                });
+                
+                // Iterate through categories in order
+                categoryOrder.forEach(categoryName => {
+                    const outlets = groupedOutlets[categoryName];
+                    
+                    // Add category header
                     const headerRow = document.createElement('tr');
                     headerRow.className = 'bg-gray-100';
                     headerRow.innerHTML = `
-                        <td colspan="3" class="px-4 py-2 font-medium text-gray-700">${outlet.category}</td>
+                        <td colspan="3" class="px-4 py-2 font-medium text-gray-700">${categoryName}</td>
                     `;
                     tableBody.appendChild(headerRow);
-                    currentCategory = outlet.category;
-                }
-                
-                const row = document.createElement('tr');
-                row.className = 'hover:bg-gray-50';
-                row.innerHTML = `
-                    <td class="px-4 py-2">${outlet.publisher}</td>
-                    <td class="px-4 py-2 text-gray-500">${outlet.category}</td>
-                    <td class="px-4 py-2 text-gray-500">${outlet.dr}</td>
-                `;
-                tableBody.appendChild(row);
-            });
+                    
+                    // Add outlets for this category
+                    outlets.forEach(outlet => {
+                        const row = document.createElement('tr');
+                        row.className = 'hover:bg-gray-50';
+                        row.innerHTML = `
+                            <td class="px-4 py-2">${outlet.publisher}</td>
+                            <td class="px-4 py-2 text-gray-500">${outlet.category}</td>
+                            <td class="px-4 py-2 text-gray-500">${outlet.dr}</td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                });
+            } else {
+                // If filtering by a specific category, just show those outlets
+                filteredOutlets.forEach(outlet => {
+                    const row = document.createElement('tr');
+                    row.className = 'hover:bg-gray-50';
+                    row.innerHTML = `
+                        <td class="px-4 py-2">${outlet.publisher}</td>
+                        <td class="px-4 py-2 text-gray-500">${outlet.category}</td>
+                        <td class="px-4 py-2 text-gray-500">${outlet.dr}</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            }
             
             // Show/hide Elite exclusive features section
             const eliteFeatures = document.getElementById('eliteExclusiveFeatures');
@@ -2931,6 +2956,7 @@
         }
         
         // Update the switchNetworkTab function to show/hide the Elite Exclusive Features
+        // Fix for the category tabs display
         function switchNetworkTab(network) {
             const tabs = document.querySelectorAll('.network-tab-content');
             tabs.forEach(tab => tab.classList.add('hidden'));
@@ -2943,16 +2969,19 @@
             
             // Show or hide the Elite exclusive features section
             const eliteFeatures = document.getElementById('eliteExclusiveFeatures');
-            if (network === 'elite') {
-                eliteFeatures.classList.remove('hidden');
-            } else {
-                eliteFeatures.classList.add('hidden');
+            if (eliteFeatures) {
+                if (network === 'elite') {
+                    eliteFeatures.classList.remove('hidden');
+                } else {
+                    eliteFeatures.classList.add('hidden');
+                }
             }
             
-            // Update content
+            // Update content with properly grouped categories
             displayMediaOutlets(network);
         }
         
+        // Modify the filterMediaByCategory function to ensure proper category display
         function filterMediaByCategory(category) {
             // Get current active tab
             const activeTab = document.querySelector('.network-tab-button.active');
@@ -2971,7 +3000,7 @@
             // Get search term
             const searchTerm = document.getElementById('mediaSearchInput').value;
             
-            // Update display
+            // Update display with proper category grouping
             displayMediaOutlets(currentPlan, category, searchTerm);
         }
         
