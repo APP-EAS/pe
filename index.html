@@ -2779,6 +2779,7 @@
         displayMediaOutlets('core');
     }
         
+        // Function to sort and display media outlets
         function displayMediaOutlets(plan, category = 'all', searchTerm = '') {
             const tableBody = document.getElementById(`${plan}NetworkTableBody`);
             const noResults = document.getElementById(`${plan}NoResults`);
@@ -2817,12 +2818,39 @@
                 noResults.classList.add('hidden');
             }
             
-            // Sort by category then publisher
+            // Custom sorting function:
+            // 1. Sort by category
+            // 2. Within "Guaranteed Media" category: 
+            //    a. Items with numerical domain ratings first (sorted by DR value, highest first)
+            //    b. Items without domain ratings (showing "-") at the end
+            // 3. For other categories, sort alphabetically by publisher
             filteredOutlets.sort((a, b) => {
-                if (a.category === b.category) {
-                    return a.publisher.localeCompare(b.publisher);
+                // First sort by category
+                if (a.category !== b.category) {
+                    return a.category.localeCompare(b.category);
                 }
-                return a.category.localeCompare(b.category);
+                
+                // Special handling for Guaranteed Media category
+                if (a.category === "Guaranteed Media") {
+                    const aDR = a.dr === "-" ? -1 : parseInt(a.dr);
+                    const bDR = b.dr === "-" ? -1 : parseInt(b.dr);
+                    
+                    // First, compare if one has a rating and the other doesn't
+                    if ((aDR === -1) !== (bDR === -1)) {
+                        return aDR === -1 ? 1 : -1; // Items without DR go to the end
+                    }
+                    
+                    // If both have ratings or both don't have ratings
+                    if (aDR === bDR) {
+                        return a.publisher.localeCompare(b.publisher); // Alphabetical if DR is the same
+                    }
+                    
+                    // Sort by DR value (highest first)
+                    return bDR - aDR;
+                }
+                
+                // For other categories, sort alphabetically by publisher
+                return a.publisher.localeCompare(b.publisher);
             });
             
             // Display the outlets
