@@ -455,18 +455,26 @@
             }
         }
     
-        /* Domain Rating Tooltip Styles - NEW MODIFIED VERSION */
+        /* ===== Ahrefs Domain Rating Tooltip Styles ===== */
+        .tooltip-container {
+            position: relative;
+            display: inline-block;
+        }
+    
         .dr-info-icon {
+            color: #3b82f6;
+            cursor: pointer;
             position: relative;
             z-index: 5;
         }
     
         .dr-tooltip {
             position: absolute;
-            bottom: 125%;
+            bottom: 130%;
             left: 50%;
             transform: translateX(-50%);
             width: 16rem;
+            min-width: 16rem;
             background-color: #1f2937;
             color: white;
             font-size: 0.75rem;
@@ -475,10 +483,10 @@
             margin-bottom: 0.5rem;
             opacity: 0;
             visibility: hidden;
-            transition: opacity 0.2s, visibility 0.2s;
-            z-index: 100;
-            pointer-events: none;
+            transition: opacity 0.3s, visibility 0.3s;
+            z-index: 1000;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            pointer-events: none;
         }
     
         .dr-tooltip::after {
@@ -486,18 +494,28 @@
             position: absolute;
             top: 100%;
             left: 50%;
-            transform: translateX(-50%);
+            margin-left: -5px;
             border-width: 5px;
             border-style: solid;
             border-color: #1f2937 transparent transparent transparent;
         }
     
-        /* Desktop hover behavior */
         @media (min-width: 768px) {
-            .dr-info-icon:hover + .dr-tooltip {
+            .tooltip-container:hover .dr-tooltip {
                 opacity: 1;
                 visibility: visible;
             }
+        }
+    
+        .tooltip-container.active .dr-tooltip {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+    
+        /* Add this to ensure the tooltips are above other elements */
+        .network-tab-content thead {
+            position: relative;
+            z-index: 10;
         }
     </style>
     <!-- Tracking Code -->
@@ -774,9 +792,9 @@
                                             <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50 relative">
                                                 <div class="flex items-center">
                                                     Ahrefs Domain Rating
-                                                    <div class="relative inline-block ml-1">
+                                                    <div class="relative inline-block ml-1 tooltip-container">
                                                         <i class="fas fa-info-circle text-blue-500 cursor-pointer dr-info-icon"></i>
-                                                        <div class="dr-tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 w-64 bg-gray-900 text-white text-xs rounded py-2 px-3 mb-2 opacity-0 invisible transition-opacity duration-200 z-[100] pointer-events-none">
+                                                        <div class="dr-tooltip absolute bottom-full left-1/2 w-64 bg-gray-900 text-white text-xs rounded py-2 px-3 mb-2 opacity-0 invisible transition-all duration-200 z-[100]">
                                                             Ahrefs Domain Rating (DR) is a metric from 1-100 that shows the strength of a website's backlink profile. Higher ratings (90+) indicate highly authoritative sites that can significantly boost your SEO when they link to you.
                                                         </div>
                                                     </div>
@@ -804,9 +822,9 @@
                                             <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50 relative">
                                                 <div class="flex items-center">
                                                     Ahrefs Domain Rating
-                                                    <div class="relative inline-block ml-1">
+                                                    <div class="relative inline-block ml-1 tooltip-container">
                                                         <i class="fas fa-info-circle text-blue-500 cursor-pointer dr-info-icon"></i>
-                                                        <div class="dr-tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 w-64 bg-gray-900 text-white text-xs rounded py-2 px-3 mb-2 opacity-0 invisible transition-opacity duration-200 z-[100] pointer-events-none">
+                                                        <div class="dr-tooltip absolute bottom-full left-1/2 w-64 bg-gray-900 text-white text-xs rounded py-2 px-3 mb-2 opacity-0 invisible transition-all duration-200 z-[100]">
                                                             Ahrefs Domain Rating (DR) is a metric from 1-100 that shows the strength of a website's backlink profile. Higher ratings (90+) indicate highly authoritative sites that can significantly boost your SEO when they link to you.
                                                         </div>
                                                     </div>
