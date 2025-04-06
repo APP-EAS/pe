@@ -455,15 +455,33 @@
             }
         }
     
-        /* Domain Rating Tooltip Styles */
-        #dr-info-icon:hover + #dr-tooltip,
-        #dr-info-icon:focus + #dr-tooltip {
-            opacity: 1;
-            visibility: visible;
+        /* Domain Rating Tooltip Styles - NEW MODIFIED VERSION */
+        .dr-info-icon {
+            position: relative;
+            z-index: 5;
         }
-        
-        /* Additional tooltip styles for better visibility */
-        #dr-tooltip::after {
+    
+        .dr-tooltip {
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 16rem;
+            background-color: #1f2937;
+            color: white;
+            font-size: 0.75rem;
+            border-radius: 0.25rem;
+            padding: 0.5rem 0.75rem;
+            margin-bottom: 0.5rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s, visibility 0.2s;
+            z-index: 100;
+            pointer-events: none;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+    
+        .dr-tooltip::after {
             content: '';
             position: absolute;
             top: 100%;
@@ -472,6 +490,14 @@
             border-width: 5px;
             border-style: solid;
             border-color: #1f2937 transparent transparent transparent;
+        }
+    
+        /* Desktop hover behavior */
+        @media (min-width: 768px) {
+            .dr-info-icon:hover + .dr-tooltip {
+                opacity: 1;
+                visibility: visible;
+            }
         }
     </style>
     <!-- Tracking Code -->
@@ -749,8 +775,8 @@
                                                 <div class="flex items-center">
                                                     Ahrefs Domain Rating
                                                     <div class="relative inline-block ml-1">
-                                                        <i class="fas fa-info-circle text-blue-500 cursor-pointer" id="dr-info-icon"></i>
-                                                        <div id="dr-tooltip" class="absolute bottom-full left-1/2 transform -translate-x-1/2 w-64 bg-gray-900 text-white text-xs rounded py-2 px-3 mb-2 opacity-0 invisible transition-opacity duration-200 z-[100] pointer-events-none">
+                                                        <i class="fas fa-info-circle text-blue-500 cursor-pointer dr-info-icon"></i>
+                                                        <div class="dr-tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 w-64 bg-gray-900 text-white text-xs rounded py-2 px-3 mb-2 opacity-0 invisible transition-opacity duration-200 z-[100] pointer-events-none">
                                                             Ahrefs Domain Rating (DR) is a metric from 1-100 that shows the strength of a website's backlink profile. Higher ratings (90+) indicate highly authoritative sites that can significantly boost your SEO when they link to you.
                                                         </div>
                                                     </div>
@@ -779,8 +805,8 @@
                                                 <div class="flex items-center">
                                                     Ahrefs Domain Rating
                                                     <div class="relative inline-block ml-1">
-                                                        <i class="fas fa-info-circle text-blue-500 cursor-pointer" id="dr-info-icon"></i>
-                                                        <div id="dr-tooltip" class="absolute bottom-full left-1/2 transform -translate-x-1/2 w-64 bg-gray-900 text-white text-xs rounded py-2 px-3 mb-2 opacity-0 invisible transition-opacity duration-200 z-[100] pointer-events-none">
+                                                        <i class="fas fa-info-circle text-blue-500 cursor-pointer dr-info-icon"></i>
+                                                        <div class="dr-tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 w-64 bg-gray-900 text-white text-xs rounded py-2 px-3 mb-2 opacity-0 invisible transition-opacity duration-200 z-[100] pointer-events-none">
                                                             Ahrefs Domain Rating (DR) is a metric from 1-100 that shows the strength of a website's backlink profile. Higher ratings (90+) indicate highly authoritative sites that can significantly boost your SEO when they link to you.
                                                         </div>
                                                     </div>
