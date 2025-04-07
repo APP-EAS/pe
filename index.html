@@ -455,67 +455,55 @@
             }
         }
     
-        /* ===== Ahrefs Domain Rating Tooltip Styles ===== */
-        .tooltip-container {
+        /* Domain Rating Tooltip - Simplified Approach */
+        .dr-tooltip-wrapper {
             position: relative;
             display: inline-block;
         }
     
-        .dr-info-icon {
-            color: #3b82f6;
+        .dr-info-trigger {
             cursor: pointer;
-            position: relative;
-            z-index: 5;
+            transition: background-color 0.2s;
         }
     
-        .dr-tooltip {
-            position: absolute;
-            bottom: 130%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 16rem;
-            min-width: 16rem;
-            background-color: #1f2937;
-            color: white;
-            font-size: 0.75rem;
-            border-radius: 0.25rem;
-            padding: 0.5rem 0.75rem;
-            margin-bottom: 0.5rem;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s, visibility 0.3s;
-            z-index: 1000;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            pointer-events: none;
+        .dr-info-trigger:hover,
+        .dr-tooltip-wrapper:focus .dr-info-trigger {
+            background-color: #3b82f6;
         }
     
-        .dr-tooltip::after {
-            content: '';
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            margin-left: -5px;
-            border-width: 5px;
-            border-style: solid;
-            border-color: #1f2937 transparent transparent transparent;
+        /* Tooltips are positioned by JS for maximum reliability */
+        .dr-tooltip-box {
+            width: 250px;
+            line-height: 1.4;
+            border-radius: 0.375rem;
         }
     
-        @media (min-width: 768px) {
-            .tooltip-container:hover .dr-tooltip {
-                opacity: 1;
-                visibility: visible;
-            }
+        /* Simple fade animation */
+        .tooltip-fade-in {
+            animation: fadeIn 0.2s ease-in-out forwards;
         }
     
-        .tooltip-container.active .dr-tooltip {
-            opacity: 1 !important;
-            visibility: visible !important;
+        .tooltip-fade-out {
+            animation: fadeOut 0.2s ease-in-out forwards;
         }
     
-        /* Add this to ensure the tooltips are above other elements */
-        .network-tab-content thead {
-            position: relative;
-            z-index: 10;
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+    
+        /* Make the tooltip container focusable for accessibility */
+        .dr-tooltip-wrapper:focus {
+            outline: none;
+        }
+    
+        .dr-tooltip-wrapper:focus .dr-tooltip-box {
+            display: block !important;
         }
     </style>
     <!-- Tracking Code -->
@@ -789,12 +777,14 @@
                                         <tr>
                                             <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50">Publisher</th>
                                             <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50">Category</th>
-                                            <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50 relative">
+                                            <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50">
                                                 <div class="flex items-center">
                                                     Ahrefs Domain Rating
-                                                    <div class="relative inline-block ml-1 tooltip-container">
-                                                        <i class="fas fa-info-circle text-blue-500 cursor-pointer dr-info-icon"></i>
-                                                        <div class="dr-tooltip absolute bottom-full left-1/2 w-64 bg-gray-900 text-white text-xs rounded py-2 px-3 mb-2 opacity-0 invisible transition-all duration-200 z-[100]">
+                                                    <div class="dr-tooltip-wrapper ml-1" tabindex="0">
+                                                        <span class="dr-info-trigger inline-block w-5 h-5 bg-blue-500 text-white rounded-full flex items-center justify-center cursor-pointer">
+                                                            <i class="fas fa-info text-xs"></i>
+                                                        </span>
+                                                        <div class="dr-tooltip-box hidden fixed bg-gray-900 text-white rounded p-3 text-xs max-w-xs shadow-lg z-[9999]">
                                                             Ahrefs Domain Rating (DR) is a metric from 1-100 that shows the strength of a website's backlink profile. Higher ratings (90+) indicate highly authoritative sites that can significantly boost your SEO when they link to you.
                                                         </div>
                                                     </div>
@@ -819,12 +809,14 @@
                                         <tr>
                                             <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50">Publisher</th>
                                             <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50">Category</th>
-                                            <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50 relative">
+                                            <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50">
                                                 <div class="flex items-center">
                                                     Ahrefs Domain Rating
-                                                    <div class="relative inline-block ml-1 tooltip-container">
-                                                        <i class="fas fa-info-circle text-blue-500 cursor-pointer dr-info-icon"></i>
-                                                        <div class="dr-tooltip absolute bottom-full left-1/2 w-64 bg-gray-900 text-white text-xs rounded py-2 px-3 mb-2 opacity-0 invisible transition-all duration-200 z-[100]">
+                                                    <div class="dr-tooltip-wrapper ml-1" tabindex="0">
+                                                        <span class="dr-info-trigger inline-block w-5 h-5 bg-blue-500 text-white rounded-full flex items-center justify-center cursor-pointer">
+                                                            <i class="fas fa-info text-xs"></i>
+                                                        </span>
+                                                        <div class="dr-tooltip-box hidden fixed bg-gray-900 text-white rounded p-3 text-xs max-w-xs shadow-lg z-[9999]">
                                                             Ahrefs Domain Rating (DR) is a metric from 1-100 that shows the strength of a website's backlink profile. Higher ratings (90+) indicate highly authoritative sites that can significantly boost your SEO when they link to you.
                                                         </div>
                                                     </div>
@@ -3524,6 +3516,142 @@
         window.originalConsole.log('Complete Debug Info:', debug);
         return debug;
     };
+    </script
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get all tooltip triggers
+        const tooltipWrappers = document.querySelectorAll('.dr-tooltip-wrapper');
+        let activeTooltip = null;
+        
+        function showTooltip(wrapper, event) {
+            // Hide any existing tooltip first
+            if (activeTooltip) {
+                hideTooltip(activeTooltip);
+            }
+            
+            const trigger = wrapper.querySelector('.dr-info-trigger');
+            const tooltip = wrapper.querySelector('.dr-tooltip-box');
+            
+            // First, make it visible but positioned absolute
+            tooltip.style.display = 'block';
+            tooltip.classList.add('tooltip-fade-in');
+            tooltip.classList.remove('tooltip-fade-out');
+            
+            // Position tooltip optimally based on available space
+            positionTooltip(trigger, tooltip, event);
+            
+            // Store currently active tooltip
+            activeTooltip = wrapper;
+            
+            // Add click handler to document to close when clicking outside
+            setTimeout(() => {
+                document.addEventListener('click', documentClickHandler);
+            }, 10);
+        }
+        
+        function hideTooltip(wrapper) {
+            if (!wrapper) return;
+            
+            const tooltip = wrapper.querySelector('.dr-tooltip-box');
+            if (!tooltip) return;
+            
+            tooltip.classList.add('tooltip-fade-out');
+            tooltip.classList.remove('tooltip-fade-in');
+            
+            // After animation completes, hide the element
+            setTimeout(() => {
+                tooltip.style.display = 'none';
+            }, 200);
+            
+            activeTooltip = null;
+        }
+        
+        function positionTooltip(trigger, tooltip, event) {
+            // Get element positions
+            const triggerRect = trigger.getBoundingClientRect();
+            
+            // Default position above and centered
+            let top = triggerRect.top - tooltip.offsetHeight - 8;
+            let left = triggerRect.left + (triggerRect.width/2) - (tooltip.offsetWidth/2);
+            
+            // If not enough space above, show below
+            if (top < 10) {
+                top = triggerRect.bottom + 8;
+            }
+            
+            // Ensure tooltip stays within viewport horizontally
+            if (left < 10) {
+                left = 10;
+            } else if (left + tooltip.offsetWidth > window.innerWidth - 10) {
+                left = window.innerWidth - tooltip.offsetWidth - 10;
+            }
+            
+            // Apply the position
+            tooltip.style.top = `${top}px`;
+            tooltip.style.left = `${left}px`;
+        }
+        
+        // Handler for clicks outside the tooltip
+        function documentClickHandler(e) {
+            if (activeTooltip && !activeTooltip.contains(e.target)) {
+                hideTooltip(activeTooltip);
+                document.removeEventListener('click', documentClickHandler);
+            }
+        }
+        
+        // Add event listeners to all tooltip triggers
+        tooltipWrappers.forEach(wrapper => {
+            // For mouse devices
+            wrapper.addEventListener('mouseenter', function(e) {
+                if (!isTouchDevice()) { // Only use hover on non-touch devices
+                    showTooltip(wrapper, e);
+                }
+            });
+            
+            wrapper.addEventListener('mouseleave', function(e) {
+                if (!isTouchDevice()) { // Only use hover on non-touch devices
+                    hideTooltip(wrapper);
+                }
+            });
+            
+            // For both mouse and touch (click/tap)
+            wrapper.addEventListener('click', function(e) {
+                e.stopPropagation(); // Prevent document click
+                
+                if (activeTooltip === wrapper) {
+                    hideTooltip(wrapper);
+                    document.removeEventListener('click', documentClickHandler);
+                } else {
+                    showTooltip(wrapper, e);
+                }
+            });
+            
+            // Keyboard accessibility
+            wrapper.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    showTooltip(wrapper, e);
+                }
+                if (e.key === 'Escape' && activeTooltip) {
+                    hideTooltip(activeTooltip);
+                    document.removeEventListener('click', documentClickHandler);
+                }
+            });
+        });
+        
+        // Helper function to detect touch devices
+        function isTouchDevice() {
+            return ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0);
+        }
+        
+        // Ensure tooltips close when modal closes
+        document.addEventListener('click', function(e) {
+            if (e.target.matches('[onclick*="closeModal"]') && activeTooltip) {
+                hideTooltip(activeTooltip);
+            }
+        });
+    });
     </script>
 </body>
 </html>
