@@ -395,6 +395,121 @@
             .elevateai-logo-box {
                 padding: 1rem;
             }
+            
+            /* Pricing Card Mobile Fixes */
+            .pricing-card, 
+            .elite-card {
+                height: auto !important;
+                max-height: none !important;
+                min-height: auto !important;
+                overflow: visible !important;
+                margin-bottom: 2rem !important;
+                padding-bottom: 24px !important;
+            }
+            
+            /* Popular ribbon mobile fix */
+            .popular-ribbon,
+            .enhanced-value-ribbon,
+            .most-popular {
+                font-size: 0.85rem !important;
+                padding: 8px 16px !important;
+                transform: rotate(45deg) !important;
+                right: -20px !important;
+                top: -15px !important;
+                transform-origin: top right !important;
+                width: auto !important;
+                white-space: nowrap !important;
+                z-index: 10 !important;
+            }
+            
+            /* Ensure all content sections are visible */
+            .elite-features-section,
+            .elite-exclusive-features,
+            .elite-benefits-section {
+                margin-top: 16px !important;
+                margin-bottom: 16px !important;
+                display: block !important;
+                visibility: visible !important;
+            }
+            
+            /* Adjust CTA button positioning */
+            .pricing-cta-button,
+            .get-featured-button {
+                margin-top: 24px !important;
+                position: relative !important;
+                bottom: auto !important;
+                width: 100% !important;
+            }
+            
+            /* Features spacing */
+            .feature-item,
+            .elite-feature-item {
+                margin-bottom: 12px !important;
+                display: flex !important;
+                align-items: flex-start !important;
+            }
+            
+            /* Content container adjustments */
+            .pricing-content-container {
+                padding: 16px !important;
+                overflow: visible !important;
+                height: auto !important;
+            }
+            
+            /* Price display */
+            .price-display {
+                margin-bottom: 16px !important;
+            }
+            
+            /* Fix for Elite Card in mobile */
+            .bg-blue-800, .bg-blue-700 {
+                padding: 16px !important;
+            }
+            
+            /* Feature list adjustments */
+            .feature-list-container {
+                margin-bottom: 16px !important;
+            }
+            
+            /* Ensure proper spacing between sections */
+            .guaranteed-placements-section,
+            .elite-exclusive-section {
+                margin-top: 20px !important;
+                margin-bottom: 20px !important;
+            }
+            
+            /* Fix for any nested scroll containers */
+            .scroll-container {
+                overflow: visible !important;
+                max-height: none !important;
+            }
+        }
+    
+        /* Extremely small mobile screens */
+        @media (max-width: 375px) {
+            .pricing-card,
+            .elite-card {
+                padding-left: 12px !important;
+                padding-right: 12px !important;
+            }
+            
+            .feature-item,
+            .elite-feature-item {
+                font-size: 0.9rem !important;
+            }
+            
+            .price-display {
+                font-size: 2.5rem !important;
+            }
+            
+            .popular-ribbon,
+            .enhanced-value-ribbon,
+            .most-popular {
+                font-size: 0.75rem !important;
+                padding: 6px 12px !important;
+                right: -15px !important;
+                top: -10px !important;
+            }
         }
     
         /* Adjustments for Tablet View */
@@ -421,6 +536,13 @@
             .elevateai-section {
                 padding-top: 5rem;
                 padding-bottom: 5rem;
+            }
+            
+            /* Pricing cards tablet adjustments */
+            .pricing-card,
+            .elite-card {
+                min-height: 750px !important;
+                height: auto !important;
             }
         }
     
