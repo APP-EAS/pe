@@ -326,6 +326,31 @@
             background: linear-gradient(90deg, #2563eb 0%, #4338ca 100%);
         }
         
+        /* Modal fixes */
+        .fixed.inset-0.flex.items-center.justify-center {
+            z-index: 60 !important; /* Ensure modals are above all other content */
+        }
+        
+        .modal-content-container {
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        /* Replace viewport height units */
+        .max-h-[70vh], .max-h-[80vh] {
+            max-height: 500px;
+        }
+        
+        /* Form responsiveness */
+        iframe#contactForm {
+            min-height: 750px !important;
+            width: 100% !important;
+        }
+        
+        /* Back to top button */
+        #backToTop {
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+        
         /* Mobile responsiveness for table view */
         @media (max-width: 640px) {
             .network-tab-content table {
@@ -347,6 +372,13 @@
         .category-filter-container {
             overflow-x: auto;
             padding-bottom: 4px; /* Prevents scrollbar from cutting off button bottoms */
+        }
+        
+        /* Popular ribbon styling */
+        .popular-ribbon,
+        .enhanced-value-ribbon,
+        .most-popular {
+            z-index: 10 !important;
         }
         
         /* Adjustments for Mobile View */
@@ -482,6 +514,18 @@
             .scroll-container {
                 overflow: visible !important;
                 max-height: none !important;
+            }
+            
+            /* Better mobile positioning for back-to-top button */
+            #backToTop {
+                bottom: 16px !important;
+                left: auto !important;
+                right: 16px !important;
+            }
+            
+            /* Form responsiveness for mobile */
+            iframe#contactForm {
+                min-height: 850px !important;
             }
         }
     
@@ -2558,6 +2602,17 @@
 
     <!-- Consolidated JavaScript - Place right before the closing </body> tag -->
     <script>
+        function debounce(func, wait) {
+            let timeout;
+            return function() {
+                const context = this, args = arguments;
+                clearTimeout(timeout);
+                timeout = setTimeout(function() {
+                    func.apply(context, args);
+                }, wait);
+            };
+        }
+        
         // =====================================================
         // NAVIGATION & UI INTERACTIONS
         // =====================================================
@@ -2568,7 +2623,7 @@
         });
     
         // Back to top button visibility
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', debounce(function() {
             const backToTopButton = document.getElementById('backToTop');
             if (window.scrollY > 500) {
                 backToTopButton.classList.remove('opacity-0', 'invisible');
@@ -2577,7 +2632,7 @@
                 backToTopButton.classList.add('opacity-0', 'invisible');
                 backToTopButton.classList.remove('opacity-100', 'visible');
             }
-        });
+        }, 100)); // 100ms debounce time
     
         // =====================================================
         // MODAL HANDLING
